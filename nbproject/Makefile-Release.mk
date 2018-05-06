@@ -35,6 +35,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/src/excecoes/JanelaException.o \
+	${OBJECTDIR}/src/gui/MainView.o \
 	${OBJECTDIR}/src/main.o
 
 
@@ -61,6 +63,16 @@ LDLIBSOPTIONS=
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bubbles: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bubbles ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/src/excecoes/JanelaException.o: src/excecoes/JanelaException.cpp
+	${MKDIR} -p ${OBJECTDIR}/src/excecoes
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/excecoes/JanelaException.o src/excecoes/JanelaException.cpp
+
+${OBJECTDIR}/src/gui/MainView.o: src/gui/MainView.cpp
+	${MKDIR} -p ${OBJECTDIR}/src/gui
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/gui/MainView.o src/gui/MainView.cpp
 
 ${OBJECTDIR}/src/main.o: src/main.cpp
 	${MKDIR} -p ${OBJECTDIR}/src

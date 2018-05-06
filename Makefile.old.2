@@ -1,0 +1,18 @@
+TARGET = sistema
+CFLAGS = -g -Wall
+LIBS = -lm
+CC = gcc
+EXEC = bin/sistema
+
+SRC = src/main.c src/gui/MainView.cpp sec/excecoes/JanelaException.cpp
+
+all: $(TARGET)
+
+$(TARGET): $(OBJECTS)
+	$(CC) $(SRC) $(CFLAGS) $(LIBS) -o $(EXEC)
+
+clean: 
+	-rm -f *.o
+	-rm -f $(TARGET)
+
+

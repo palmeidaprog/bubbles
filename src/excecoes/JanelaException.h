@@ -22,7 +22,7 @@ namespace bolhas { namespace excecoes {
         const char * what () const throw () {
             return mensagem.c_str();
         }
-        virtual ~JanelaException();
+        ~JanelaException();
 
     };
 }}

@@ -16,7 +16,7 @@ namespace bolhas { namespace gui {
     class MainController {
         const MainView &view;
     public:
-        MainController(const MainView view);
+        MainController(const MainView &view);
         virtual ~MainController();
     private:
 

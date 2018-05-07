@@ -16,20 +16,21 @@
 #include <allegro5/allegro_audio.h> 
 #include <allegro5/allegro_acodec.h>
 #include "../excecoes/JanelaException.h"
-
+#include "MainController.h"
 
 namespace bolhas { namespace gui {
     class MainView {
-        ALLEGRO_DISPLAY *janela = NULL;
-        ALLEGRO_EVENT_QUEUE *filaEventos = NULL;
-        ALLEGRO_AUDIO_STREAM *musica = NULL;
-        ALLEGRO_SAMPLE *sample = NULL;
+        ALLEGRO_DISPLAY *janela;
+        ALLEGRO_EVENT_QUEUE *filaEventos;
+        ALLEGRO_AUDIO_STREAM *musica;
+        ALLEGRO_SAMPLE *sample;
         MainController controller;
         const int LARGURA;
         const int ALTURA;
         bool stop;
 
-        void incializar();        
+        void incializar();  
+        void ativarEventos();      
         
     public:
         MainView();

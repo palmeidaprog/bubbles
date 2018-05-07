@@ -11,16 +11,16 @@ $(TARGET): $(OBJECTS)
 	$(CC) $(LIBS) -o $(TARGET) $(OBJECTS)
 
 main.o :
-	$(CC) $(CPPFLAFS) -c /src/main.cpp
+	$(CC) $(CPPFLAFS) -c src/main.cpp
 
-MainView.o: /src/gui/MainView.h
-	$(CC) $(CPPFLAFS) -c /src/gui/MainView.cpp
+MainView.o: src/gui/MainView.h
+	$(CC) $(CPPFLAFS) -c src/gui/MainView.cpp
 
-MainController.o: /src/gui/MainController.h
-	$(CC) $(CPPFLAFS) -c /src/gui/MainController.cpp
+MainController.o: src/gui/MainController.h
+	$(CC) $(CPPFLAFS) -c src/gui/MainController.cpp
 
-JanelaException.o: /src/gui/JanelaException.h
-	$(CC) $(CPPFLAFS) -c /src/gui/JanelaException.cpp
+JanelaException.o: src/gui/JanelaException.h
+	$(CC) $(CPPFLAFS) -c src/gui/JanelaException.cpp
 
 
 clean: 

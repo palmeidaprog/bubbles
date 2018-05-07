@@ -19,13 +19,15 @@ namespace bolhas { namespace gui {
     }
 
     MainView::MainView(int largura, int altura) : LARGURA(largura), 
-            ALTURA(altura), stop(false) {
+            ALTURA(altura), stop(false), janela(NULL), filaEventos(NULL),
+            musica(NULL), sample(NULL), controller(*this) {
+        
         janela = al_create_display(LARGURA, ALTURA);
         if(janela == NULL ) {
             throw excecoes::JanelaException("Erro ao abrir janela principal."
                     );
         }
-        inicializar();
+        ativarEventos();
         
     }
 
@@ -34,10 +36,6 @@ namespace bolhas { namespace gui {
         al_destroy_event_queue(filaEventos);
     }
 
-    void Main::View(inicializar) {
-
-    }
-    
     void MainView::ativarEventos() {
         filaEventos = al_create_event_queue();
         

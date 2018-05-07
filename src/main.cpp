@@ -20,6 +20,7 @@ using namespace bolhas;
 int main(int argc, char** argv) {
     ALLEGRO_BITMAP *imagem = NULL;
     
+    // inicializa Allegro 
     if(!al_init()) {
         cerr << "Falha na inicialização do Allegro" << endl;
         return -1;
@@ -29,6 +30,7 @@ int main(int argc, char** argv) {
         cerr << "Falha na inicialização do Allegro Image Addon" << endl;
     }
     
+    // cria janela principal
     try {
         gui::MainView *janela = new gui::MainView(1280, 720);
     } catch(const excecoes::JanelaException &e) {
@@ -37,11 +39,11 @@ int main(int argc, char** argv) {
     }
     
     
-    imagem = al_load_bitmap("resources/images/color.jpg");
-    al_draw_bitmap(imagem, 0, 0, 0);
+    imagem = al_load_bitmap("resources/images/bubl.jpg");
+    //al_draw_bitmap(imagem, 0, 0, 0);
     //al_clear_to_color(al_map_rgb(0, 0, 0));  // preenche tela com cor
-    al_flip_display(); // atualiza tela
-    al_rest(10.0); // espera 10 segundos na tela
+    //al_flip_display(); // atualiza tela
+    //al_rest(10.0); // espera 10 segundos na tela
     
 
     return 0;

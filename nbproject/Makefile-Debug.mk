@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/src/excecoes/JanelaException.o \
+	${OBJECTDIR}/src/gui/MainController.o \
 	${OBJECTDIR}/src/gui/MainView.o \
 	${OBJECTDIR}/src/main.o
 
@@ -44,8 +45,8 @@ OBJECTFILES= \
 CFLAGS=
 
 # CC Compiler Flags
-CCFLAGS=-lallegro -lallegro_main -lallegro_image
-CXXFLAGS=-lallegro -lallegro_main -lallegro_image
+CCFLAGS=-lallegro -lallegro_main -lallegro_image -lallegro_audio -lallegro_acodec
+CXXFLAGS=-lallegro -lallegro_main -lallegro_image -lallegro_audio -lallegro_acodec
 
 # Fortran Compiler Flags
 FFLAGS=
@@ -68,6 +69,11 @@ ${OBJECTDIR}/src/excecoes/JanelaException.o: src/excecoes/JanelaException.cpp
 	${MKDIR} -p ${OBJECTDIR}/src/excecoes
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/excecoes/JanelaException.o src/excecoes/JanelaException.cpp
+
+${OBJECTDIR}/src/gui/MainController.o: src/gui/MainController.cpp
+	${MKDIR} -p ${OBJECTDIR}/src/gui
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/gui/MainController.o src/gui/MainController.cpp
 
 ${OBJECTDIR}/src/gui/MainView.o: src/gui/MainView.cpp
 	${MKDIR} -p ${OBJECTDIR}/src/gui

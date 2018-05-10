@@ -30,5 +30,7 @@
 *.exe
 *.out
 *.app
+
 /build/
+/bin/
 /dist/

@@ -10,11 +10,10 @@
 #include "JanelaException.h"
 
 namespace bolhas { namespace excecoes {
-    JanelaException::JanelaException(const std::string mensagem) : 
-    mensagem(mensagem) { 
-    }
-
-    JanelaException::~JanelaException() {}
+    JanelaException::JanelaException(const std::string &mensagem) : mensagem(
+        mensagem) { }
+    
+    JanelaException::~JanelaException() { }
 }}
 
 

@@ -10,13 +10,12 @@
 #ifndef MAINCONTROLLER_H
 #define MAINCONTROLLER_H
 
-#include "MainView.h"
-
 namespace bolhas { namespace gui {
+    class MainView;
     class MainController {
-        const MainView &view;
+        const gui::MainView &view;
     public:
-        MainController(const MainView &view);
+        MainController(const gui::MainView &view);
         virtual ~MainController();
     private:
 

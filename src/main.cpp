@@ -25,11 +25,7 @@ int main(int argc, char** argv) {
         cerr << "Falha na inicialização do Allegro" << endl;
         return -1;
     }
-    
-    if(!al_init_image_addon()) {
-        cerr << "Falha na inicialização do Allegro Image Addon" << endl;
-    }
-    
+     
     // cria janela principal
     try {
         gui::MainView *janela = new gui::MainView(1280, 720);
@@ -39,7 +35,7 @@ int main(int argc, char** argv) {
     }
     
     
-    imagem = al_load_bitmap("resources/images/bubl.jpg");
+    
     //al_draw_bitmap(imagem, 0, 0, 0);
     //al_clear_to_color(al_map_rgb(0, 0, 0));  // preenche tela com cor
     //al_flip_display(); // atualiza tela

@@ -16,14 +16,13 @@
 namespace bolhas { namespace excecoes {
     class JanelaException : std::exception {
         std::string mensagem;
-        
+    
     public:
-        JanelaException(std::string mensagem);
-        const char * what () const throw () {
+        explicit JanelaException(const std::string &mensagem);
+        virtual ~JanelaException();
+        const char *what() const throw() {
             return mensagem.c_str();
         }
-        ~JanelaException();
-
     };
 }}
 

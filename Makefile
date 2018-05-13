@@ -1,30 +1,27 @@
 TARGET = bin/bubbles
 CC = g++
 CPPFLAGS = -g -std=c++14 -Wall 
-LDFLAGS = -lm -lallegro -lallegro_main -lallegro_image -lallegro_audio -lallegro_acodec
-OBJECTS = main.o MainView.o MainController.o JanelaException.o
+LIBS = -lm -lallegro -lallegro_main -lallegro_image -lallegro_audio -lallegro_acodec
+OBJECTS = build/main.o build/MainView.o build/MainController.o build/JanelaException.o
 EXEC = bin/bubbles
-
-SRC = src/main.c src/gui/MainView.cpp sec/excecoes/JanelaException.cpp
 
 $(TARGET): $(OBJECTS)
 	$(CC) $(LIBS) -o $(TARGET) $(OBJECTS)
 
-main.o :
-	$(CC) $(CPPFLAFS) -c src/main.cpp
+build/main.o: src/main.cpp
+	$(CC) $(CPPFLAGS) -c src/main.cpp -o build/main.o
 
-MainView.o: src/gui/MainView.h
-	$(CC) $(CPPFLAFS) -c src/gui/MainView.cpp
+build/MainView.o: src/gui/MainView.cpp src/gui/MainView.h
+	$(CC) $(CPPFLAGS) -c src/gui/MainView.cpp -o build/MainView.o
 
-MainController.o: src/gui/MainController.h
-	$(CC) $(CPPFLAFS) -c src/gui/MainController.cpp
+build/MainController.o: src/gui/MainController.cpp src/gui/MainController.h
+	$(CC) $(CPPFLAGS) -c src/gui/MainController.cpp -o build/MainController.o
 
-JanelaException.o: src/gui/JanelaException.h
-	$(CC) $(CPPFLAFS) -c src/gui/JanelaException.cpp
-
+build/JanelaException.o: src/excecoes/JanelaException.cpp src/excecoes/JanelaException.h
+	$(CC) $(CPPFLAGS) -c src/excecoes/JanelaException.cpp -o build/JanelaException.o
 
 clean: 
-	-rm -f *.o
+	-rm -f build/*.o
 	-rm -f $(TARGET)
 
 

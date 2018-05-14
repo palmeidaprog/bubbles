@@ -7,7 +7,7 @@
  * E-mail: pauloalmeidaf@gmail.com
  */
 
-#include "gui/MainView.h"
+#include "MainView.h"
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_native_dialog.h>
 #include <allegro5/allegro_image.h>

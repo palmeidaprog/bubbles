@@ -13,7 +13,7 @@
 
 #include <iostream>
 #include "MainController.h"
-#include "../excecoes/JanelaException.h"
+#include "JanelaException.h"
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_native_dialog.h>
 #include <allegro5/allegro_audio.h> 
@@ -44,7 +44,7 @@ namespace bolhas { namespace gui {
         void ativarEventos();      
         void inicializaSom();
         void inicializaTeclado();
-        void inicializaImagem();
+        void inicializaImagem() const;
         
     public:
         MainView(int largura, int altura);
@@ -54,6 +54,7 @@ namespace bolhas { namespace gui {
         void setTitulo(const std::string &titulo);
         void setImagem(const std::string &imagemArq);
         void displayImagem(double x = 0, double y = 0, int flag = 0);
+        void playSom() const;
 
         const ALLEGRO_DISPLAY *getJanela() const {
             return janela;

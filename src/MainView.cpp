@@ -17,12 +17,15 @@ namespace bolhas { namespace gui {
     MainView::MainView(int largura, int altura) : LARGURA(largura), 
             ALTURA(altura), janela(NULL), filaEventos(NULL),
             musica(NULL), sample(NULL), stop(false), musicaArq(
-                "resources/sons/Space_Loop.wav"), titulo("Algebra Bolheana"),
-                imagemArq("resources/images/bubl.jpg") {
+                "resources/sons/Space_Loop.wav"), titulo(
+                "Algebra Bolheana"), imagemArq(
+                    "resources/images/bubl.jpg") {
         
         controller = new MainController(*this);
         
+        setTitulo("Algebra Bolheana");
         inicializaSom();
+        playSom();
         std::cout << "Som inicializado" << endl;
         inicializaTeclado();
         std::cout << "teclado inicializado" << endl;
@@ -32,10 +35,11 @@ namespace bolhas { namespace gui {
                     );
         }
         inicializaImagem();
-        displayImagem();
+        std::cout << "Imagem inicializado" << endl;
+        //displayImagem();
         ativarEventos();
         std::cout << "Eventos inicializado" << endl;
-        
+
     }
 
     MainView::~MainView() {
@@ -57,7 +61,6 @@ namespace bolhas { namespace gui {
         al_register_event_source(filaEventos, al_get_display_event_source(janela));
 
         while(1) {
-            std::cout << "EM EVVENTOS inicializado" << endl;
             ALLEGRO_EVENT evento;
             ALLEGRO_TIMEOUT tempo;
             al_init_timeout(&tempo, 0.01);
@@ -67,10 +70,16 @@ namespace bolhas { namespace gui {
                 break;
             }
             
-            ALLEGRO_BITMAP *imagem = al_load_bitmap("resources/images/bub.jpg"
-                    );
-            al_draw_bitmap(imagem, 0, 0, 0);
+            ALLEGRO_BITMAP *imagem = al_load_bitmap(
+                "resources/images/bubl.jpg");
+            if(imagem == NULL) {
+                cerr << "Imagem não foi carregada" << endl;
+            } else {
+                al_draw_bitmap(imagem, 0, 0, 0);
+            }
+            
             al_flip_display();
+
         }
     }
 
@@ -87,9 +96,11 @@ namespace bolhas { namespace gui {
             cerr << "Falha ao alocar canais de áudio." << endl;
         }
 
-        al_attach_audio_stream_to_mixer(musica, al_get_default_mixer());
-        al_set_audio_stream_playing(musica, true);
-        musica = al_load_audio_stream(musicaArq.c_str(), 4, 1024);
+        sample = al_load_sample(musicaArq.c_str());
+
+        //al_attach_audio_stream_to_mixer(musica, al_get_default_mixer());
+        //al_set_audio_stream_playing(musica, true);
+        //musica = al_load_audio_stream(musicaArq.c_str(), 4, 1024);
     }
 
     void MainView::inicializaTeclado() {
@@ -100,11 +111,12 @@ namespace bolhas { namespace gui {
 
     void MainView::setMusica(const std::string &musicaArq) {
         this->musicaArq = musicaArq;
-        musica = al_load_audio_stream(musicaArq.c_str(), 4, 1024);
+        sample = al_load_sample(musicaArq.c_str());
+        /*musica = al_load_audio_stream(musicaArq.c_str(), 4, 1024);
         if(musica == NULL) {
             cerr << "Erro ao carregar musica " << musicaArq << "." 
                 << endl;
-        }
+        }*/
     }
 
     void MainView::setTitulo(const std::string &titulo) {
@@ -112,7 +124,7 @@ namespace bolhas { namespace gui {
         al_set_window_title(janela, titulo.c_str());
     }
 
-    void MainView::inicializaImagem() {
+    void MainView::inicializaImagem() const {
         if(!al_init_image_addon()) {
            cerr << "Falha na inicialização do Allegro Image Addon" << endl;
         }
@@ -126,5 +138,9 @@ namespace bolhas { namespace gui {
     void MainView::displayImagem(double x, double y, int flag) {
         al_draw_bitmap(imagem, x, y, flag);
         al_flip_display();
+    }
+
+    void MainView::playSom() const {
+        al_play_sample(sample, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL);
     }
 }}

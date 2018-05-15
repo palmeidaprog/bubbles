@@ -16,30 +16,28 @@ using namespace bolhas;
 namespace bolhas { namespace gui {
     MainView::MainView(int largura, int altura) : LARGURA(largura), 
             ALTURA(altura), janela(NULL), filaEventos(NULL),
-            musica(NULL), sample(NULL), stop(false), musicaArq(
-                "resources/sons/Space_Loop.wav"), titulo(
+            musica(NULL), sample(NULL), stop(false), tamanhoFonte(24), 
+            musicaArq("resources/sons/Space_Loop.wav"), titulo(
                 "Algebra Bolheana"), imagemArq(
-                    "resources/images/bubl.jpg") {
+                    "resources/images/bubl.jpg"), nomeFonte(
+                        "resources/fonts/ARCADECLASSIC.TTF") {
         
         controller = new MainController(*this);
         
-        setTitulo("Algebra Bolheana");
+        setTitulo(titulo);
         inicializaSom();
         playSom();
-        std::cout << "Som inicializado" << endl;
         inicializaTeclado();
-        std::cout << "teclado inicializado" << endl;
         janela = al_create_display(LARGURA, ALTURA);
         if(janela == NULL) {
             throw excecoes::JanelaException("Erro ao abrir janela principal."
                     );
         }
         inicializaImagem();
-        std::cout << "Imagem inicializado" << endl;
-        //displayImagem();
-        ativarEventos();
-        std::cout << "Eventos inicializado" << endl;
-
+        fundoDeTela("resources/images/unders.jpg");
+        inicializaEventos();
+        inicializaFont();
+        mostraMenu();
     }
 
     MainView::~MainView() {
@@ -49,9 +47,7 @@ namespace bolhas { namespace gui {
         al_destroy_event_queue(filaEventos);
     }
 
-
-
-    void MainView::ativarEventos() {
+    void MainView::inicializaEventos() {
         filaEventos = al_create_event_queue();
         
         if(filaEventos == NULL) {
@@ -59,30 +55,8 @@ namespace bolhas { namespace gui {
         }
 
         al_register_event_source(filaEventos, al_get_display_event_source(janela));
-
-        while(1) {
-            ALLEGRO_EVENT evento;
-            ALLEGRO_TIMEOUT tempo;
-            al_init_timeout(&tempo, 0.01);
-            bool temEventos = al_wait_for_event_until(filaEventos, &evento, 
-                    &tempo);
-            if(temEventos && ALLEGRO_EVENT_DISPLAY_CLOSE) {
-                break;
-            }
-            
-            ALLEGRO_BITMAP *imagem = al_load_bitmap(
-                "resources/images/bubl.jpg");
-            if(imagem == NULL) {
-                cerr << "Imagem não foi carregada" << endl;
-            } else {
-                al_draw_bitmap(imagem, 0, 0, 0);
-            }
-            
-            al_flip_display();
-
-        }
     }
-
+    
     void MainView::inicializaSom() {
         if (!al_install_audio()) {
             cerr << "Falha ao inicializar áudio." << endl;
@@ -119,6 +93,13 @@ namespace bolhas { namespace gui {
         }*/
     }
 
+    void MainView::inicializaFont() {
+        if(!al_init_ttf_addon()) {
+            cerr << "Falha ao inicializar addon de TTF." << endl;
+        }
+        mudaFonte(nomeFonte.c_str(), tamanhoFonte); 
+    }
+
     void MainView::setTitulo(const std::string &titulo) {
         this->titulo = titulo;
         al_set_window_title(janela, titulo.c_str());
@@ -135,12 +116,38 @@ namespace bolhas { namespace gui {
         imagem = al_load_bitmap(imagemArq.c_str());        
     }
 
-    void MainView::displayImagem(double x, double y, int flag) {
+    void MainView::displayImagem(double x, double y, int flag) const {
         al_draw_bitmap(imagem, x, y, flag);
         al_flip_display();
     }
 
     void MainView::playSom() const {
         al_play_sample(sample, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL);
+    }
+
+    ALLEGRO_EVENT_QUEUE *MainView::getEventos() const {
+        return filaEventos;
+    }
+
+    void MainView::fundoDeTela(const char *nome) const {
+        ALLEGRO_BITMAP *imagem = al_load_bitmap(nome);
+        if(imagem != NULL) {
+            al_draw_bitmap(imagem, 0, 0, 0);
+        }
+    }
+
+    void MainView::mudaFonte(const std::string &nome, int tamanhoFonte) {
+        nomeFonte = nome;
+        this->tamanhoFonte = tamanhoFonte;
+        fonte = al_load_font(nome.c_str(), tamanhoFonte, 0);
+    }
+
+    void MainView::mudaFonte(const std::string &nome) {
+        mudaFonte(nome, tamanhoFonte);
+    }
+
+    void MainView::escondeMenu() {
+        delete menu;
+        menu = NULL;
     }
 }}

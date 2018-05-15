@@ -17,6 +17,8 @@ using std::cerr;
 using std::endl;
 using namespace bolhas;
 
+void iniciar(const gui::MainView &mainView);
+
 int main(int argc, char** argv) {
     ALLEGRO_BITMAP *imagem = NULL;
     
@@ -28,20 +30,27 @@ int main(int argc, char** argv) {
      
     // cria janela principal
     try {
-        gui::MainView *janela = new gui::MainView(1280, 720);
+        iniciar(gui::MainView(1280, 720));
     } catch(const excecoes::JanelaException &e) {
         cerr << e.what() << endl;
         return -1;
     }
-    
-    
-    
-    //al_draw_bitmap(imagem, 0, 0, 0);
-    //al_clear_to_color(al_map_rgb(0, 0, 0));  // preenche tela com cor
-    //al_flip_display(); // atualiza tela
-    //al_rest(10.0); // espera 10 segundos na tela
-    
 
     return 0;
+}
+
+void iniciar(const gui::MainView &mainView) {
+    while(true) {
+            ALLEGRO_EVENT_QUEUE *filaEventos = mainView.getEventos();
+            ALLEGRO_EVENT evento;
+            ALLEGRO_TIMEOUT tempo;
+            al_init_timeout(&tempo, 1.0 / 60);
+            bool temEventos = al_wait_for_event_until(filaEventos, &evento, 
+                    &tempo);
+            if(temEventos && ALLEGRO_EVENT_DISPLAY_CLOSE) {
+                break;
+            }
+            al_flip_display();
+    }
 }
 

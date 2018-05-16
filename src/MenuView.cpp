@@ -8,25 +8,20 @@
  */
 
 #include "MenuView.h"
+#include "MainView.h"
 
 // construtor
 namespace bolhas { namespace gui {
-    MenuView::MenuView(ALLEGRO_FONT *fonte_, const int altura, const int 
-            largura) : fonte(fonte_), ALTURA(altura), LARGURA(largura) {
+    MenuView::MenuView(MainView &parent_, ALLEGRO_FONT *fonte_, const int 
+            altura, const int largura) : parent(parent_), fonte(fonte_), 
+            ALTURA(altura), LARGURA(largura) {
         criarMenu();
     }
 
-    void MenuView::criarMenu() const {
-
-        //al_draw_text(fonte, al_map_rgb(0, 0, 0), 10, 10, ALLEGRO_ALIGN_LEFT, "Esquerda");
-        // Texto alinhado à direita
-        al_draw_text(fonte, al_map_rgb(0, 255, 0), LARGURA - 10, 50, ALLEGRO_ALIGN_RIGHT, "Direita");
-        // Texto centralizado
-        al_draw_text(fonte, al_map_rgb(0, 0, 255), LARGURA / 2, 90, ALLEGRO_ALIGN_CENTRE, "Centro");
-    
-        // Exemplo de impressão de valores variáveis
-        int i = 2;
-        
-        al_draw_textf(fonte, al_map_rgb(0, 0, 0), LARGURA / 2, 250, ALLEGRO_ALIGN_CENTRE, "Teste %d - %s", i, "Uma str");
+    void MenuView::mostrarMenu() const {
+        al_draw_text(fonte, al_map_rgb(0, 0, 255), LARGURA / 2, 90, 
+            ALLEGRO_ALIGN_CENTRE, "Centro");
+        al_draw_textf(fonte, al_map_rgb(0, 0, 0), LARGURA / 2, 250, 
+            ALLEGRO_ALIGN_CENTRE, "Teste %d - %s", 3, "Uma str");
     }
 }}

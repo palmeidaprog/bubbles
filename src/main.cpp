@@ -20,8 +20,6 @@ using namespace bolhas;
 void iniciar(const gui::MainView &mainView);
 
 int main(int argc, char** argv) {
-    ALLEGRO_BITMAP *imagem = NULL;
-    
     // inicializa Allegro 
     if(!al_init()) {
         cerr << "Falha na inicialização do Allegro" << endl;
@@ -47,10 +45,11 @@ void iniciar(const gui::MainView &mainView) {
             al_init_timeout(&tempo, 1.0 / 60);
             bool temEventos = al_wait_for_event_until(filaEventos, &evento, 
                     &tempo);
-            if(temEventos && ALLEGRO_EVENT_DISPLAY_CLOSE) {
+            if(temEventos && evento.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
                 break;
             }
-            al_flip_display();
+            std::cout << "x" << endl;
+            mainView.fundoDeTela();
     }
 }
 

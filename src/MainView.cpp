@@ -15,12 +15,12 @@ using namespace bolhas;
 
 namespace bolhas { namespace gui {
     MainView::MainView(int largura, int altura) : LARGURA(largura), 
-            ALTURA(altura), janela(NULL), filaEventos(NULL),
-            musica(NULL), sample(NULL), stop(false), tamanhoFonte(24), 
+            ALTURA(altura), fonte(NULL), janela(NULL), filaEventos(NULL),
+            musica(NULL), sample(NULL), fundo(NULL), stop(false), tamanhoFonte(24), 
             musicaArq("resources/sons/Space_Loop.wav"), titulo(
                 "Algebra Bolheana"), imagemArq(
                     "resources/images/bubl.jpg"), nomeFonte(
-                        "resources/fonts/ARCADECLASSIC.TTF") {
+                        "resources/fonts/arcadeclassic.ttf") {
         
         controller = new MainController(*this);
         
@@ -113,12 +113,7 @@ namespace bolhas { namespace gui {
 
     void MainView::setImagem(const std::string &imagemArq) {
         this->imagemArq = imagemArq;
-        imagem = al_load_bitmap(imagemArq.c_str());        
-    }
-
-    void MainView::displayImagem(double x, double y, int flag) const {
-        al_draw_bitmap(imagem, x, y, flag);
-        al_flip_display();
+        fundo = al_load_bitmap(imagemArq.c_str());        
     }
 
     void MainView::playSom() const {
@@ -129,17 +124,22 @@ namespace bolhas { namespace gui {
         return filaEventos;
     }
 
-    void MainView::fundoDeTela(const char *nome) const {
-        ALLEGRO_BITMAP *imagem = al_load_bitmap(nome);
-        if(imagem != NULL) {
-            al_draw_bitmap(imagem, 0, 0, 0);
-        }
+    void MainView::fundoDeTela(const char *nome) {
+        fundo = al_load_bitmap(nome);
+        if(fundo != NULL) {
+            fundoDeTela();
+        }        
+    }
+
+    void MainView::fundoDeTela() const {
+        al_draw_bitmap(fundo, 0, 0, 0);
+        al_flip_display();
     }
 
     void MainView::mudaFonte(const std::string &nome, int tamanhoFonte) {
         nomeFonte = nome;
         this->tamanhoFonte = tamanhoFonte;
-        fonte = al_load_font(nome.c_str(), tamanhoFonte, 0);
+        fonte = al_load_ttf_font(nome.c_str(), tamanhoFonte, 0);
     }
 
     void MainView::mudaFonte(const std::string &nome) {

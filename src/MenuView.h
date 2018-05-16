@@ -15,17 +15,19 @@
 #include <allegro5/allegro_ttf.h>
 
 namespace bolhas { namespace gui {
+    class MainView;
     class MenuView {
+        MainView &parent;
         ALLEGRO_FONT *fonte;
         const int ALTURA;
         const int LARGURA;
 
     public:
-        MenuView(ALLEGRO_FONT *fonte_, const int altura, const int 
-            largura);
+        MenuView(MainView &parent_, ALLEGRO_FONT *fonte_, const int altura, 
+            const int largura);
         virtual ~MenuView() { }
 
-        void criarMenu() const;
+        void mostraMenu() const;
     };
 }}
 

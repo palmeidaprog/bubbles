@@ -3,7 +3,7 @@ CC = g++
 CPPFLAGS = -g -std=c++14 -Wall 
 
 LIBS = -lm -lallegro -lallegro_main -lallegro_image -lallegro_audio -lallegro_acodec -lallegro_font -lallegro_ttf
-OBJECTS = build/main.o build/MainView.o build/MainController.o build/JanelaException.o build/MenuView.o
+OBJECTS = build/main.o build/MainView.o build/MainController.o build/JanelaException.o build/MenuView.o build/Estado.o
 EXEC = bin/bubbles
 
 $(TARGET): $(OBJECTS)
@@ -24,6 +24,8 @@ build/JanelaException.o: src/JanelaException.cpp src/JanelaException.h
 build/MenuView.o: src/MenuView.cpp src/MenuView.h
 	$(CC) $(CPPFLAGS) -c src/MenuView.cpp -o build/MenuView.o
 
+build/Estado.o: src/Estado.h
+	$(CC) $(CPPFLAGS) -c src/Estado.h -o build/Estado.o
 clean: 
 	-rm -f build/*.o
 	-rm -f $(TARGET)

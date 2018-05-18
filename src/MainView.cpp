@@ -20,7 +20,7 @@ namespace bolhas { namespace gui {
             musicaArq("resources/sons/Space_Loop.wav"), titulo(
                 "Algebra Bolheana"), imagemArq(
                     "resources/images/bubl.jpg"), nomeFonte(
-                        "resources/fonts/arcadeclassic.ttf") {
+                        "resources/fonts/arcadeclassic.ttf", estado(Estado::MENU)) {
         
         controller = new MainController(*this);
         

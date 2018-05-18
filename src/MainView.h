@@ -12,6 +12,7 @@
 #define MAINVIEW_H
 
 #include <iostream>
+#include "Estado.h"
 #include "JanelaException.h"
 #include "MenuView.h"
 #include "MainController.h"
@@ -45,6 +46,7 @@ namespace bolhas { namespace gui {
         std::string nomeFonte;
         MainController *controller;
         MenuView *menu;
+        Estado estado;
 
         void incializar();     
         void inicializaSom();
@@ -83,6 +85,14 @@ namespace bolhas { namespace gui {
         const int getLargura() const {
             return LARGURA;
         }    
+
+        Estado getEstado() const {
+            return estado;
+        }
+
+        void setEstado(Estado estado) {
+            this->estado = estado;
+        }
     };
 }}
 

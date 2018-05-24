@@ -15,13 +15,13 @@ namespace bolhas { namespace gui {
     MenuView::MenuView(MainView &parent_, ALLEGRO_FONT *fonte_, const int 
             altura, const int largura) : parent(parent_), fonte(fonte_), 
             ALTURA(altura), LARGURA(largura) {
-        criarMenu();
+        mostraMenu();
     }
 
-    void MenuView::mostrarMenu() const {
-        al_draw_text(fonte, al_map_rgb(0, 0, 255), LARGURA / 2, 90, 
+    void MenuView::mostraMenu() const {
+    /*    al_draw_text(fonte, al_map_rgb(0, 0, 255), LARGURA / 2, 90,
             ALLEGRO_ALIGN_CENTRE, "Centro");
         al_draw_textf(fonte, al_map_rgb(0, 0, 0), LARGURA / 2, 250, 
-            ALLEGRO_ALIGN_CENTRE, "Teste %d - %s", 3, "Uma str");
+            ALLEGRO_ALIGN_CENTRE, "Teste %d - %s", 3, "Uma str");*/
     }
 }}

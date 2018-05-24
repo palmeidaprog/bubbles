@@ -17,7 +17,7 @@ using std::cerr;
 using std::endl;
 using namespace bolhas;
 
-void iniciar(const gui::MainView &mainView);
+void iniciar(gui::MainView &mainView);
 
 int main(int argc, char** argv) {
     // inicializa Allegro 
@@ -28,7 +28,8 @@ int main(int argc, char** argv) {
      
     // cria janela principal
     try {
-        iniciar(gui::MainView(1280, 720));
+        gui::MainView mainView(1280, 720);
+        iniciar(mainView);
     } catch(const excecoes::JanelaException &e) {
         cerr << e.what() << endl;
         return -1;
@@ -37,7 +38,7 @@ int main(int argc, char** argv) {
     return 0;
 }
 
-void iniciar(const gui::MainView &mainView) {
+void iniciar(gui::MainView &mainView) {
     while(true) {
             ALLEGRO_EVENT_QUEUE *filaEventos = mainView.getEventos();
             ALLEGRO_EVENT evento;
@@ -49,7 +50,8 @@ void iniciar(const gui::MainView &mainView) {
                 break;
             }
             std::cout << "x" << endl;
-            mainView.fundoDeTela();
+            mainView.renderizaTela();
+            al_flip_display();
     }
 }
 

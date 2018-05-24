@@ -20,8 +20,9 @@ namespace bolhas { namespace gui {
             musicaArq("resources/sons/Space_Loop.wav"), titulo(
                 "Algebra Bolheana"), imagemArq(
                     "resources/images/bubl.jpg"), nomeFonte(
-                        "resources/fonts/arcadeclassic.ttf", estado(Estado::MENU)) {
-        
+                        "resources/fonts/arcadeclassic.ttf") {
+
+        estado = Estado::MENU;
         controller = new MainController(*this);
         
         setTitulo(titulo);
@@ -132,8 +133,9 @@ namespace bolhas { namespace gui {
     }
 
     void MainView::fundoDeTela() const {
-        al_draw_bitmap(fundo, 0, 0, 0);
-        al_flip_display();
+        if(fundo != nullptr) {
+            al_draw_bitmap(fundo, 0, 0, 0);
+        }
     }
 
     void MainView::mudaFonte(const std::string &nome, int tamanhoFonte) {
@@ -149,5 +151,16 @@ namespace bolhas { namespace gui {
     void MainView::escondeMenu() {
         delete menu;
         menu = NULL;
+    }
+
+    void MainView::renderizaTela() {
+        switch(estado) {
+            case Estado::MENU:
+                mostraMenu();
+                fundoDeTela();
+                break;
+            default:
+                break;
+        }
     }
 }}

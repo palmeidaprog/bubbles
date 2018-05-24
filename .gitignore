@@ -31,8 +31,11 @@
 *.out
 *.app
 
-/build/
-/dist/
+build/
+dist/
 /bin
 /.vscode
 .dep.inc
+.DS_Store
+.idea
+cmake-build-debug/

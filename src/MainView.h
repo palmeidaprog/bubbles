@@ -70,6 +70,7 @@ namespace bolhas { namespace gui {
         void mudaFonte(const std::string &nome, int tamanhoFonte);
         void mudaFonte(const std::string &nome);
         void escondeMenu();
+        void renderizaTela();
         void mostraMenu() {
             menu = new MenuView(*this, fonte, ALTURA, LARGURA);
         }

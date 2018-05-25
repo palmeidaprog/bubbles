@@ -15,13 +15,10 @@ using namespace bolhas;
 
 namespace bolhas { namespace gui {
     MainView::MainView(int largura, int altura) : LARGURA(largura), 
-            ALTURA(altura), fonte(NULL), janela(NULL), filaEventos(NULL),
-            musica(NULL), sample(NULL), fundo(NULL), stop(false), tamanhoFonte(24), 
-            musicaArq("resources/sons/Space_Loop.wav"), titulo(
-                "Algebra Bolheana"), imagemArq(
-                    "resources/images/bubl.jpg"), nomeFonte(
-                        "resources/fonts/arcadeclassic.ttf") {
-
+            ALTURA(altura), fonte(nullptr), janela(NULL), filaEventos(NULL),
+            musica(NULL), sample(NULL), fundo(NULL), stop(false), musicaArq(
+            "resources/sons/Space_Loop.wav"), titulo("Algebra Bolheana"),
+            imagemArq("resources/images/bubl.jpg") {
         estado = Estado::MENU;
         controller = new MainController(*this);
         
@@ -34,14 +31,19 @@ namespace bolhas { namespace gui {
             throw excecoes::JanelaException("Erro ao abrir janela principal."
                     );
         }
-        inicializaImagem();
-        fundoDeTela("resources/images/unders.jpg");
         inicializaEventos();
         inicializaFont();
-        mostraMenu();
+        fonte = new model::Fonts("resource/fonts/PressStart2P.ttf", 48);
+        inicializaImagem();
+        fundoDeTela("resources/images/unders.jpg");
+        al_flip_display();
+
     }
 
     MainView::~MainView() {
+        delete fonte;
+        delete menu;
+        delete controller;
         al_destroy_audio_stream(musica);
         al_destroy_sample(sample);
         al_destroy_display(janela); // fecha janela
@@ -95,10 +97,13 @@ namespace bolhas { namespace gui {
     }
 
     void MainView::inicializaFont() {
+        if(!al_init_font_addon()) {
+            cerr << "Falha ao inicializar addon de fontes." << endl;
+        }
+
         if(!al_init_ttf_addon()) {
             cerr << "Falha ao inicializar addon de TTF." << endl;
         }
-        mudaFonte(nomeFonte.c_str(), tamanhoFonte); 
     }
 
     void MainView::setTitulo(const std::string &titulo) {
@@ -138,16 +143,6 @@ namespace bolhas { namespace gui {
         }
     }
 
-    void MainView::mudaFonte(const std::string &nome, int tamanhoFonte) {
-        nomeFonte = nome;
-        this->tamanhoFonte = tamanhoFonte;
-        fonte = al_load_ttf_font(nome.c_str(), tamanhoFonte, 0);
-    }
-
-    void MainView::mudaFonte(const std::string &nome) {
-        mudaFonte(nome, tamanhoFonte);
-    }
-
     void MainView::escondeMenu() {
         delete menu;
         menu = NULL;
@@ -156,11 +151,27 @@ namespace bolhas { namespace gui {
     void MainView::renderizaTela() {
         switch(estado) {
             case Estado::MENU:
-                mostraMenu();
                 fundoDeTela();
+                mostraMenu();
                 break;
             default:
                 break;
         }
     }
+
+    void MainView::mostraMenu() {
+
+        if(menu == nullptr) {
+            menu = new MenuView(*this, ALTURA, LARGURA);
+        } else {
+            menu->mostraMenu();
+        }
+
+    }
+
+    // Copia da fonte
+    model::Fonts MainView::getFonte() const {
+        return *fonte;
+    }
+
 }}

@@ -12,16 +12,19 @@
 
 // construtor
 namespace bolhas { namespace gui {
-    MenuView::MenuView(MainView &parent_, ALLEGRO_FONT *fonte_, const int 
-            altura, const int largura) : parent(parent_), fonte(fonte_), 
+    MenuView::MenuView(MainView &parent_, const int
+            altura, const int largura) : parent(parent_), fonte(NULL),
             ALTURA(altura), LARGURA(largura) {
-        mostraMenu();
     }
 
-    void MenuView::mostraMenu() const {
-    /*    al_draw_text(fonte, al_map_rgb(0, 0, 255), LARGURA / 2, 90,
+    void MenuView::mostraMenu() {
+        fonte = new model::Fonts(parent.getFonte());
+
+        al_draw_text(fonte->getPointer(), al_map_rgb(0, 0, 255), LARGURA / 2.0, 90,
             ALLEGRO_ALIGN_CENTRE, "Centro");
-        al_draw_textf(fonte, al_map_rgb(0, 0, 0), LARGURA / 2, 250, 
+        al_draw_textf(fonte->getPointer(), al_map_rgb(0, 0, 0), LARGURA / 2.0, 250,
+            ALLEGRO_ALIGN_CENTRE, "Teste %d - %s", 3, "Uma str");
+        /*al_draw_textf(fonte, al_map_rgb(0, 0, 0), LARGURA / 2, 250,
             ALLEGRO_ALIGN_CENTRE, "Teste %d - %s", 3, "Uma str");*/
     }
 }}

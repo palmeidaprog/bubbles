@@ -2,14 +2,9 @@ cmake_minimum_required(VERSION 3.10)
 project(bubbles)
 
 set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_FLAGS "-g -lm -lallegro -lallegro_main -lallegro_image -lallegro_audio -lallegro_acodec -lallegro_font -lallegro_ttf ")        #Allegro
+set(CMAKE_CXX_FLAGS "-lallegro -lallegro_main -lallegro_image -lallegro_audio -lallegro_acodec -lallegro_font -lallegro_ttf ")        #Allegro
 
 include_directories(src)
-
-# FILE(TO_NATIVE_PATH "${CMAKE_SOURCE_DIR}/resources" source)
-add_custom_command(TARGET bubbles PRE_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_directory
-        ${CMAKE_SOURCE_DIR}/config $<TARGET_FILE_DIR:resources>)
 
 add_executable(bubbles
         resources/fonts/ARCADECLASSIC.TTF
@@ -34,5 +29,5 @@ add_executable(bubbles
         src/MenuController.cpp
         src/MenuController.h
         src/MenuView.cpp
-        src/MenuView.h)
+        src/MenuView.h src/Fonts.cpp src/Fonts.h)
 

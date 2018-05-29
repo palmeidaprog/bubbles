@@ -13,9 +13,10 @@
 #include "Estado.h"
 
 namespace bolhas { namespace interfaces {
+    template <typename T>
     class Memento {
-        virtual void getEstado() = 0;
-        virtual void setEstado(Estado estado) = 0;
+        virtual T getEstado() = 0;
+        virtual void setEstado(T estado) = 0;
     };
 }}
 

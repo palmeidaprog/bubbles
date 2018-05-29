@@ -33,7 +33,7 @@ using std::endl;
 namespace bolhas { namespace gui {
     class MainController;
     class MenuView;
-class MainView : public Janela, interfaces::Memento {
+class MainView : public Janela, public interfaces::Memento<Estado> {
         model::Fonts *fonte;
         ALLEGRO_EVENT_QUEUE *filaEventos;
         ALLEGRO_AUDIO_STREAM *musica;

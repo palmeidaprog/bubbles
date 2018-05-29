@@ -19,7 +19,8 @@ namespace bolhas { namespace gui {
         ALLEGRO_DISPLAY *janela;
 
     public:
-        Janela(int LARGURA, int ALTURA) : LARGURA(LARGURA), ALTURA(ALTURA) {}
+        Janela(int LARGURA, int ALTURA);
+        virtual ~Janela();
 
     public:
         const int getAltura() const {

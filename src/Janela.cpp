@@ -8,3 +8,8 @@
  */
 
 #include "Janela.h"
+
+bolhas::gui::Janela::Janela(int LARGURA, int ALTURA);
+bolhas::gui::Janela::~Janela() {
+    al_
+}

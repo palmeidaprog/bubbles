@@ -13,10 +13,12 @@
 
 #include <iostream>
 #include "Estado.h"
+#include "Janela.h"
 #include "JanelaException.h"
 #include "MenuView.h"
 #include "MainController.h"
 #include "Fonts.h"
+#include "Memento.h"
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_native_dialog.h>
 #include <allegro5/allegro_audio.h> 
@@ -30,11 +32,9 @@ using std::endl;
 
 namespace bolhas { namespace gui {
     class MainController;
-    class MainView {
-        const int LARGURA;
-        const int ALTURA;
+    class MenuView;
+class MainView : public Janela, interfaces::Memento {
         model::Fonts *fonte;
-        ALLEGRO_DISPLAY *janela;
         ALLEGRO_EVENT_QUEUE *filaEventos;
         ALLEGRO_AUDIO_STREAM *musica;
         ALLEGRO_SAMPLE *sample;
@@ -70,17 +70,6 @@ namespace bolhas { namespace gui {
         void renderizaTela();
         void mostraMenu();
         const std::string &getNomeFonte() const;
-        const ALLEGRO_DISPLAY *getJanela() const {
-            return janela;
-        }
-        
-        const int getAltura() const {
-            return ALTURA;
-        }
-        
-        const int getLargura() const {
-            return LARGURA;
-        }    
 
         Estado getEstado() const {
             return estado;

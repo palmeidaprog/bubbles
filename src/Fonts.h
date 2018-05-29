@@ -35,6 +35,7 @@ namespace bolhas { namespace model {
                 trueType = false);
         int getTamanho() const;
         void setTamanho(int tamanho);
+        void changeFont();
     };
 }}
 

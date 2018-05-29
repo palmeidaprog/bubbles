@@ -26,13 +26,18 @@ void bolhas::model::Fonts::setTamanho(int tamanho) {
 }
 
 bolhas::model::Fonts::Fonts(const std::string &nome, int tamanho, bool
-    trueType) : nome(nome), tamanho(tamanho), trueType(trueType) {
+    trueType) : pointer(nullptr), nome(nome), tamanho(tamanho),
+    trueType(trueType) {
+    changeFont(nome, tamanho, trueType);
+}
+
+void bolhas::model::Fonts::changeFont() {
     changeFont(nome, tamanho, trueType);
 }
 
 bolhas::model::Fonts::~Fonts() {
     if(pointer) {
-        al_free(pointer);
+        al_destroy_font(pointer);
     }
 }
 
@@ -47,14 +52,14 @@ void bolhas::model::Fonts::changeFont(const std::string &nome, int tamanho,
     this->trueType = trueType;
     this->tamanho = tamanho;
 
-    if(pointer) {
-        al_free(pointer);
+    if(pointer != NULL) {
+        al_destroy_font(pointer);
         pointer = NULL;
     }
     if(trueType) {
-        pointer = al_load_ttf_font(nome.c_str(), tamanho, trueType);
+        pointer = al_load_ttf_font(nome.c_str(), tamanho, 0);
     } else {
-        pointer = al_load_font(nome.c_str(), tamanho, trueType);
+        pointer = al_load_font(nome.c_str(), tamanho, 0);
     }
 }
 

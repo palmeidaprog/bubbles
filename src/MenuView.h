@@ -11,8 +11,9 @@
 #ifndef MENUVIEW_H
 #define MENUVIEW_H
 
-#include "MenuView.h"
+#include "MainView.h"
 #include "Fonts.h"
+#include "Delay.h"
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 
@@ -20,13 +21,15 @@ namespace bolhas { namespace gui {
     class MainView;
     class MenuView {
         MainView &parent;
-        model::Fonts *fonte;
+        model::Fonts *fonte, *title;
         const int ALTURA;
         const int LARGURA;
+        model::Delay delay;
+        int mult;
 
     public:
-        MenuView(MainView &parent_, const int altura, const int largura);
-        virtual ~MenuView() { }
+        MenuView(MainView &parent, const int altura, const int largura);
+        virtual ~MenuView();
 
         void mostraMenu();
     };

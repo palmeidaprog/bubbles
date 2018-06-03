@@ -10,53 +10,67 @@
 #include "MenuView.h"
 #include "Colors.h"
 #include "Color.h"
+#include <memory>
 
 
 // construtor
-namespace bolhas { namespace gui {
-    MenuView::MenuView(MainView &parent, const int
-            altura, const int largura) : parent(parent), fonte(NULL),
-            title(nullptr), ALTURA(altura), LARGURA(largura),
-            delay(model::Delay()), mult(1) {
-        fonte = new model::Fonts(parent.getFonte());
-        title = new model::Fonts("resources/fonts/BUBBS.TTF", 72);
+
+bolhas::gui::MenuView::MenuView(MainView &parent) : parent(parent),
+    delay(model::Delay()), mult(1) {
+    fonte = std::unique_ptr<model::Fonts>(new model::Fonts(parent.getFonte()));
+    fonte->setTamanho(40);
+    fonte->changeFont();
+    marcada = new model::Fonts(fonte.get());
+    title = std::unique_ptr<model::Fonts>(new
+            model::Fonts("resources/fonts/BUBBS.TTF", 72));
+    selec = Selecionado::NENHUM;
+}
+
+void bolhas::gui::MenuView::mostraMenu() {
+    int pos = 100;
+    bool flag = false;
+    model::Color azul(Colors::AZUL_ESCURO);
+    model::Color vermelho(Colors::VERMELHO);
+
+    al_draw_text(title->getPointer(), azul.getCor(),
+                 parent.getLargura() / 2.0, pos, ALLEGRO_ALIGN_CENTRE,
+                 "MENU");
+
+    if(delay.test(2)) {
+        if(title->getTamanho() > 100 || title->getTamanho() < 72) {
+            mult *= -1;
+        }
+        title->setTamanho(title->getTamanho() + (5 * mult));
+        title->changeFont();
     }
 
+    pos += 180;
+    opcaoMenu("Jogar", pos, Selecionado::JOGAR);
+    pos += 100;
+    opcaoMenu("Opcoes", pos, Selecionado::OPCOES);
+    pos += 100;
+    opcaoMenu("Sair", pos, Selecionado::SAIR);
+}
 
 
-    void MenuView::mostraMenu() {
-        int pos = 100;
-        model::Color azul(Colors::AZUL_ESCURO);
-        model::Color vermelho(Colors::VERMELHO);
 
-        al_draw_text(title->getPointer(), azul,
-                     LARGURA / 2.0, pos, ALLEGRO_ALIGN_CENTRE, "MENU");
-        if(delay.test(4)) {
-            if(title->getTamanho() > 100 || title->getTamanho() < 72) {
-                mult *= -1;
-            }
-            title->setTamanho(title->getTamanho() + (5 * mult));
-            title->changeFont();
-        }
-        fonte->setTamanho(40);
-        fonte->changeFont();
-        pos += 180;
-        al_draw_text(fonte->getPointer(), vermelho, (double)
-                      LARGURA / 2, pos, ALLEGRO_ALIGN_CENTER, "Jogar");
-        pos += 100;
-        al_draw_text(fonte->getPointer(), azul, LARGURA
-                      /2, pos, ALLEGRO_ALIGN_CENTER, "Opcoes");
-        pos += 100;
-        al_draw_text(fonte->getPointer(), azul, LARGURA
-                        /2, pos, ALLEGRO_ALIGN_CENTER, "Sair");
-        /*al_draw_textf(fonte->getPointer(), al_map_rgb(0, 0, 0), LARGURA / 2.0,
-                      210, ALLEGRO_ALIGN_CENTRE, "Teste %d - %s", 3, "Uma str");*/
-        /*al_draw_textf(fonte, al_map_rgb(0, 0, 0), LARGURA / 2, 250,
-            ALLEGRO_ALIGN_CENTRE, "Teste %d - %s", 3, "Uma str");*/
+bolhas::gui::MenuView::~MenuView() {
+
+}
+
+void bolhas::gui::MenuView::opcaoMenu(const std::string &texto,
+                                      int pos, Selecionado s) {
+    if(s == selec) {
+        model::Color color(Colors::VERMELHO);
+        al_draw_text(marcada->getPointer(), color.getCor(), (float)
+                     parent.getLargura() / 2, pos, ALLEGRO_ALIGN_CENTER,
+                     texto.c_str());
+    } else {
+        const model::Fonts *f = new model::Fonts(fonte.get());
+        model::Color color(Colors::AZUL_ESCURO);
+        al_draw_text(f->getPointer(), color.getCor(), (float)
+                     parent.getLargura() / 2, pos, ALLEGRO_ALIGN_CENTER,
+                     texto.c_str());
+        delete f;
     }
-
-        MenuView::~MenuView() {
-            delete fonte;
-            delete title;
-        }
-    }}
+}

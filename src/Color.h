@@ -25,9 +25,7 @@ namespace bolhas { namespace model {
         Colors getColor() const;
         void setColor(Colors c);
 
-        const ALLEGRO_COLOR &getPointer() const;
-
-
+        const ALLEGRO_COLOR &getCor() const;
     };
 }}
 

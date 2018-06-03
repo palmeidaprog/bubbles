@@ -43,13 +43,13 @@ void iniciar(gui::MainView &mainView) {
             ALLEGRO_EVENT_QUEUE *filaEventos = mainView.getEventos();
             ALLEGRO_EVENT evento;
             ALLEGRO_TIMEOUT tempo;
-            al_init_timeout(&tempo, 1.0 / 60);
+            //al_rest((double) 1 / 60);
+            al_init_timeout(&tempo, (double) 1 / 60);
             bool temEventos = al_wait_for_event_until(filaEventos, &evento, 
                     &tempo);
             if(temEventos && evento.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
                 break;
             }
-            std::cout << "x" << endl;
             mainView.renderizaTela();
             al_flip_display();
     }

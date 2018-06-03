@@ -70,7 +70,7 @@ bolhas::model::Fonts::Fonts(const bolhas::model::Fonts *fonte) : pointer
 }
 
 bolhas::model::Fonts::Fonts(const bolhas::model::Fonts &fonte): pointer
-    (NULL), nome(fonte.nome), tamanho(fonte.tamanho), trueType
-    (fonte.trueType) {
+        (NULL), nome(fonte.nome), tamanho(fonte.tamanho), trueType
+        (fonte.trueType) {
     changeFont(nome, tamanho, trueType);
 }

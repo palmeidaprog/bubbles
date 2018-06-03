@@ -15,7 +15,7 @@
 namespace bolhas { namespace interfaces {
     template <typename T>
     class Memento {
-        virtual T getEstado() = 0;
+        virtual T getEstado() const = 0;
         virtual void setEstado(T estado) = 0;
     };
 }}

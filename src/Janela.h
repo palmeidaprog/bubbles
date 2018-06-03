@@ -10,6 +10,7 @@
 #ifndef BUBBLES_JANELA_H
 #define BUBBLES_JANELA_H
 
+#include <memory>
 #include "allegro5/allegro.h"
 
 namespace bolhas { namespace gui {
@@ -23,17 +24,10 @@ namespace bolhas { namespace gui {
         virtual ~Janela();
 
     public:
-        const int getAltura() const {
-            return ALTURA;
-        }
+        const int getAltura() const;
+        const int getLargura() const;
+        ALLEGRO_DISPLAY *getJanela() const;
 
-        const int getLargura() const {
-            return LARGURA;
-        }
-
-        const ALLEGRO_DISPLAY *getJanela() const {
-            return janela;
-        }
     };
 }}
 

@@ -53,10 +53,11 @@ class MainView : public Janela, public interfaces::Memento<Estado> {
         void inicializaImagem() const;
         void inicializaFont();
         void inicializaEventos();
+        void inicializaMouse();
         
     public:
         MainView(int largura, int altura);
-        virtual ~MainView();
+        ~MainView() override;
 
         model::Fonts getFonte() const;
         void setMusica(const std::string &musicaArq);
@@ -71,11 +72,11 @@ class MainView : public Janela, public interfaces::Memento<Estado> {
         void mostraMenu();
         const std::string &getNomeFonte() const;
 
-        Estado getEstado() const {
+        Estado getEstado() const override {
             return estado;
         }
 
-        void setEstado(Estado estado) {
+        void setEstado(Estado estado) override {
             this->estado = estado;
         }
     };

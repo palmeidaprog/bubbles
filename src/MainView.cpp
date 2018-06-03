@@ -14,9 +14,9 @@
 using namespace bolhas;
 
 namespace bolhas { namespace gui {
-    MainView::MainView(int largura, int altura) : LARGURA(largura), 
-            ALTURA(altura), fonte(nullptr), janela(NULL), filaEventos(NULL),
-            musica(NULL), sample(NULL), fundo(NULL), stop(false), musicaArq(
+    MainView::MainView(int largura, int altura) : Janela(largura, altura),
+            fonte(nullptr), filaEventos(NULL), musica(NULL), sample(NULL),
+            fundo(NULL), stop(false), musicaArq(
             "resources/sons/Space_Loop.wav"), titulo("Algebra Bolheana"),
             imagemArq("resources/images/under0.jpg"), controller(nullptr),
             menu(nullptr) {
@@ -27,15 +27,11 @@ namespace bolhas { namespace gui {
         inicializaSom();
         playSom();
         inicializaTeclado();
-        janela = al_create_display(LARGURA, ALTURA);
-        if(janela == NULL) {
-            throw excecoes::JanelaException("Erro ao abrir janela principal."
-                    );
-        }
         inicializaEventos();
         inicializaFont();
         fonte = new model::Fonts("resources/fonts/BUBBLEGUMS.ttf", 72, true);
         inicializaImagem();
+        inicializaMouse();
         fundoDeTela("resources/images/unders.jpg");
         al_flip_display();
     }
@@ -46,7 +42,7 @@ namespace bolhas { namespace gui {
         delete controller;
         al_destroy_audio_stream(musica);
         al_destroy_sample(sample);
-        al_destroy_display(janela); // fecha janela
+
         al_destroy_event_queue(filaEventos);
     }
 
@@ -57,7 +53,10 @@ namespace bolhas { namespace gui {
             throw excecoes::JanelaException("Erro ao criaar eventos.");        
         }
 
-        al_register_event_source(filaEventos, al_get_display_event_source(janela));
+        al_register_event_source(filaEventos, al_get_display_event_source(
+                Janela::getJanela()));
+
+
     }
     
     void MainView::inicializaSom() {
@@ -84,6 +83,7 @@ namespace bolhas { namespace gui {
         if (!al_install_keyboard()) {
             cerr << "Falha ao inicializar teclado." << endl;
         }
+        //al_register_event_source(filaEventos, al_get_keyboard_event_source());
     }
 
     void MainView::setMusica(const std::string &musicaArq) {
@@ -108,7 +108,7 @@ namespace bolhas { namespace gui {
 
     void MainView::setTitulo(const std::string &titulo) {
         this->titulo = titulo;
-        al_set_window_title(janela, titulo.c_str());
+        al_set_window_title(Janela::getJanela(), titulo.c_str());
     }
 
     void MainView::inicializaImagem() const {
@@ -162,7 +162,7 @@ namespace bolhas { namespace gui {
     void MainView::mostraMenu() {
 
         if(menu == nullptr) {
-            menu = new MenuView(*this, ALTURA, LARGURA);
+            menu = new MenuView(*this);
         } else {
             menu->mostraMenu();
         }
@@ -171,6 +171,14 @@ namespace bolhas { namespace gui {
     // Copia da fonte
     model::Fonts MainView::getFonte() const {
         return *fonte;
+    }
+
+    void MainView::inicializaMouse() {
+        if(!al_install_mouse()) {
+            cerr << "Nao foi possível iniciar mouse addon." << endl;
+        }
+        al_register_event_source(filaEventos, al_get_mouse_event_source());
+        al_hide_mouse_cursor(getJanela());
     }
 
 }}

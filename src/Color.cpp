@@ -9,9 +9,11 @@
 
 #include "Color.h"
 
-bolhas::model::Color::Color(Colors c) : c(c) {}
+bolhas::model::Color::Color(Colors c) : c(c)  {
+    setColor(c);
+}
 
-const ALLEGRO_COLOR &bolhas::model::Color::getPointer() const {
+const ALLEGRO_COLOR &bolhas::model::Color::getCor() const {
     return cor;
 }
 

@@ -56,6 +56,7 @@ void bolhas::gui::MenuView::mostraMenu() {
 
 bolhas::gui::MenuView::~MenuView() {
 
+
 }
 
 void bolhas::gui::MenuView::opcaoMenu(const std::string &texto,

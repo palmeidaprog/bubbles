@@ -19,6 +19,7 @@
 #include "MainController.h"
 #include "Fonts.h"
 #include "Memento.h"
+#include "MenuItem.h"
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_native_dialog.h>
 #include <allegro5/allegro_audio.h> 
@@ -26,6 +27,7 @@
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
+#include <vector>
 
 using std::cerr;
 using std::endl;
@@ -45,6 +47,7 @@ class MainView : public Janela, public interfaces::Memento<Estado> {
         std::string titulo;
         std::string imagemArq;
         MainController *controller;
+        std::vector < std::unique_ptr<MenuItem> >  menuItens;
         MenuView *menu;
         Estado estado;
 

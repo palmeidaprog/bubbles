@@ -15,8 +15,9 @@
 
 // construtor
 
-bolhas::gui::MenuView::MenuView(MainView &parent) : parent(parent),
-    delay(model::Delay()), mult(1) {
+bolhas::gui::MenuView::MenuView(MainView &parent, int x, int y)
+        : parent(parent),
+          delay(model::Delay()), mult(1) {
     fonte = std::unique_ptr<model::Fonts>(new model::Fonts(parent.getFonte()));
     fonte->setTamanho(40);
     fonte->changeFont();
@@ -24,13 +25,16 @@ bolhas::gui::MenuView::MenuView(MainView &parent) : parent(parent),
     title = std::unique_ptr<model::Fonts>(new
             model::Fonts("resources/fonts/BUBBS.TTF", 72));
     selec = Selecionado::NENHUM;
+    renderiza(x, y);
 }
 
-void bolhas::gui::MenuView::mostraMenu() {
+void bolhas::gui::MenuView::renderiza(int x, int y) {
     int pos = 100;
     bool flag = false;
     model::Color azul(Colors::AZUL_ESCURO);
     model::Color vermelho(Colors::VERMELHO);
+
+
 
     al_draw_text(title->getPointer(), azul.getCor(),
                  parent.getLargura() / 2.0, pos, ALLEGRO_ALIGN_CENTRE,
@@ -54,6 +58,8 @@ void bolhas::gui::MenuView::mostraMenu() {
 
 
 
+
+
 bolhas::gui::MenuView::~MenuView() {
 
 
@@ -74,4 +80,19 @@ void bolhas::gui::MenuView::opcaoMenu(const std::string &texto,
                      texto.c_str());
         delete f;
     }
+}
+
+void bolhas::gui::MenuView::criaMenu() {
+    int y = 100;
+    float x = (float) parent.getLargura() / 2;
+
+    itens[0] = MenuItem(*title, x, y, ALLEGRO_ALIGN_CENTER, "MENU");
+    y += 180;
+    itens[1] = MenuItem(*fonte, x, y, ALLEGRO_ALIGN_CENTER, "Jogar");
+    y += 100;
+    itens[2] = MenuItem(*fonte, x, y, ALLEGRO_ALIGN_CENTER, "Tutorial");
+    y += 100;
+    itens[3] = MenuItem(*fonte, x, y, ALLEGRO_ALIGN_CENTER, "Opcoes");
+    y += 100;
+    itens[4] = MenuItem(*fonte, x, y, ALLEGRO_ALIGN_CENTER, "Sair");
 }

@@ -50,7 +50,9 @@ void iniciar(gui::MainView &mainView) {
             if(temEventos && evento.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
                 break;
             }
-            mainView.renderizaTela();
+            int x, y;
+            al_get_mouse_cursor_position(&x, &y);
+        mainView.renderizaTela(0, 0);
             al_flip_display();
     }
 }

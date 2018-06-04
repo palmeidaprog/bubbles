@@ -6,6 +6,8 @@
 #define BUBBLES_MOVEFONTS_H
 
 #include "Fonts.h"
+#include <memory>
+
 
 namespace bolhas { namespace animation {
     class ZoomFont {

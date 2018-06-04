@@ -97,10 +97,7 @@ namespace bolhas { namespace gui {
     }
 
     void MainView::inicializaFont() {
-        if(!al_init_font_addon()) {
-            cerr << "Falha ao inicializar addon de fontes." << endl;
-        }
-
+        al_init_font_addon();
         if(!al_init_ttf_addon()) {
             cerr << "Falha ao inicializar addon de TTF." << endl;
         }
@@ -148,23 +145,23 @@ namespace bolhas { namespace gui {
         menu = NULL;
     }
 
-    void MainView::renderizaTela() {
+    void MainView::renderizaTela(int x, int y) {
         switch(estado) {
             case Estado::MENU:
                 fundoDeTela();
-                mostraMenu();
+                mostraMenu(0, 0);
                 break;
             default:
                 break;
         }
     }
 
-    void MainView::mostraMenu() {
+    void MainView::mostraMenu(int x, int y) {
 
         if(menu == nullptr) {
-            menu = new MenuView(*this);
+            menu = new MenuView(*this, 0, 0);
         } else {
-            menu->mostraMenu();
+            menu->renderiza(0, 0, 0);
         }
     }
 

@@ -71,8 +71,8 @@ class MainView : public Janela, public interfaces::Memento<Estado> {
         void fundoDeTela(const char *nome);
         void fundoDeTela() const;
         void escondeMenu();
-        void renderizaTela();
-        void mostraMenu();
+        void renderizaTela(int x, int y);
+        void mostraMenu(int x, int y);
         const std::string &getNomeFonte() const;
 
         Estado getEstado() const override {

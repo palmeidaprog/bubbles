@@ -27,17 +27,20 @@ namespace bolhas { namespace gui {
         std::unique_ptr<model::Fonts> fonte, title;
         model::Fonts *marcada; // shared_ptr da crash com al_draw_text()
         std::unique_ptr<animation::ZoomFont> zoom;
+        MenuItem itens[5];
 
         enum class Selecionado {
             NENHUM, JOGAR, OPCOES, SAIR
         };
         Selecionado selec;
 
+        void criaMenu();
+
     public:
-        MenuView(MainView &parent);
+        MenuView(MainView &parent, int x, int y);
         virtual ~MenuView();
 
-        void mostraMenu();
+        void renderiza(int x, int y);
         void opcaoMenu(const std::string &texto, int pos,
                        Selecionado s);
     };

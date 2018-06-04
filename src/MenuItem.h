@@ -6,6 +6,7 @@
 #define BUBBLES_MENUITEM_H
 
 #include <string>
+#include <memory>
 #include "Color.h"
 #include "Fonts.h"
 
@@ -14,12 +15,13 @@ namespace bolhas { namespace gui {
         float x, y, largura, altura;
         int flag;
         std::string texto;
-        std::unique_ptr<model::Color> cor;
         std::unique_ptr<model::Fonts> fonte;
 
+        bool ehSelecionado(int x, int y);
+
     public:
-        MenuItem(const model::Fonts &fonte, const model::Color &cor, float x,
-            float y, int flag, const std::string &texto);
+        MenuItem(const model::Fonts &fonte, float x, float y, int flag,
+                         const std::string &texto);
         virtual ~MenuItem();
 
         //--Setters/Gettters--------------------------------------------------
@@ -35,15 +37,12 @@ namespace bolhas { namespace gui {
         void setFlag(int flag);
         const std::string &getTexto() const;
         void setTexto(const std::string &texto);
-        const std::unique_ptr<model::Color> &getCor() const;
-        void setCor(const std::unique_ptr<model::Color> &cor);
         const std::unique_ptr<model::Fonts> &getFonte() const;
-        void setFonte(const std::unique_ptr<model::Fonts> &fonte);
+        void setFonte(model::Fonts fonte);
 
         //--------------------------------------------------------------------
 
-        bool ehSelecionado(int x, int y);
-        void renderizar();
+        void renderizar(int x, int y);
     };
 }}
 

@@ -126,5 +126,6 @@ void bolhas::gui::MenuItem::setCorSelectionada(
     MenuItem::corSelecionada = std::move(corSelecionada);
 }
 
-bolhas::gui::MenuItem::MenuItem() : x(0), y(0), largura(0), altura(0),
-                                    flag(0), texto(nullptr) {}
+bolhas::gui::MenuItem::MenuItem(const bolhas::gui::MenuItem &m) :
+        x(m.x), y(m.y), largura(m.largura), altura(m.altura), flag(m.flag) {
+}

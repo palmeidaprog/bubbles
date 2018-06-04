@@ -20,7 +20,7 @@ namespace bolhas { namespace gui {
         bool ehSelecionado(int x, int y);
 
     public:
-        MenuItem();
+        MenuItem(const MenuItem &m);
         MenuItem(const model::Fonts &fonte, const model::Colors &cor,
                  const model::Colors &corSelecionada, float x, float y,
                  int flag, std::string texto);

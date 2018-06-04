@@ -76,18 +76,18 @@ void bolhas::gui::MenuView::criaMenu() {
     float x = (float) parent.getLargura() / 2;
     using model::Colors;
 
-    itens[0] = MenuItem(*title, Colors::AZUL_ESCURO, Colors::VERMELHO, x, y,
+    itens.emplace_back(*title, Colors::AZUL_ESCURO, Colors::VERMELHO, x, y,
             ALLEGRO_ALIGN_CENTER, "MENU");
     y += 180;
-    itens[1] = MenuItem(*fonte, Colors::AZUL_ESCURO, Colors::VERMELHO, x, y,
+    itens.emplace_back(*fonte, Colors::AZUL_ESCURO, Colors::VERMELHO, x, y,
             ALLEGRO_ALIGN_CENTER, "Jogar");
     y += 100;
-    itens[2] = MenuItem(*fonte, Colors::AZUL_ESCURO, Colors::VERMELHO, x, y,
+    itens.emplace_back(*fonte, Colors::AZUL_ESCURO, Colors::VERMELHO, x, y,
             ALLEGRO_ALIGN_CENTER, "Tutorial");
     y += 100;
-    itens[3] = MenuItem(*fonte, Colors::AZUL_ESCURO, Colors::VERMELHO, x, y,
+    itens.emplace_back(*fonte, Colors::AZUL_ESCURO, Colors::VERMELHO, x, y,
             ALLEGRO_ALIGN_CENTER, "Opcoes");
     y += 100;
-    itens[4] = MenuItem(*fonte, Colors::AZUL_ESCURO, Colors::VERMELHO, x, y,
+    itens.emplace_back(*fonte, Colors::AZUL_ESCURO, Colors::VERMELHO, x, y,
             ALLEGRO_ALIGN_CENTER, "Sair");
 }

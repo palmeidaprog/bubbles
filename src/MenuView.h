@@ -18,6 +18,7 @@
 #include "ZoomFont.h"
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
+#include <vector>
 
 namespace bolhas { namespace gui {
     class MainView;
@@ -28,7 +29,7 @@ namespace bolhas { namespace gui {
         std::unique_ptr<model::Fonts> fonte, title;
         model::Fonts *marcada; // shared_ptr da crash com al_draw_text()
         std::unique_ptr<animation::ZoomFont> zoom;
-        MenuItem itens[5];
+        std::vector<MenuItem> itens;
 
         enum class Selecionado {
             NENHUM, JOGAR, OPCOES, SAIR

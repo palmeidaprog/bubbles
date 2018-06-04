@@ -84,6 +84,27 @@ void bolhas::gui::MenuItem::setFonte(model::Fonts fonte) {
     //MenuItem::fonte = std::unique fonte) ;
 }
 
+// retorna se ponteiro esta sob
 bool bolhas::gui::MenuItem::ehSelecionado(int x, int y) {
-    return false;
+    float x0, x1, y1 = MenuItem::y, y0 = MenuItem::y - altura;
+    if(flag == ALLEGRO_ALIGN_CENTER) {
+        x0 = MenuItem::x - largura / 2;
+        x1 = MenuItem::x + largura / 2;
+    } else if(flag == ALLEGRO_ALIGN_LEFT) {
+        x0 = MenuItem::x;
+        x1 = MenuItem::x + largura;
+    } else {
+        x0 = MenuItem::x - largura;
+        x1 = MenuItem::x;
+    }
+    return (x >= x0 && x <= x1 && y >= y0 && y <= y1);
+}
+
+const bolhas::model::Color & bolhas::gui::MenuItem::getCor() const {
+    return *cor;
+}
+
+void bolhas::gui::MenuItem::setCor(std::unique_ptr<bolhas::model::Color>
+        cor) {
+    MenuItem::cor = std::move(cor);
 }

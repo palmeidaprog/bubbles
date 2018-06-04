@@ -4,10 +4,16 @@
 
 #include "MenuItem.h"
 
-bolhas::gui::MenuItem::MenuItem(const model::Fonts &fonte, float x, float y,
-                                int flag, const std::string &texto)
+bolhas::gui::MenuItem::MenuItem(const model::Fonts &fonte,
+                                const model::Colors &cor,
+                                const model::Colors &corSelecionada, float x,
+                                float y, int flag, std::string texto)
                                 : x(x), y(y), largura(0), altura(0),
-                                flag(flag), texto(texto) {
+                                flag(flag) {
+    MenuItem::texto = std::move(texto);
+    MenuItem::cor = std::unique_ptr<model::Color> (new model::Color(cor));
+    MenuItem::corSelecionada = std::unique_ptr<model::Color>
+            (new model::Color(corSelecionada));
     MenuItem::fonte = std::unique_ptr<model::Fonts> (new model::Fonts(fonte));
     auto *f = new model::Fonts(MenuItem::fonte.get());
     largura = al_get_text_width(f->getPointer(), MenuItem::texto.c_str());
@@ -21,7 +27,9 @@ bolhas::gui::MenuItem::~MenuItem() {
 
 void bolhas::gui::MenuItem::renderizar(int x, int y) {
     const model::Fonts *f = new model::Fonts(fonte.get());
-    al_draw_text(f->getPointer(), ->getCor(), x, y, flag, texto.c_str());
+    al_draw_text(f->getPointer(), ((ehSelecionado(x,y)) ?
+            corSelecionada->getCor() : cor->getCor()), x, y, flag,
+            texto.c_str());
     largura = al_get_text_width(f->getPointer(), texto.c_str());
     altura = al_get_text_width(f->getPointer(), texto.c_str());
     delete f;
@@ -108,3 +116,15 @@ void bolhas::gui::MenuItem::setCor(std::unique_ptr<bolhas::model::Color>
         cor) {
     MenuItem::cor = std::move(cor);
 }
+
+const bolhas::model::Color &bolhas::gui::MenuItem::getCorSelecionada() const {
+    return *corSelecionada;
+}
+
+void bolhas::gui::MenuItem::setCorSelectionada(
+        std::unique_ptr<model::Color> corSelecionada) {
+    MenuItem::corSelecionada = std::move(corSelecionada);
+}
+
+bolhas::gui::MenuItem::MenuItem() : x(0), y(0), largura(0), altura(0),
+                                    flag(0), texto(nullptr) {}

@@ -10,10 +10,10 @@
 #ifndef BUBBLES_COLORS_H
 #define BUBBLES_COLORS_H
 
-
-enum class Colors {
-    BRANCO, PRETO, AZUL_ESCURO, VERMELHO
-};
-
+namespace bolhas { namespace model {
+    enum class Colors {
+        BRANCO, PRETO, AZUL_ESCURO, VERMELHO
+    };
+}}
 
 #endif //BUBBLES_COLORS_H

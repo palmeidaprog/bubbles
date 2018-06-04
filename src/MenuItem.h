@@ -15,15 +15,15 @@ namespace bolhas { namespace gui {
         float x, y, largura, altura;
         int flag;
         std::string texto;
-        std::unique_ptr<model::Color> cor;
-
+        std::unique_ptr<model::Color> cor, corSelecionada;
         std::unique_ptr<model::Fonts> fonte;
-
         bool ehSelecionado(int x, int y);
 
     public:
-        MenuItem(const model::Fonts &fonte, float x, float y, int flag,
-                         const std::string &texto);
+        MenuItem();
+        MenuItem(const model::Fonts &fonte, const model::Colors &cor,
+                 const model::Colors &corSelecionada, float x, float y,
+                 int flag, std::string texto);
         virtual ~MenuItem();
 
         //--Setters/Gettters--------------------------------------------------
@@ -41,8 +41,10 @@ namespace bolhas { namespace gui {
         void setTexto(const std::string &texto);
         const std::unique_ptr<model::Fonts> &getFonte() const;
         void setFonte(model::Fonts fonte);
-        const model::Color & getCor() const;
-        void setCor(const std::unique_ptr<model::Color> cor);
+        const model::Color &getCor() const;
+        void setCor(std::unique_ptr<model::Color> cor);
+        const model::Color &getCorSelecionada() const;
+        void setCorSelectionada(std::unique_ptr<model::Color> corSelecionada);
 
         //--------------------------------------------------------------------
 

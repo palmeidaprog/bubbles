@@ -12,6 +12,7 @@
 #define MENUVIEW_H
 
 #include "MainView.h"
+#include "MenuItem.h"
 #include "Fonts.h"
 #include "Delay.h"
 #include "ZoomFont.h"

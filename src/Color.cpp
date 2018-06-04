@@ -9,7 +9,7 @@
 
 #include "Color.h"
 
-bolhas::model::Color::Color(Colors c) : c(c)  {
+bolhas::model::Color::Color(model::Colors c) : c(c)  {
     setColor(c);
 }
 
@@ -17,7 +17,7 @@ const ALLEGRO_COLOR &bolhas::model::Color::getCor() const {
     return cor;
 }
 
-Colors bolhas::model::Color::getColor() const {
+bolhas::model::Colors bolhas::model::Color::getColor() const {
     return c;
 }
 
@@ -25,13 +25,13 @@ void bolhas::model::Color::setColor(Colors c) {
     Color::c = c;
 
     switch(c) {
-        case Colors::AZUL_ESCURO:
+        case model::Colors::AZUL_ESCURO:
             cor = al_map_rgb(39, 9, 37);
             break;
-        case Colors::PRETO:
+        case model::Colors::PRETO:
             cor = al_map_rgb(255, 255, 255);
             break;
-        case Colors::VERMELHO:
+        case model::Colors::VERMELHO:
             cor = al_map_rgba_f(1, 0, 0, 1);
             break;
         default: // BRANCO

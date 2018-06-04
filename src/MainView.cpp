@@ -159,9 +159,9 @@ namespace bolhas { namespace gui {
     void MainView::mostraMenu(int x, int y) {
 
         if(menu == nullptr) {
-            menu = new MenuView(*this, 0, 0);
+            menu = new MenuView(*this, x, y);
         } else {
-            menu->renderiza(0, 0, 0);
+            menu->renderiza(x, y);
         }
     }
 

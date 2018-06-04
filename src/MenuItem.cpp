@@ -15,7 +15,7 @@ bolhas::gui::MenuItem::MenuItem(const model::Fonts &fonte,
     MenuItem::corSelecionada = std::unique_ptr<model::Color>
             (new model::Color(corSelecionada));
     MenuItem::fonte = std::unique_ptr<model::Fonts> (new model::Fonts(fonte));
-    auto *f = new model::Fonts(MenuItem::fonte.get());
+    const auto *f = new model::Fonts(MenuItem::fonte.get());
     largura = al_get_text_width(f->getPointer(), MenuItem::texto.c_str());
     altura = al_get_font_line_height(f->getPointer());
     delete f;

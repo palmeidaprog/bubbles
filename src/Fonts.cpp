@@ -7,6 +7,7 @@
  * E-mail: pauloalmeidaf@gmail.com
  */
 
+#include <iostream>
 #include "Fonts.h"
 
 ALLEGRO_FONT *bolhas::model::Fonts::getPointer() const {
@@ -60,6 +61,9 @@ void bolhas::model::Fonts::changeFont(const std::string &nome, int tamanho,
         pointer = al_load_ttf_font(nome.c_str(), tamanho, 0);
     } else {
         pointer = al_load_font(nome.c_str(), tamanho, 0);
+    }
+    if(!pointer) {
+        std::cerr << "Não foi possivel carregar fonte " << nome << std::endl;
     }
 }
 

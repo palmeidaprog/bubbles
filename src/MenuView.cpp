@@ -30,11 +30,6 @@ bolhas::gui::MenuView::MenuView(MainView &parent, int x, int y)
 }
 
 void bolhas::gui::MenuView::renderiza(int x, int y) {
-    int pos = 100;
-    bool flag = false;
-    model::Color azul(model::Colors::AZUL_ESCURO);
-    model::Color vermelho(model::Colors::VERMELHO);
-
     for(auto &i : itens) {
         i.renderizar(x, y);
     }

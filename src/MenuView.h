@@ -29,7 +29,7 @@ namespace bolhas { namespace gui {
         std::unique_ptr<model::Fonts> fonte, title;
         model::Fonts *marcada; // shared_ptr da crash com al_draw_text()
         std::unique_ptr<animation::ZoomFont> zoom;
-        std::vector<MenuItem> itens;
+        std::vector< std::unique_ptr<MenuItem> > itens;
 
         enum class Selecionado {
             NENHUM, JOGAR, OPCOES, SAIR
@@ -45,6 +45,8 @@ namespace bolhas { namespace gui {
         void renderiza(int x, int y);
         void opcaoMenu(const std::string &texto, int pos,
                        Selecionado s);
+
+
     };
 }}
 

@@ -28,8 +28,8 @@ bolhas::gui::MenuItem::~MenuItem() {
 void bolhas::gui::MenuItem::renderizar(int x, int y) {
     const model::Fonts *f = new model::Fonts(fonte.get());
     al_draw_text(f->getPointer(), ((ehSelecionado(x,y)) ?
-            corSelecionada->getCor() : cor->getCor()), x, y, flag,
-            texto.c_str());
+            corSelecionada->getCor() : cor->getCor()), MenuItem::x,
+                 MenuItem::y, flag, texto.c_str());
     largura = al_get_text_width(f->getPointer(), texto.c_str());
     altura = al_get_text_width(f->getPointer(), texto.c_str());
     delete f;

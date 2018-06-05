@@ -149,7 +149,7 @@ namespace bolhas { namespace gui {
         switch(estado) {
             case Estado::MENU:
                 fundoDeTela();
-                mostraMenu(0, 0);
+                mostraMenu(x, y);
                 break;
             default:
                 break;
@@ -158,6 +158,7 @@ namespace bolhas { namespace gui {
 
     void MainView::mostraMenu(int x, int y) {
 
+        std::cout << x << " " << y << std::endl;
         if(menu == nullptr) {
             menu = new MenuView(*this, x, y);
         } else {
@@ -175,7 +176,7 @@ namespace bolhas { namespace gui {
             cerr << "Nao foi possível iniciar mouse addon." << endl;
         }
         al_register_event_source(filaEventos, al_get_mouse_event_source());
-        al_hide_mouse_cursor(getJanela());
+        //al_hide_mouse_cursor(getJanela());
     }
 
 }}

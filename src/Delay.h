@@ -10,9 +10,12 @@
 #ifndef BUBBLES_DELAY_H
 #define BUBBLES_DELAY_H
 
+#include <chrono>
+
 namespace bolhas { namespace model {
     class Delay {
-        int frames;
+        std::chrono::duration tempo;
+
 
     public:
         Delay();

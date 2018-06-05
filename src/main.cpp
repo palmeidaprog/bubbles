@@ -52,7 +52,9 @@ void iniciar(gui::MainView &mainView) {
             }
             int x, y;
             al_get_mouse_cursor_position(&x, &y);
-            mainView.renderizaTela(0, 0);
+            //al_disable_hardware_cursor();
+            std::cout << x << " " << y << " " << evento.mouse.x << std::endl;
+            mainView.renderizaTela(evento.mouse.x, evento.mouse.y);
             al_flip_display();
     }
 }

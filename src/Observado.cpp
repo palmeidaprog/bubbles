@@ -24,3 +24,10 @@ bolhas::interfaces::Observado::~Observado() {
         observadores[i]->removeObservado(this);
     }
 }
+
+template <typename T>
+void bolhas::interfaces::Observado::notificar(const T &tipo, Evento evento) {
+    for(size_t i = 0; i < observadores.size(); i++) {
+        observadores[i]->atualizar(*this, tipo, evento);
+    }
+}

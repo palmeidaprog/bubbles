@@ -7,7 +7,7 @@
 
 namespace bolhas { namespace interfaces {
     enum class Evento {
-        SELECIONADO, APAGADO, EDITADO;
+        SELECIONADO, APAGADO, EDITADO
     };
 }}
 

@@ -71,18 +71,23 @@ void bolhas::gui::MenuView::criaMenu() {
     float x = (float) parent.getLargura() / 2;
     using model::Colors;
 
-    itens.emplace_back(new MenuItem(*title, Colors::AZUL_ESCURO, Colors::VERMELHO, x, y,
-            ALLEGRO_ALIGN_CENTER, "MENU"));
+    itens.emplace_back(new MenuItem(*title, Colors::AZUL_ESCURO,
+                                    Colors::AZUL_ESCURO, x, y,
+                                    ALLEGRO_ALIGN_CENTER, "MENU"));
     y += 180;
-    itens.emplace_back(new MenuItem(*fonte, Colors::AZUL_ESCURO, Colors::VERMELHO, x, y,
-            ALLEGRO_ALIGN_CENTER, "Jogar"));
+    itens.emplace_back(new MenuItem(*fonte, Colors::AZUL_ESCURO,
+                                    Colors::VERMELHO, x, y,
+                                    ALLEGRO_ALIGN_CENTER, "Jogar"));
     y += 100;
-    itens.emplace_back(new MenuItem(*fonte, Colors::AZUL_ESCURO, Colors::VERMELHO, x, y,
-            ALLEGRO_ALIGN_CENTER, "Tutorial"));
+    itens.emplace_back(new MenuItem(*fonte, Colors::AZUL_ESCURO,
+                                    Colors::VERMELHO, x, y,
+                                    ALLEGRO_ALIGN_CENTER, "Tutorial"));
     y += 100;
-    itens.emplace_back(new MenuItem(*fonte, Colors::AZUL_ESCURO, Colors::VERMELHO, x, y,
-            ALLEGRO_ALIGN_CENTER, "Opcoes"));
+    itens.emplace_back(new MenuItem(*fonte, Colors::AZUL_ESCURO,
+                                    Colors::VERMELHO, x, y,
+                                    ALLEGRO_ALIGN_CENTER, "Opcoes"));
     y += 100;
-    itens.emplace_back(new MenuItem(*fonte, Colors::AZUL_ESCURO, Colors::VERMELHO, x, y,
-            ALLEGRO_ALIGN_CENTER, "Sair"));
+    itens.emplace_back(new MenuItem(*fonte, Colors::AZUL_ESCURO,
+                                    Colors::VERMELHO, x, y,
+                                    ALLEGRO_ALIGN_CENTER, "Sair"));
 }

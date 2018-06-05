@@ -7,20 +7,23 @@
 
 #include "Evento.h"
 #include "Observado.h"
+#include "libs/boost/any.hpp"
 
 namespace bolhas { namespace interfaces {
+    class Observado;
     class Observador {
         std::vector<Observado *> obs;
-        explicit Observador() = default;
+
+    protected:
+        Observador() = default;
 
     public:
         virtual ~Observador();
         void adicionaObservado(Observado *obsvado);
         void removeObservado(Observado *obsvado);
 
-        template <typename T>
-        virtual void atualizar(const Observado &obs, const T &tipo, Evento
-            evento) = 0;
+        virtual void atualizar(const Observado &obs, const boost::any &objeto,
+                               Evento evento) = 0;
     };
 }}
 

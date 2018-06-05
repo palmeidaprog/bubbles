@@ -44,16 +44,14 @@ void iniciar(gui::MainView &mainView) {
             ALLEGRO_EVENT evento;
             ALLEGRO_TIMEOUT tempo;
             //al_rest((double) 1 / 60);
-            al_init_timeout(&tempo, (double) 1 / 60);
+            al_init_timeout(&tempo, (double) 1 / 500);
             bool temEventos = al_wait_for_event_until(filaEventos, &evento, 
                     &tempo);
             if(temEventos && evento.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
                 break;
             }
-            int x, y;
-            al_get_mouse_cursor_position(&x, &y);
-            //al_disable_hardware_cursor();
-            std::cout << x << " " << y << " " << evento.mouse.x << std::endl;
+            //int x, y;
+            //al_get_mouse_cursor_position(&x, &y);
             mainView.renderizaTela(evento.mouse.x, evento.mouse.y);
             al_flip_display();
     }

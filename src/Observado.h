@@ -10,11 +10,12 @@
 #include "Observador.h"
 
 namespace bolhas { namespace interfaces {
+    class Observador;
     class Observado {
         std::vector<Observador*> observadores;
 
     public:
-        virtual Observado() = default;
+        Observado() = default;
 
         virtual ~Observado();
 
@@ -22,11 +23,7 @@ namespace bolhas { namespace interfaces {
         void removerObservador(Observador *obs);
 
         template <typename T>
-        void notificar(const T &tipo, Evento evento) {
-            for(size_t i = 0; i < observadores.size(); i++) {
-                observadores[i]->atualizar(*this, tipo, evento);
-            }
-        }
+        void notificar(const T &tipo, Evento evento);
     };
 }}
 

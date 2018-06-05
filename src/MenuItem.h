@@ -9,14 +9,18 @@
 #include <memory>
 #include "Color.h"
 #include "Fonts.h"
+#include "Observador.h"
 
 namespace bolhas { namespace gui {
-    class MenuItem {
+    class MenuItem : public interfaces::Observado {
         float x, y, largura, altura;
         int flag;
+        bool select;
         std::string texto;
         std::unique_ptr<model::Color> cor, corSelecionada;
         std::unique_ptr<model::Fonts> fonte;
+
+
         bool ehSelecionado(int x, int y);
 
     public:
@@ -46,7 +50,8 @@ namespace bolhas { namespace gui {
         const model::Color &getCorSelecionada() const;
         void setCorSelectionada(std::unique_ptr<model::Color> corSelecionada);
 
-        //--------------------------------------------------------------------
+
+    //--------------------------------------------------------------------
 
         void renderizar(int x, int y);
     };

@@ -158,7 +158,6 @@ namespace bolhas { namespace gui {
 
     void MainView::mostraMenu(int x, int y) {
 
-        std::cout << x << " " << y << std::endl;
         if(menu == nullptr) {
             menu = new MenuView(*this, x, y);
         } else {

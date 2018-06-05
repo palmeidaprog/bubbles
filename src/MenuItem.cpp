@@ -2,6 +2,7 @@
 // Created by Paulo Roberto Almeida Filho on 6/3/18.
 //
 
+#include <jmorecfg.h>
 #include "MenuItem.h"
 
 bolhas::gui::MenuItem::MenuItem(const model::Fonts &fonte,
@@ -94,7 +95,7 @@ void bolhas::gui::MenuItem::setFonte(model::Fonts fonte) {
 
 // retorna se ponteiro esta sob
 bool bolhas::gui::MenuItem::ehSelecionado(int x, int y) {
-    float x0, x1, y1 = MenuItem::y, y0 = MenuItem::y - altura;
+    float x0, x1, y0 = MenuItem::y, y1 = MenuItem::y + altura / 3;
     if(flag == ALLEGRO_ALIGN_CENTER) {
         x0 = MenuItem::x - largura / 2;
         x1 = MenuItem::x + largura / 2;
@@ -105,6 +106,7 @@ bool bolhas::gui::MenuItem::ehSelecionado(int x, int y) {
         x0 = MenuItem::x - largura;
         x1 = MenuItem::x;
     }
+    boolean ehSelecionado;
     return (x >= x0 && x <= x1 && y >= y0 && y <= y1);
 }
 
@@ -129,3 +131,4 @@ void bolhas::gui::MenuItem::setCorSelectionada(
 bolhas::gui::MenuItem::MenuItem(const bolhas::gui::MenuItem &m) :
         x(m.x), y(m.y), largura(m.largura), altura(m.altura), flag(m.flag) {
 }
+

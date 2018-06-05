@@ -29,7 +29,7 @@ namespace bolhas { namespace gui {
         inicializaTeclado();
         inicializaEventos();
         inicializaFont();
-        fonte = new model::Fonts("resources/fonts/BUBBLEGUMS.ttf", 72, true);
+        fonte = new model::Fonts("resources/fonts/bubblegums.ttf", 72, true);
         inicializaImagem();
         inicializaMouse();
         fundoDeTela("resources/images/unders.jpg");

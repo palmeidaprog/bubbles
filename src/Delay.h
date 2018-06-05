@@ -14,7 +14,8 @@
 
 namespace bolhas { namespace model {
     class Delay {
-        std::chrono::duration tempo;
+        //std::chrono::duration tempo;
+        int frames;
 
 
     public:

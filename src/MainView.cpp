@@ -17,8 +17,8 @@ namespace bolhas { namespace gui {
     MainView::MainView(int largura, int altura) : Janela(largura, altura),
             fonte(nullptr), filaEventos(NULL), musica(NULL), sample(NULL),
             fundo(NULL), stop(false), musicaArq(
-            "resources/sons/Space_Loop.wav"), titulo("Algebra Bolheana"),
-            imagemArq("resources/images/under0.jpg"), controller(nullptr),
+            "../resources/sons/Space_Loop.wav"), titulo("Algebra Bolheana"),
+            imagemArq("../resources/images/under0.jpg"), controller(nullptr),
             menu(nullptr) {
         estado = Estado::MENU;
         controller = new MainController(*this);
@@ -29,10 +29,10 @@ namespace bolhas { namespace gui {
         inicializaTeclado();
         inicializaEventos();
         inicializaFont();
-        fonte = new model::Fonts("resources/fonts/bubblegums.ttf", 72, true);
+        fonte = new model::Fonts("../resources/fonts/bubblegums.ttf", 72, true);
         inicializaImagem();
         inicializaMouse();
-        fundoDeTela("resources/images/unders.jpg");
+        fundoDeTela("../resources/images/unders.jpg");
         al_flip_display();
     }
 

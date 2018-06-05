@@ -6,30 +6,34 @@
 #define BUBBLES_MOVEFONTS_H
 
 #include "Fonts.h"
+#include "Delay.h"
 #include <memory>
 
 
 namespace bolhas { namespace animation {
     class ZoomFont {
-        std::unique_ptr<model::Fonts> font;
-        int min, max, crescimentoFonte, framesDelay, tamanho;
+        model::Fonts *font;
+        int min, max, crescimentoFonte, tamanho, mult;
+        std::unique_ptr<model::Delay> intervalo;
+
+        void animacao();
+
     public:
         ZoomFont(model::Fonts *font);
         virtual ~ZoomFont();
 
         //--Get/Set-----------------------------------------------------------
-        const model::Fonts& getFont() const;
-        void setFont(const model::Fonts& f);
+        const model::Fonts *getFont() const;
+        void setFont(model::Fonts *f);
         int getMin() const;
         void setMin(int min);
         int getMax() const;
         void setMax(int max);
         int getCrescimentoFonte() const;
         void setCrescimentoFonte(int crescimentoFonte);
-        int getFramesDelay() const;
-        void setFramesDelay(int framesDelay);
 
-        void reset();
+
+        void parar();
 
 
 

@@ -16,17 +16,19 @@
 // construtor
 
 bolhas::gui::MenuView::MenuView(MainView &parent, int x, int y)
-        : parent(parent),
-          delay(model::Delay()), mult(1) {
+        : parent(parent) {
     fonte = std::unique_ptr<model::Fonts>(new model::Fonts(parent.getFonte()));
     fonte->setTamanho(40);
     fonte->changeFont();
     marcada = new model::Fonts(fonte.get());
     title = std::unique_ptr<model::Fonts>(new
             model::Fonts("../resources/fonts/bubbs.ttf", 72));
+    zoom = std::unique_ptr<animation::ZoomFont> (MenuView::fonte->get());
     selec = Selecionado::NENHUM;
     criaMenu();
     renderiza(x, y);
+
+
 }
 
 void bolhas::gui::MenuView::renderiza(int x, int y) {

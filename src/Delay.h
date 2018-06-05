@@ -14,14 +14,17 @@
 
 namespace bolhas { namespace model {
     class Delay {
-        //std::chrono::duration tempo;
-        int frames;
-
+        std::chrono::time_point<system_clock, duration<long,
+                std::ratio<1, 1000000000>>> inicio;
+        std::chrono::duration<double> delay;
 
     public:
-        Delay();
+        Delay(double delay);
         virtual ~Delay();
-        const bool test(int delay);
+
+        const std::chrono::duration<double> &getDelay() const;
+        void setDelay(const std::chrono::duration<double> &delay);
+        const bool ready();
     };
 }}
 

@@ -14,8 +14,7 @@
 
 namespace bolhas { namespace model {
     class Delay {
-        std::chrono::time_point<system_clock, duration<long,
-                std::ratio<1, 1000000000>>> inicio;
+        //std::chrono::time_point<duration<double>> inicio;
         std::chrono::duration<double> delay;
 
     public:

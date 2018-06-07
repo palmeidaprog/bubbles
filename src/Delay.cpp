@@ -9,13 +9,13 @@
 #include "Delay.h"
 
 bolhas::model::Delay::Delay(double delay) : delay(delay) {
-    inicio = std::chrono::system_clock::now();
+    //inicio = std::chrono::system_clock::now();
 }
 
 bolhas::model::Delay::~Delay() {
 }
 
-const bool bolhas::model::Delay::ready() {
+/*const bool bolhas::model::Delay::ready() {
     auto agora = std::chrono::system_clock::now();
     std::chrono::duration<double> passados = agora - inicio;
     if(passados < delay) {
@@ -23,7 +23,7 @@ const bool bolhas::model::Delay::ready() {
     }
     inicio = std::chrono::system_clock::now();
     return true;
-}
+}*/
 
 const std::chrono::duration<double> &bolhas::model::Delay::getDelay() const {
     return delay;

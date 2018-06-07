@@ -26,6 +26,11 @@ bolhas::gui::MenuItem::~MenuItem() {
 
 }
 
+bolhas::gui::MenuItem::MenuItem(const bolhas::gui::MenuItem &m) :
+        x(m.x), y(m.y), largura(m.largura), altura(m.altura), flag(m.flag) {
+}
+
+
 void bolhas::gui::MenuItem::renderizar(int x, int y) {
     const model::Fonts *f = new model::Fonts(fonte.get());
     al_draw_text(f->getPointer(), ((ehSelecionado(x,y)) ?
@@ -35,6 +40,26 @@ void bolhas::gui::MenuItem::renderizar(int x, int y) {
     altura = al_get_text_width(f->getPointer(), texto.c_str());
     delete f;
 }
+
+// retorna se ponteiro esta sob
+bool bolhas::gui::MenuItem::ehSelecionado(int x, int y) {
+    float x0, x1, y0 = MenuItem::y - 10, y1 = MenuItem::y + altura / 4 + 10;
+    if(flag == ALLEGRO_ALIGN_CENTER) {
+        x0 = MenuItem::x - largura / 2;
+        x1 = MenuItem::x + largura / 2;
+    } else if(flag == ALLEGRO_ALIGN_LEFT) {
+        x0 = MenuItem::x;
+        x1 = MenuItem::x + largura;
+    } else {
+        x0 = MenuItem::x - largura;
+        x1 = MenuItem::x;
+    }
+    boolean ehSelecionado;
+    return (x >= x0 && x <= x1 && y >= y0 && y <= y1);
+}
+
+//--Setters/Getters-----------------------------------------------------------
+
 
 float bolhas::gui::MenuItem::getX() const {
     return x;
@@ -93,23 +118,6 @@ void bolhas::gui::MenuItem::setFonte(model::Fonts fonte) {
     //MenuItem::fonte = std::unique fonte) ;
 }
 
-// retorna se ponteiro esta sob
-bool bolhas::gui::MenuItem::ehSelecionado(int x, int y) {
-    float x0, x1, y0 = MenuItem::y, y1 = MenuItem::y + altura / 3;
-    if(flag == ALLEGRO_ALIGN_CENTER) {
-        x0 = MenuItem::x - largura / 2;
-        x1 = MenuItem::x + largura / 2;
-    } else if(flag == ALLEGRO_ALIGN_LEFT) {
-        x0 = MenuItem::x;
-        x1 = MenuItem::x + largura;
-    } else {
-        x0 = MenuItem::x - largura;
-        x1 = MenuItem::x;
-    }
-    boolean ehSelecionado;
-    return (x >= x0 && x <= x1 && y >= y0 && y <= y1);
-}
-
 const bolhas::model::Color & bolhas::gui::MenuItem::getCor() const {
     return *cor;
 }
@@ -128,7 +136,4 @@ void bolhas::gui::MenuItem::setCorSelectionada(
     MenuItem::corSelecionada = std::move(corSelecionada);
 }
 
-bolhas::gui::MenuItem::MenuItem(const bolhas::gui::MenuItem &m) :
-        x(m.x), y(m.y), largura(m.largura), altura(m.altura), flag(m.flag) {
-}
 

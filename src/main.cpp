@@ -9,12 +9,15 @@
 
 #include "MainView.h"
 #include <allegro5/allegro.h>
+#include <chrono>
 #include <allegro5/allegro_native_dialog.h>
 #include <allegro5/allegro_image.h>
 #include <iostream>
 
+
 using std::cerr;
 using std::endl;
+using std::cout;
 using namespace bolhas;
 
 void iniciar(gui::MainView &mainView);
@@ -39,21 +42,50 @@ int main(int argc, char** argv) {
 }
 
 void iniciar(gui::MainView &mainView) {
+    int x = 0, y = 0;
+
+    // loop do programa
     while(true) {
-            ALLEGRO_EVENT_QUEUE *filaEventos = mainView.getEventos();
-            ALLEGRO_EVENT evento;
-            ALLEGRO_TIMEOUT tempo;
-            //al_rest((double) 1 / 60);
+        ALLEGRO_EVENT_QUEUE *filaEventos = mainView.getEventos();
+        ALLEGRO_EVENT evento;
+        ALLEGRO_TIMEOUT tempo;
+        //al_uninstall_mouse();
+
+        //al_rest((double) 1 / 60);
+        // loop de leitura de eventos
+        bool temEventos = true;
+        while(temEventos) {
             al_init_timeout(&tempo, (double) 1 / 500);
-            bool temEventos = al_wait_for_event_until(filaEventos, &evento, 
-                    &tempo);
-            if(temEventos && evento.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
-                break;
+            temEventos = al_wait_for_event_until(filaEventos, &evento,
+                                                      &tempo);
+            //bool temEventos = al_get_next_event(filaEventos, &evento);
+
+            if (temEventos) {
+                switch(evento.type) {
+                    case ALLEGRO_EVENT_DISPLAY_CLOSE:
+                        exit(0);
+                }
             }
-            //int x, y;
-            //al_get_mouse_cursor_position(&x, &y);
-            mainView.renderizaTela(evento.mouse.x, evento.mouse.y);
-            al_flip_display();
+
+            /*else if ((evento.mouse.x < x + 5 && evento.mouse.x > x - 5) ||
+                       (evento.mouse.x < y + 5 && evento.mouse.y > y - 5)) {
+                continue;
+            }*/
+        }
+
+        x = evento.mouse.x;
+        y = evento.mouse.y;
+
+        time_point<system_clock, nanoseconds> p1 =
+                std::chrono::system_clock::now();
+        using namespace std::chrono;
+
+        mainView.renderizaTela(evento.mouse.x, evento.mouse.y);
+        //mainView.renderizaTela(x, y);
+        time_point<system_clock, nanoseconds> p2 = system_clock::now();
+        auto p = duration<double>(p2 - p1);
+        cout << p.count() << endl;
+        al_flip_display();
     }
 }
 

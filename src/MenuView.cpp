@@ -23,12 +23,11 @@ bolhas::gui::MenuView::MenuView(MainView &parent, int x, int y)
     marcada = new model::Fonts(fonte.get());
     title = std::unique_ptr<model::Fonts>(new
             model::Fonts("../resources/fonts/bubbs.ttf", 72));
-    zoom = std::unique_ptr<animation::ZoomFont> (MenuView::fonte->get());
+    zoom = std::unique_ptr<animation::ZoomFont>
+            (new animation::ZoomFont(fonte.get()));
     selec = Selecionado::NENHUM;
     criaMenu();
     renderiza(x, y);
-
-
 }
 
 void bolhas::gui::MenuView::renderiza(int x, int y) {
@@ -36,7 +35,7 @@ void bolhas::gui::MenuView::renderiza(int x, int y) {
         itens[i]->renderizar(x, y);
     }
 /*
-    if(delay.test(2)) {
+    if(delaySegundos.test(2)) {
         if(title->getTamanho() > 100 || title->getTamanho() < 72) {
             mult *= -1;
         }

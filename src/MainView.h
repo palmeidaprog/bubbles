@@ -47,7 +47,6 @@ class MainView : public Janela, public interfaces::Memento<Estado> {
         std::string titulo;
         std::string imagemArq;
         MainController *controller;
-        std::vector < std::unique_ptr<MenuItem> >  menuItens;
         MenuView *menu;
         Estado estado;
 

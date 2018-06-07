@@ -33,6 +33,7 @@ namespace bolhas { namespace gui {
         inicializaImagem();
         inicializaMouse();
         fundoDeTela("../resources/images/unders.jpg");
+        fundoDeTela();
         al_flip_display();
     }
 

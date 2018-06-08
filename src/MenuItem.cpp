@@ -2,15 +2,15 @@
 // Created by Paulo Roberto Almeida Filho on 6/3/18.
 //
 
-#include <jmorecfg.h>
 #include "MenuItem.h"
+
 
 bolhas::gui::MenuItem::MenuItem(const model::Fonts &fonte,
                                 const model::Colors &cor,
                                 const model::Colors &corSelecionada, float x,
-                                float y, int flag, std::string texto)
-                                : x(x), y(y), largura(0), altura(0),
+                                float y, int flag, std::string texto) : x(x), y(y), largura(0), altura(0),
                                 flag(flag) {
+
     MenuItem::texto = std::move(texto);
     MenuItem::cor = std::unique_ptr<model::Color> (new model::Color(cor));
     MenuItem::corSelecionada = std::unique_ptr<model::Color>
@@ -19,7 +19,6 @@ bolhas::gui::MenuItem::MenuItem(const model::Fonts &fonte,
     const auto *f = new model::Fonts(MenuItem::fonte.get());
     largura = al_get_text_width(f->getPointer(), MenuItem::texto.c_str());
     altura = al_get_font_line_height(f->getPointer());
-    delete f;
 }
 
 bolhas::gui::MenuItem::~MenuItem() {
@@ -33,9 +32,15 @@ bolhas::gui::MenuItem::MenuItem(const bolhas::gui::MenuItem &m) :
 
 void bolhas::gui::MenuItem::renderizar(int x, int y) {
     const model::Fonts *f = new model::Fonts(fonte.get());
-    al_draw_text(f->getPointer(), ((ehSelecionado(x,y)) ?
-            corSelecionada->getCor() : cor->getCor()), MenuItem::x,
-                 MenuItem::y, flag, texto.c_str());
+    bool s = ehSelecionado(x, y);
+    al_draw_text(f->getPointer(), ((s) ? corSelecionada->getCor() :
+                 cor->getCor()), MenuItem::x, MenuItem::y, flag,
+                 texto.c_str());
+    if(s) {
+        effect->animacao();
+    } else {
+        effect->parar();
+    }
     largura = al_get_text_width(f->getPointer(), texto.c_str());
     altura = al_get_text_width(f->getPointer(), texto.c_str());
     delete f;
@@ -54,7 +59,7 @@ bool bolhas::gui::MenuItem::ehSelecionado(int x, int y) {
         x0 = MenuItem::x - largura;
         x1 = MenuItem::x;
     }
-    boolean ehSelecionado;
+    bool ehSelecionado;
     return (x >= x0 && x <= x1 && y >= y0 && y <= y1);
 }
 
@@ -134,6 +139,15 @@ const bolhas::model::Color &bolhas::gui::MenuItem::getCorSelecionada() const {
 void bolhas::gui::MenuItem::setCorSelectionada(
         std::unique_ptr<model::Color> corSelecionada) {
     MenuItem::corSelecionada = std::move(corSelecionada);
+}
+
+const std::unique_ptr<bolhas::animation::EfeitoFonte> &bolhas::gui::MenuItem::getEffect() const {
+    return effect;
+}
+
+void
+bolhas::gui::MenuItem::setEffect(std::unique_ptr<bolhas::animation::EfeitoFonte> &effect) {
+    MenuItem::effect = effect;
 }
 
 

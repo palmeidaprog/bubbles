@@ -5,12 +5,12 @@
 #include "ZoomFont.h"
 
 bolhas::animation::ZoomFont::ZoomFont(bolhas::model::Fonts *font) :
-        font(font), mult(1), crescimentoFonte(5) {
+        font(font), mult(1), crescimentoFonte(1) {
     tamanho = font->getTamanho();
-    max = (int) (font->getTamanho() * 1.2);
-    min = (int) (font->getTamanho() * 0.8);
+    max = (int) (font->getTamanho() * 1.10);
+    min = (int) (font->getTamanho() * 0.90);
     intervalo = std::unique_ptr<model::Delay> (new model::Delay((double)
-            1 / 30));
+            1 / 60));
 }
 
 bolhas::animation::ZoomFont::~ZoomFont() {
@@ -62,6 +62,11 @@ void bolhas::animation::ZoomFont::animacao() {
 
 void bolhas::animation::ZoomFont::parar() {
     font->setTamanho(tamanho);
+    font->changeFont();
+}
+
+std::unique_ptr<bolhas::model::Delay> &bolhas::animation::ZoomFont::getIntervalo() {
+    return intervalo;
 }
 
 

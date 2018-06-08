@@ -74,7 +74,7 @@ void bolhas::gui::MenuView::criaMenu() {
 
     itens.emplace_back(new MenuItem(*title, Colors::AZUL_ESCURO,
                                     Colors::AZUL_ESCURO, x, y,
-                                    ALLEGRO_ALIGN_CENTER, "MENU"));
+                                    ALLEGRO_ALIGN_CENTER, "MENU"x));
     y += 180;
     itens.emplace_back(new MenuItem(*fonte, Colors::AZUL_ESCURO,
                                     Colors::VERMELHO, x, y,

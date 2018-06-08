@@ -7,19 +7,21 @@
 
 #include "Fonts.h"
 #include "Delay.h"
+#include "EfeitoFonte.h"
 #include <memory>
 
 
 namespace bolhas { namespace animation {
-    class ZoomFont {
+    class ZoomFont : public EfeitoFonte {
         model::Fonts *font;
         int min, max, crescimentoFonte, tamanho, mult;
         std::unique_ptr<model::Delay> intervalo;
 
-        void animacao();
+
 
     public:
         ZoomFont(model::Fonts *font);
+
         virtual ~ZoomFont();
 
         //--Get/Set-----------------------------------------------------------
@@ -31,13 +33,10 @@ namespace bolhas { namespace animation {
         void setMax(int max);
         int getCrescimentoFonte() const;
         void setCrescimentoFonte(int crescimentoFonte);
+        std::unique_ptr<model::Delay> &getIntervalo();
 
-
-        void parar();
-
-
-
-
+        void parar() override;
+        void animacao() override;
     };
 }}
 

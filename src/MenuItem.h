@@ -10,6 +10,7 @@
 #include "Color.h"
 #include "Fonts.h"
 #include "Observador.h"
+#include "ZoomFont.h"
 
 namespace bolhas { namespace gui {
     class MenuItem : public interfaces::Observado {
@@ -19,7 +20,7 @@ namespace bolhas { namespace gui {
         std::string texto;
         std::unique_ptr<model::Color> cor, corSelecionada;
         std::unique_ptr<model::Fonts> fonte;
-
+        std::unique_ptr<animation::EfeitoFonte> effect;
 
         bool ehSelecionado(int x, int y);
 
@@ -49,9 +50,10 @@ namespace bolhas { namespace gui {
         void setCor(std::unique_ptr<model::Color> cor);
         const model::Color &getCorSelecionada() const;
         void setCorSelectionada(std::unique_ptr<model::Color> corSelecionada);
+        const std::unique_ptr<animation::EfeitoFonte> &getEffect() const;
+        void setEffect(std::unique_ptr<animation::EfeitoFonte> &effect);
 
-
-    //--------------------------------------------------------------------
+        //--------------------------------------------------------------------
 
         void renderizar(int x, int y);
     };

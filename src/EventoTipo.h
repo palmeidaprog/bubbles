@@ -6,10 +6,9 @@
 #define BUBBLES_EVENTO_H
 
 namespace bolhas { namespace interfaces {
-    enum class Evento {
-        SELECIONADO, APAGADO, EDITADO
+    enum class EventoTipo {
+        SELECIONADO, APAGADO, MUDANCA_ESTADO
     };
 }}
-
 
 #endif //BUBBLES_EVENTO_H

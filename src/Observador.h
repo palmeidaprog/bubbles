@@ -5,7 +5,7 @@
 #ifndef BUBBLES_OBSERVADOR_H
 #define BUBBLES_OBSERVADOR_H
 
-#include "Evento.h"
+#include "EventoTipo.h"
 #include "Observado.h"
 #include "libs/boost/any.hpp"
 
@@ -23,7 +23,7 @@ namespace bolhas { namespace interfaces {
         void removeObservado(Observado *obsvado);
 
         virtual void atualizar(const Observado &obs, const boost::any &objeto,
-                               Evento evento) = 0;
+                               EventoTipo evento) = 0;
     };
 }}
 

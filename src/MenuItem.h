@@ -11,6 +11,7 @@
 #include "Fonts.h"
 #include "Observador.h"
 #include "ZoomFont.h"
+#include "Clickavel.h"
 
 namespace bolhas { namespace gui {
     class MenuItem : public interfaces::Observado {
@@ -21,6 +22,7 @@ namespace bolhas { namespace gui {
         std::unique_ptr<model::Color> cor, corSelecionada;
         std::unique_ptr<model::Fonts> fonte;
         std::unique_ptr<animation::EfeitoFonte> effect;
+        std::unique_ptr<interfaces::Clickavel> click;
 
         bool ehSelecionado(int x, int y);
 
@@ -52,6 +54,8 @@ namespace bolhas { namespace gui {
         void setCorSelectionada(std::unique_ptr<model::Color> corSelecionada);
         const std::unique_ptr<animation::EfeitoFonte> &getEffect() const;
         void setEffect(bolhas::animation::EfeitoFonte *effect);
+        void setClick(interfaces::Clickavel *click);
+        void clickEvent();
 
         //--------------------------------------------------------------------
 

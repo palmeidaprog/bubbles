@@ -26,7 +26,8 @@ bolhas::interfaces::Observado::~Observado() {
 }
 
 template <typename T>
-void bolhas::interfaces::Observado::notificar(const T &tipo, Evento evento) {
+void bolhas::interfaces::Observado::notificar(const T &tipo, EventoTipo
+        evento) {
     for(size_t i = 0; i < observadores.size(); i++) {
         observadores[i]->atualizar(*this, tipo, evento);
     }

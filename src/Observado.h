@@ -23,7 +23,7 @@ namespace bolhas { namespace interfaces {
         void removerObservador(Observador *obs);
 
         template <typename T>
-        void notificar(const T &tipo, Evento evento);
+        void notificar(const T &tipo, EventoTipo evento);
     };
 }}
 

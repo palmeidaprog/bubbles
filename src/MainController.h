@@ -20,7 +20,6 @@ namespace bolhas { namespace gui {
     public:
         MainController(const gui::MainView &view_);
         virtual ~MainController();
-    private:
 
     };
 }}

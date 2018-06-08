@@ -154,3 +154,15 @@ void bolhas::gui::MenuItem::setEffect(bolhas::animation::EfeitoFonte
 }
 
 
+void bolhas::gui::MenuItem::setClick(bolhas::interfaces::Clickavel *click) {
+    MenuItem::click = std::unique_ptr<interfaces::Clickavel> (click);
+}
+
+void bolhas::gui::MenuItem::clickEvent() {
+    if(click) {
+        click->click();
+        notificar(*this, interfaces::EventoTipo::MUDANCA_ESTADO);
+    }
+}
+
+

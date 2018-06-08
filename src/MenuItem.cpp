@@ -163,11 +163,13 @@ void bolhas::gui::MenuItem::setClick(bolhas::interfaces::Clickavel *click) {
     MenuItem::click = std::unique_ptr<interfaces::Clickavel> (click);
 }
 
-void bolhas::gui::MenuItem::clickEvent(int x, int y) {
+bool bolhas::gui::MenuItem::clickEvent(int x, int y) {
     if(click && ehSelecionado(x, y)) {
         click->click(x, y);
         notificar(*this, interfaces::EventoTipo::MUDANCA_ESTADO);
+        return true;
     }
+    return false;
 }
 
 

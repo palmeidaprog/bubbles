@@ -61,9 +61,10 @@ void iniciar(gui::MainView &mainView) {
             //bool temEventos = al_get_next_event(filaEventos, &evento);
 
             if (temEventos) {
-                switch(evento.type) {
-                    case ALLEGRO_EVENT_DISPLAY_CLOSE:
-                        exit(0);
+                if(evento.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
+                    exit(0);
+                } else if(evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP) {
+                    mainView.click(x, y);
                 }
             }
 

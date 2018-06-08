@@ -19,7 +19,8 @@ namespace bolhas { namespace gui {
             fundo(NULL), stop(false), musicaArq(
             "../resources/sons/Space_Loop.wav"), titulo("Algebra Bolheana"),
             imagemArq("../resources/images/under0.jpg"), controller(nullptr),
-            menu(nullptr), instance(*this) {
+            menu(nullptr) {
+        MainView::instance = *this;
         estado = Estado::MENU;
         controller = new MainController(*this);
         
@@ -152,6 +153,8 @@ namespace bolhas { namespace gui {
                 fundoDeTela();
                 mostraMenu(x, y);
                 break;
+            case Estado::SAIR:
+                exit(0);
             default:
                 break;
         }
@@ -179,8 +182,15 @@ namespace bolhas { namespace gui {
         //al_hide_mouse_cursor(getJanela());
     }
 
-    static MainView &MainView::getInstance() {
-        return *this;
+
+
+    bool MainView::click(int x, int y) {
+        switch(estado) {
+            case Estado::MENU:
+                return menu->click(x, y);
+            default:
+                break;
+        }
     }
 
 }}

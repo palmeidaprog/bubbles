@@ -77,21 +77,30 @@ void bolhas::gui::MenuView::criaMenu() {
                                     Colors::AZUL_ESCURO, x, y,
                                     ALLEGRO_ALIGN_CENTER, "MENU"));
     y += 180;
-    itens.emplace_back(adicionaEfeito(new MenuItem(*fonte, Colors::AZUL_ESCURO,
+    criaMenuItem(x, y, "Jogar", static_cast<interfaces::Clickavel *> (new
+        interfaces::MudaEstado(Estado::JOGO)));
+
+    /*itens.emplace_back(adicionaEfeito(new MenuItem(*fonte, Colors::AZUL_ESCURO,
                                     Colors::VERMELHO, x, y,
-                                    ALLEGRO_ALIGN_CENTER, "Jogar")));
+                                    ALLEGRO_ALIGN_CENTER, "Jogar")));*/
     y += 100;
-    itens.emplace_back(adicionaEfeito(new MenuItem(*fonte, Colors::AZUL_ESCURO,
+    criaMenuItem(x, y, "Tutorial", static_cast<interfaces::Clickavel *> (new
+        interfaces::MudaEstado(Estado::TUTORIAL)));
+    /*itens.emplace_back(adicionaEfeito(new MenuItem(*fonte, Colors::AZUL_ESCURO,
                                     Colors::VERMELHO, x, y,
-                                    ALLEGRO_ALIGN_CENTER, "Tutorial")));
+                                    ALLEGRO_ALIGN_CENTER, "Tutorial")));*/
     y += 100;
-    itens.emplace_back(adicionaEfeito(new MenuItem(*fonte, Colors::AZUL_ESCURO,
+    criaMenuItem(x, y, "Opcoes", static_cast<interfaces::Clickavel *> (new
+        interfaces::MudaEstado(Estado::OPCOES)));
+    /*itens.emplace_back(adicionaEfeito(new MenuItem(*fonte, Colors::AZUL_ESCURO,
                                     Colors::VERMELHO, x, y,
-                                    ALLEGRO_ALIGN_CENTER, "Opcoes")));
+                                    ALLEGRO_ALIGN_CENTER, "Opcoes")));*/
     y += 100;
-    itens.emplace_back(adicionaEfeito(new MenuItem(*fonte, Colors::AZUL_ESCURO,
+    criaMenuItem(x, y, "Sair", static_cast<interfaces::Clickavel *> (new
+        interfaces::MudaEstado(Estado::SAIR)));
+    /*itens.emplace_back(adicionaEfeito(new MenuItem(*fonte, Colors::AZUL_ESCURO,
                                     Colors::VERMELHO, x, y,
-                                    ALLEGRO_ALIGN_CENTER, "Sair")));
+                                    ALLEGRO_ALIGN_CENTER, "Sair")));*/
 }
 
 bolhas::gui::MenuItem *bolhas::gui::MenuView::adicionaEfeito(
@@ -112,4 +121,13 @@ void bolhas::gui::MenuView::criaMenuItem(int x, int y, const std::string &texto,
     itens.emplace_back(adicionaEfeito(m));
     auto *c = new interfaces::MudaEstado(Estado::JOGO);
     m->setClick(static_cast<interfaces::Clickavel *> (c));
+}
+
+bool bolhas::gui::MenuView::click(int x, int y) {
+    for(size_t i = 0; i < itens.size(); i++) {
+        if(itens[i]->clickEvent(x, y)) {
+            return true;
+        }
+    }
+    return false;
 }

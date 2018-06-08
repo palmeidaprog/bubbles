@@ -60,7 +60,7 @@ namespace bolhas { namespace gui {
         const std::unique_ptr<animation::EfeitoFonte> &getEffect() const;
         void setEffect(bolhas::animation::EfeitoFonte *effect);
         void setClick(interfaces::Clickavel *click);
-        void clickEvent(int x, int y);
+        bool clickEvent(int x, int y);
 
         //--------------------------------------------------------------------
 

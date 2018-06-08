@@ -46,6 +46,7 @@ namespace bolhas { namespace gui {
         void renderiza(int x, int y);
         void opcaoMenu(const std::string &texto, int pos,
                        Selecionado s);
+        bool click(int x, int y);
 
     };
 }}

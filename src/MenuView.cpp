@@ -8,6 +8,7 @@
  */
 
 #include "MenuView.h"
+#include "MudaEstado.h"
 #include "Colors.h"
 #include "Color.h"
 #include <memory>
@@ -109,7 +110,6 @@ void bolhas::gui::MenuView::criaMenuItem(int x, int y, const std::string &texto,
                  Colors::VERMELHO, x, y,
                  ALLEGRO_ALIGN_CENTER, texto);
     itens.emplace_back(adicionaEfeito(m));
-    auto *c = new MudaEstado(Estado::JOGO);
+    auto *c = new interfaces::MudaEstado(Estado::JOGO);
     m->setClick(static_cast<interfaces::Clickavel *> (c));
-
 }

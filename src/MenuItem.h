@@ -1,6 +1,11 @@
-//
-// Created by Paulo Roberto Almeida Filho on 6/3/18.
-//
+/*
+ * UNICAP - Universidade Catolica de Pernambuco
+ * Pratica de Programação
+ * Prof: Me. Ana Eliza Moura
+ * Projeto 02 - Algebra Bolheana
+ * Aluno: Paulo R. Almeida Filho
+ * E-mail: pauloalmeidaf@gmail.com
+ */
 
 #ifndef BUBBLES_MENUITEM_H
 #define BUBBLES_MENUITEM_H
@@ -55,7 +60,7 @@ namespace bolhas { namespace gui {
         const std::unique_ptr<animation::EfeitoFonte> &getEffect() const;
         void setEffect(bolhas::animation::EfeitoFonte *effect);
         void setClick(interfaces::Clickavel *click);
-        void clickEvent();
+        void clickEvent(int x, int y);
 
         //--------------------------------------------------------------------
 

@@ -1,6 +1,11 @@
-//
-// Created by Paulo Roberto Almeida Filho on 5/31/18.
-//
+/*
+ * UNICAP - Universidade Catolica de Pernambuco
+ * Pratica de Programação
+ * Prof: Me. Ana Eliza Moura
+ * Projeto 02 - Algebra Bolheana
+ * Aluno: Paulo R. Almeida Filho
+ * E-mail: pauloalmeidaf@gmail.com
+ */
 
 #ifndef BUBBLES_MOVEFONTS_H
 #define BUBBLES_MOVEFONTS_H

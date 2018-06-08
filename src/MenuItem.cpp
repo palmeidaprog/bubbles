@@ -1,6 +1,11 @@
-//
-// Created by Paulo Roberto Almeida Filho on 6/3/18.
-//
+/*
+ * UNICAP - Universidade Catolica de Pernambuco
+ * Pratica de Programação
+ * Prof: Me. Ana Eliza Moura
+ * Projeto 02 - Algebra Bolheana
+ * Aluno: Paulo R. Almeida Filho
+ * E-mail: pauloalmeidaf@gmail.com
+ */
 
 #include "MenuItem.h"
 
@@ -158,9 +163,9 @@ void bolhas::gui::MenuItem::setClick(bolhas::interfaces::Clickavel *click) {
     MenuItem::click = std::unique_ptr<interfaces::Clickavel> (click);
 }
 
-void bolhas::gui::MenuItem::clickEvent() {
-    if(click) {
-        click->click();
+void bolhas::gui::MenuItem::clickEvent(int x, int y) {
+    if(click && ehSelecionado(x, y)) {
+        click->click(x, y);
         notificar(*this, interfaces::EventoTipo::MUDANCA_ESTADO);
     }
 }

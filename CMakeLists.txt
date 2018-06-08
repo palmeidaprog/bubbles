@@ -41,5 +41,5 @@ add_executable(bubbles
         src/Janela.h
         src/Memento.h
         src/ZoomFont.cpp
-        src/ZoomFont.h src/MenuItem.cpp src/MenuItem.h src/Observado.cpp src/Observado.h src/Observador.cpp src/Observador.h src/EventoTipo.h src/EfeitoFonte.cpp src/EfeitoFonte.h src/Clickavel.h)
+        src/ZoomFont.h src/MenuItem.cpp src/MenuItem.h src/Observado.cpp src/Observado.h src/Observador.cpp src/Observador.h src/EventoTipo.h src/EfeitoFonte.cpp src/EfeitoFonte.h src/Clickavel.h src/MudaEstado.cpp src/MudaEstado.h)
 

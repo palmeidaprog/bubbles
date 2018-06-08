@@ -9,7 +9,7 @@ namespace bolhas { namespace interfaces {
     class Clickavel {
 
     public:
-        virtual void click() = 0;
+        virtual void click() const = 0;
     };
 }}
 

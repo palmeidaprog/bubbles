@@ -101,3 +101,15 @@ bolhas::gui::MenuItem *bolhas::gui::MenuView::adicionaEfeito(
     m->setEffect(p.release());
     return m;
 }
+
+void bolhas::gui::MenuView::criaMenuItem(int x, int y, const std::string &texto,
+                                         bolhas::interfaces::Clickavel *click) {
+    using model::Colors;
+    MenuItem *m = new MenuItem(*fonte, Colors::AZUL_ESCURO,
+                 Colors::VERMELHO, x, y,
+                 ALLEGRO_ALIGN_CENTER, texto);
+    itens.emplace_back(adicionaEfeito(m));
+    auto *c = new MudaEstado(Estado::JOGO);
+    m->setClick(static_cast<interfaces::Clickavel *> (c));
+
+}

@@ -36,6 +36,8 @@ namespace bolhas { namespace gui {
 
         void criaMenu();
         MenuItem *adicionaEfeito(MenuItem *m);
+        void criaMenuItem(int x, int y, const std::string &texto,
+                          interfaces::Clickavel *click);
 
     public:
         MenuView(MainView &parent, int x, int y);
@@ -44,6 +46,7 @@ namespace bolhas { namespace gui {
         void renderiza(int x, int y);
         void opcaoMenu(const std::string &texto, int pos,
                        Selecionado s);
+
     };
 }}
 

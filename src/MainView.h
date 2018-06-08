@@ -49,6 +49,7 @@ class MainView : public Janela, public interfaces::Memento<Estado> {
         MainController *controller;
         MenuView *menu;
         Estado estado;
+        MainView &instance;
 
         void inicializaSom();
         void inicializaTeclado();
@@ -56,11 +57,13 @@ class MainView : public Janela, public interfaces::Memento<Estado> {
         void inicializaFont();
         void inicializaEventos();
         void inicializaMouse();
+
         
     public:
         MainView(int largura, int altura);
         ~MainView() override;
 
+        static MainView &getInstance();
         model::Fonts getFonte() const;
         void setMusica(const std::string &musicaArq);
         void setTitulo(const std::string &titulo);

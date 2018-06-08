@@ -51,7 +51,7 @@ namespace bolhas { namespace gui {
         const model::Color &getCorSelecionada() const;
         void setCorSelectionada(std::unique_ptr<model::Color> corSelecionada);
         const std::unique_ptr<animation::EfeitoFonte> &getEffect() const;
-        void setEffect(std::unique_ptr<animation::EfeitoFonte> &effect);
+        void setEffect(bolhas::animation::EfeitoFonte *effect);
 
         //--------------------------------------------------------------------
 

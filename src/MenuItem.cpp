@@ -36,10 +36,12 @@ void bolhas::gui::MenuItem::renderizar(int x, int y) {
     al_draw_text(f->getPointer(), ((s) ? corSelecionada->getCor() :
                  cor->getCor()), MenuItem::x, MenuItem::y, flag,
                  texto.c_str());
-    if(s) {
-        effect->animacao();
-    } else {
-        effect->parar();
+    if(effect) {
+        if (s) {
+            effect->animacao();
+        } else {
+            effect->parar();
+        }
     }
     largura = al_get_text_width(f->getPointer(), texto.c_str());
     altura = al_get_text_width(f->getPointer(), texto.c_str());
@@ -141,13 +143,14 @@ void bolhas::gui::MenuItem::setCorSelectionada(
     MenuItem::corSelecionada = std::move(corSelecionada);
 }
 
-const std::unique_ptr<bolhas::animation::EfeitoFonte> &bolhas::gui::MenuItem::getEffect() const {
+const std::unique_ptr<bolhas::animation::EfeitoFonte>
+        &bolhas::gui::MenuItem::getEffect() const {
     return effect;
 }
 
-void
-bolhas::gui::MenuItem::setEffect(std::unique_ptr<bolhas::animation::EfeitoFonte> &effect) {
-    MenuItem::effect = effect;
+void bolhas::gui::MenuItem::setEffect(bolhas::animation::EfeitoFonte
+                                      *effect) {
+    MenuItem::effect = std::unique_ptr<animation::EfeitoFonte>(effect);
 }
 
 

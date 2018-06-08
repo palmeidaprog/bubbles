@@ -74,21 +74,30 @@ void bolhas::gui::MenuView::criaMenu() {
 
     itens.emplace_back(new MenuItem(*title, Colors::AZUL_ESCURO,
                                     Colors::AZUL_ESCURO, x, y,
-                                    ALLEGRO_ALIGN_CENTER, "MENU"x));
+                                    ALLEGRO_ALIGN_CENTER, "MENU"));
     y += 180;
-    itens.emplace_back(new MenuItem(*fonte, Colors::AZUL_ESCURO,
+    itens.emplace_back(adicionaEfeito(new MenuItem(*fonte, Colors::AZUL_ESCURO,
                                     Colors::VERMELHO, x, y,
-                                    ALLEGRO_ALIGN_CENTER, "Jogar"));
+                                    ALLEGRO_ALIGN_CENTER, "Jogar")));
     y += 100;
-    itens.emplace_back(new MenuItem(*fonte, Colors::AZUL_ESCURO,
+    itens.emplace_back(adicionaEfeito(new MenuItem(*fonte, Colors::AZUL_ESCURO,
                                     Colors::VERMELHO, x, y,
-                                    ALLEGRO_ALIGN_CENTER, "Tutorial"));
+                                    ALLEGRO_ALIGN_CENTER, "Tutorial")));
     y += 100;
-    itens.emplace_back(new MenuItem(*fonte, Colors::AZUL_ESCURO,
+    itens.emplace_back(adicionaEfeito(new MenuItem(*fonte, Colors::AZUL_ESCURO,
                                     Colors::VERMELHO, x, y,
-                                    ALLEGRO_ALIGN_CENTER, "Opcoes"));
+                                    ALLEGRO_ALIGN_CENTER, "Opcoes")));
     y += 100;
-    itens.emplace_back(new MenuItem(*fonte, Colors::AZUL_ESCURO,
+    itens.emplace_back(adicionaEfeito(new MenuItem(*fonte, Colors::AZUL_ESCURO,
                                     Colors::VERMELHO, x, y,
-                                    ALLEGRO_ALIGN_CENTER, "Sair"));
+                                    ALLEGRO_ALIGN_CENTER, "Sair")));
+}
+
+bolhas::gui::MenuItem *bolhas::gui::MenuView::adicionaEfeito(
+        bolhas::gui::MenuItem *m) {
+    using namespace animation;
+    std::unique_ptr<EfeitoFonte> p = std::unique_ptr<EfeitoFonte>
+            (dynamic_cast<EfeitoFonte*>(new ZoomFont(m->getFonte().get())));
+    m->setEffect(p.release());
+    return m;
 }

@@ -29,5 +29,17 @@ add_executable(bubbles
         src/MenuController.cpp
         src/MenuController.h
         src/MenuView.cpp
-        src/MenuView.h src/Fonts.cpp src/Fonts.h src/Delay.cpp src/Delay.h src/Color.cpp src/Color.h src/Colors.h src/Janela.cpp src/Janela.h src/Memento.h src/ZoomFont.cpp src/ZoomFont.h src/MenuItem.cpp src/MenuItem.h src/Observado.cpp src/Observado.h src/Observador.cpp src/Observador.h src/Evento.h src/EfeitoFonte.cpp src/EfeitoFonte.h)
+        src/MenuView.h
+        src/Fonts.cpp
+        src/Fonts.h
+        src/Delay.cpp
+        src/Delay.h
+        src/Color.cpp
+        src/Color.h
+        src/Colors.h
+        src/Janela.cpp
+        src/Janela.h
+        src/Memento.h
+        src/ZoomFont.cpp
+        src/ZoomFont.h src/MenuItem.cpp src/MenuItem.h src/Observado.cpp src/Observado.h src/Observador.cpp src/Observador.h src/Evento.h src/EfeitoFonte.cpp src/EfeitoFonte.h)
 

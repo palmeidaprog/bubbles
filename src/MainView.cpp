@@ -20,7 +20,7 @@ namespace bolhas { namespace gui {
             "../resources/sons/Space_Loop.wav"), titulo("Algebra Bolheana"),
             imagemArq("../resources/images/under0.jpg"), controller(nullptr),
             menu(nullptr) {
-        MainView::instance = *this;
+        MainView::instance = std::shared_ptr<MainView> (this);
         estado = Estado::MENU;
         controller = new MainController(*this);
         
@@ -189,8 +189,9 @@ namespace bolhas { namespace gui {
             case Estado::MENU:
                 return menu->click(x, y);
             default:
-                break;
+                return false;
         }
+
     }
 
 }}

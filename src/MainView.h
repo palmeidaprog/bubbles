@@ -49,7 +49,7 @@ class MainView : public Janela, public interfaces::Memento<Estado> {
         MainController *controller;
         MenuView *menu;
         Estado estado;
-        static MainView &instance;
+        static std::shared_ptr<MainView> instance;
 
         void inicializaSom();
         void inicializaTeclado();
@@ -63,7 +63,7 @@ class MainView : public Janela, public interfaces::Memento<Estado> {
         MainView(int largura, int altura);
         ~MainView() override;
 
-        static MainView &getInstance() {
+        static std::shared_ptr<MainView> getInstance() {
             return instance;
         }
 

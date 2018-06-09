@@ -20,7 +20,7 @@
 namespace bolhas { namespace gui {
     class JogoView : public BaseView {
         std::unique_ptr<JogoController> controller;
-        std::shared_ptr<MainView> main;
+        std::shared_ptr<MainView> mainV;
         std::unique_ptr<model::Fonts> fonte, numbers;
         std::unique_ptr<animation::EfeitoFonte> efeitoFonte;
         int xFundo, xSource, mult = 1;

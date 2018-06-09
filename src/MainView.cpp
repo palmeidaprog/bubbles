@@ -7,7 +7,7 @@
  * E-mail: pauloalmeidaf@gmail.com
  */
 
-// main View
+// mainV View
 
 #include "MainView.h"
 #include "Passagem.h"

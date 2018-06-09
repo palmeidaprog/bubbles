@@ -3,14 +3,14 @@ CC = g++
 CPPFLAGS = -g -std=c++14 -Wall 
 
 LIBS = -lm -lallegro -lallegro_main -lallegro_image -lallegro_audio -lallegro_acodec -lallegro_font -lallegro_ttf
-OBJECTS = build/main.o build/MainView.o build/MainController.o build/JanelaException.o build/MenuView.o build/Estado.o
+OBJECTS = build/mainV.o build/MainView.o build/MainController.o build/JanelaException.o build/MenuView.o build/Estado.o
 EXEC = bin/bubbles
 
 $(TARGET): $(OBJECTS)
 	$(CC) $(LIBS) -o $(TARGET) $(OBJECTS)
 
-build/main.o: src/main.cpp
-	$(CC) $(CPPFLAGS) -c src/main.cpp -o build/main.o
+build/mainV.o: src/mainV.cpp
+	$(CC) $(CPPFLAGS) -c src/mainV.cpp -o build/mainV.o
 
 build/MainView.o: src/MainView.cpp src/MainView.h
 	$(CC) $(CPPFLAGS) -c src/MainView.cpp -o build/MainView.o

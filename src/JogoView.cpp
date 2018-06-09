@@ -10,8 +10,8 @@
 #include "JogoView.h"
 #include "ZoomIn.h"
 
-bolhas::gui::JogoView::JogoView() : BaseView(), main(MainView::getInstance()),
-    xFundo(main->getLargura()), xSource(400){
+bolhas::gui::JogoView::JogoView() : BaseView(), mainV(MainView::getInstance()),
+    xFundo(mainV->getLargura()), xSource(400){
     controller = std::unique_ptr<JogoController> (new JogoController());
     fonte = std::unique_ptr<model::Fonts> (new model::Fonts(
         "../resources/fonts/smx.ttf", 85));
@@ -35,7 +35,7 @@ void bolhas::gui::JogoView::renderizar(int x, int y) {
         case InGame::DISPLAYING:
             BaseView::fundoDeTela();
             al_draw_text(fonte->getPointer(), cor.getCor(),
-                (float) main->getLargura() / 2, (float) main->getAltura()
+                (float) mainV->getLargura() / 2, (float) mainV->getAltura()
                 / 2 - 170, ALLEGRO_ALIGN_CENTER, "COMECANDO EM:");
             if(!contagem()) {
                 ingame = InGame::JOGANDO;
@@ -59,7 +59,7 @@ void bolhas::gui::JogoView::fundoDeTela() {
 
     if(getFundo() != nullptr) {
         al_draw_bitmap_region(getFundo(), xSource, 0, xFundo,
-            main->getAltura(), 0, 0, 0);
+            mainV->getAltura(), 0, 0, 0);
     }
 }
 
@@ -92,7 +92,7 @@ bool bolhas::gui::JogoView::contagem() {
     }
     animation::ZoomIn *z = static_cast<animation::ZoomIn*>(efeitoFonte.get());
     al_draw_text(numbers->getPointer(), z->getCor().getCor(),
-        (float) main->getLargura() / 2, (float) main->getAltura()
+        (float) mainV->getLargura() / 2, (float) mainV->getAltura()
         / 2, ALLEGRO_ALIGN_CENTER, texto.c_str());
     return true;
 }

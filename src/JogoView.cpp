@@ -14,9 +14,9 @@ bolhas::gui::JogoView::JogoView() : BaseView(), main(MainView::getInstance()),
     xFundo(main->getLargura()), xSource(400){
     controller = std::unique_ptr<JogoController> (new JogoController());
     fonte = std::unique_ptr<model::Fonts> (new model::Fonts(
-        "../resources/fonts/smx.ttf", 100));
+        "../resources/fonts/smx.ttf", 85));
     numbers = std::unique_ptr<model::Fonts> (new model::Fonts(
-        "../resources/fonts/agentred.ttf", 75));
+        "../resources/fonts/agentred.ttf", 120));
     ingame = InGame::DISPLAYING;
     //fundoDeTela("../resources/images/under0.jpg");
     BaseView::fundoDeTela("../resources/images/under0.jpg");
@@ -51,8 +51,8 @@ void bolhas::gui::JogoView::renderizar(int x, int y) {
 
 
 void bolhas::gui::JogoView::fundoDeTela() {
-    xFundo += 5 * mult;
-    xSource += 5 * mult;
+    xFundo += 3 * mult;
+    xSource += 3 * mult;
     if(xFundo >= 5480 || xSource <= 400) {
         mult *= -1;
     }

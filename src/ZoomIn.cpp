@@ -6,13 +6,13 @@
 
 bolhas::animation::ZoomIn::ZoomIn(model::Fonts *font, model::Colors
         corOriginal, model::Colors cor, int max, int tamanho) :
-        font(font), min(tamanho), max(max), crescimentoFonte(2),
+        font(font), min(tamanho), max(max), crescimentoFonte(1),
         tamanho(tamanho) {
     this->cor = std::unique_ptr<model::Color> (new model::Color(cor));
     this->corOriginal = std::unique_ptr<model::Color> (new model::Color(
         corOriginal));
     intervalo = std::unique_ptr<model::Delay> (new model::Delay((double)
-        1 / 120));
+        1 / 20));
 }
 
 bolhas::animation::ZoomIn::~ZoomIn() {

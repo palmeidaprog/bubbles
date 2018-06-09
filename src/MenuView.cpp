@@ -119,8 +119,7 @@ void bolhas::gui::MenuView::criaMenuItem(int x, int y, const std::string &texto,
                  Colors::VERMELHO, x, y,
                  ALLEGRO_ALIGN_CENTER, texto);
     itens.emplace_back(adicionaEfeito(m));
-    auto *c = new interfaces::MudaEstado(Estado::JOGO);
-    m->setClick(static_cast<interfaces::Clickavel *> (c));
+    m->setClick((click));
 }
 
 bool bolhas::gui::MenuView::click(int x, int y) {

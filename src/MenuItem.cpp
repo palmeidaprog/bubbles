@@ -166,7 +166,6 @@ void bolhas::gui::MenuItem::setClick(bolhas::interfaces::Clickavel *click) {
 bool bolhas::gui::MenuItem::clickEvent(int x, int y) {
     if(click && ehSelecionado(x, y)) {
         click->click(x, y);
-        notificar(*this, interfaces::EventoTipo::MUDANCA_ESTADO);
         return true;
     }
     return false;

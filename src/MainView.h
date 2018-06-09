@@ -49,7 +49,9 @@ class MainView : public Janela, public interfaces::Memento<Estado> {
         MainController *controller;
         MenuView *menu;
         Estado estado;
+        bool estadoMudado;
         static std::shared_ptr<MainView> instance;
+
 
         void inicializaSom();
         void inicializaTeclado();
@@ -60,12 +62,14 @@ class MainView : public Janela, public interfaces::Memento<Estado> {
 
         
     public:
-        MainView(int largura, int altura);
-        ~MainView() override;
-
         static std::shared_ptr<MainView> getInstance() {
             return instance;
         }
+
+        MainView(int largura, int altura);
+        ~MainView() override;
+
+
 
         model::Fonts getFonte() const;
         void setMusica(const std::string &musicaArq);
@@ -78,7 +82,6 @@ class MainView : public Janela, public interfaces::Memento<Estado> {
         void escondeMenu();
         void renderizaTela(int x, int y);
         void mostraMenu(int x, int y);
-        const std::string &getNomeFonte() const;
         bool click(int x, int y);
 
         Estado getEstado() const override {
@@ -87,6 +90,7 @@ class MainView : public Janela, public interfaces::Memento<Estado> {
 
         void setEstado(Estado estado) override {
             this->estado = estado;
+            estadoMudado = true;
         }
     };
 }}

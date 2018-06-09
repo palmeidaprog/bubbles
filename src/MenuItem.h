@@ -17,6 +17,8 @@
 #include "Observador.h"
 #include "ZoomFont.h"
 #include "Clickavel.h"
+#include "Observado.h"
+#include "EventoTipo.h"
 
 namespace bolhas { namespace gui {
     class MenuItem : public interfaces::Observado {

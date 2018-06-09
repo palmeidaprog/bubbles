@@ -14,13 +14,15 @@
 using namespace bolhas;
 
 namespace bolhas { namespace gui {
+    std::shared_ptr<MainView> MainView::instance;
+
     MainView::MainView(int largura, int altura) : Janela(largura, altura),
             fonte(nullptr), filaEventos(NULL), musica(NULL), sample(NULL),
             fundo(NULL), stop(false), musicaArq(
             "../resources/sons/Space_Loop.wav"), titulo("Algebra Bolheana"),
             imagemArq("../resources/images/under0.jpg"), controller(nullptr),
-            menu(nullptr) {
-        MainView::instance = std::shared_ptr<MainView> (this);
+            menu(nullptr), estadoMudado(false) {
+        MainView::MainView::instance = std::shared_ptr<MainView> (this);
         estado = Estado::MENU;
         controller = new MainController(*this);
         
@@ -149,6 +151,11 @@ namespace bolhas { namespace gui {
 
     void MainView::renderizaTela(int x, int y) {
         switch(estado) {
+            case Estado::JOGO:
+                if(estadoMudado) {
+                    estadoMudado = false;
+                }
+                break;
             case Estado::MENU:
                 fundoDeTela();
                 mostraMenu(x, y);
@@ -191,7 +198,6 @@ namespace bolhas { namespace gui {
             default:
                 return false;
         }
-
     }
 
 }}

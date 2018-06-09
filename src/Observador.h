@@ -7,12 +7,14 @@
  * E-mail: pauloalmeidaf@gmail.com
  */
 
+
+
 #ifndef BUBBLES_OBSERVADOR_H
 #define BUBBLES_OBSERVADOR_H
 
 #include "EventoTipo.h"
-#include "Observado.h"
 #include "libs/boost/any.hpp"
+#include "Observado.h"
 
 namespace bolhas { namespace interfaces {
     class Observado;

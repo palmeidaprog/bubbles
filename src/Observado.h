@@ -29,6 +29,7 @@ namespace bolhas { namespace interfaces {
 
         template <typename T>
         void notificar(const T &tipo, EventoTipo evento);
+
     };
 }}
 

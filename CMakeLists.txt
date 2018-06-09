@@ -12,7 +12,6 @@ add_executable(bubbles
         resources/images/bubl.jpg
         resources/images/color.jpg
         resources/images/unders.jpg
-        resources/sons/auxiliaresc.pdf
         "resources/sons/Fantasy Game Loop.wav"
         resources/sons/menu.mp3
         resources/sons/pop.mp3
@@ -41,5 +40,5 @@ add_executable(bubbles
         src/Janela.h
         src/Memento.h
         src/ZoomFont.cpp
-        src/ZoomFont.h src/MenuItem.cpp src/MenuItem.h src/Observado.cpp src/Observado.h src/Observador.cpp src/Observador.h src/EventoTipo.h src/EfeitoFonte.cpp src/EfeitoFonte.h src/Clickavel.h src/MudaEstado.cpp src/MudaEstado.h src/Transition.h src/Passagem.cpp src/Passagem.h)
+        src/ZoomFont.h src/MenuItem.cpp src/MenuItem.h src/Observado.cpp src/Observado.h src/Observador.cpp src/Observador.h src/EventoTipo.h src/EfeitoFonte.cpp src/EfeitoFonte.h src/Clickavel.h src/MudaEstado.cpp src/MudaEstado.h src/Transition.h src/Passagem.cpp src/Passagem.h src/JogoView.cpp src/JogoView.h src/JogoController.cpp src/JogoController.h src/BaseView.cpp src/BaseView.h src/ZoomIn.cpp src/ZoomIn.h)
 

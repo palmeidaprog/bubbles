@@ -26,11 +26,11 @@ const bool bolhas::model::Delay::ready() {
     return true;
 }
 
-const std::chrono::duration<double> &bolhas::model::Delay::getDelay() const {
-    return delaySegundos;
+double bolhas::model::Delay::getDelay() const {
+    return delaySegundos.count();
 }
 
 void
-bolhas::model::Delay::setDelay(const std::chrono::duration<double> &delay) {
-    Delay::delaySegundos = delay;
+bolhas::model::Delay::setDelay(double delay) {
+    Delay::delaySegundos = duration<double>(delay);
 }

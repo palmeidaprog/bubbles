@@ -8,6 +8,7 @@
 
 namespace bolhas { namespace animation {
     class Transition {
+    public:
         virtual bool animar() = 0;
     };
 }}

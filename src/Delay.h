@@ -29,8 +29,8 @@ namespace bolhas { namespace model {
         Delay(double delay);
         virtual ~Delay();
 
-        const std::chrono::duration<double> &getDelay() const;
-        void setDelay(const std::chrono::duration<double> &delay);
+        double getDelay() const;
+        void setDelay(double delay);
         const bool ready();
     };
 }}

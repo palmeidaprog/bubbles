@@ -12,7 +12,7 @@
 
 namespace bolhas { 
     enum class Estado {
-        MENU, JOGO, SAIR, TUTORIAL, OPCOES, TRANSICAO
+        MENU, JOGO, SAIR, TUTORIAL, OPCOES, TRANSICAO, TRANSICAO_REV
     };
 }
 

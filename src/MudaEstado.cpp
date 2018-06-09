@@ -13,6 +13,7 @@
 void bolhas::interfaces::MudaEstado::click(int x, int y) const {
     using mv = gui::MainView;
     mv::getInstance()->setEstado(estado);
+
 }
 
 bolhas::interfaces::MudaEstado::MudaEstado(bolhas::Estado estado) :

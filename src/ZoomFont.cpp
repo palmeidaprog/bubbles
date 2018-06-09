@@ -55,7 +55,7 @@ void bolhas::animation::ZoomFont::setFont(model::Fonts *f) {
     font = f;
 }
 
-void bolhas::animation::ZoomFont::animacao() {
+bool bolhas::animation::ZoomFont::animacao() {
     if(intervalo->ready()) {
         if(font->getTamanho() > max || font->getTamanho() < min) {
             mult *= -1;
@@ -63,6 +63,7 @@ void bolhas::animation::ZoomFont::animacao() {
         font->setTamanho(font->getTamanho() + (crescimentoFonte * mult));
         font->changeFont();
     }
+    return true;
 }
 
 void bolhas::animation::ZoomFont::parar() {
@@ -70,8 +71,12 @@ void bolhas::animation::ZoomFont::parar() {
     font->changeFont();
 }
 
-std::unique_ptr<bolhas::model::Delay> &bolhas::animation::ZoomFont::getIntervalo() {
-    return intervalo;
+double bolhas::animation::ZoomFont::getIntervalo() const {
+    return intervalo->getDelay();
+}
+
+void bolhas::animation::ZoomFont::setIntervalo(double intervalo) {
+    this->intervalo->setDelay(intervalo);
 }
 
 

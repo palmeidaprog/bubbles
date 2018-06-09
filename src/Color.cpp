@@ -23,19 +23,27 @@ bolhas::model::Colors bolhas::model::Color::getColor() const {
 
 void bolhas::model::Color::setColor(Colors c) {
     Color::c = c;
+    using model::Colors;
 
     switch(c) {
-        case model::Colors::AZUL_ESCURO:
+        case Colors::AZUL_ESCURO:
             cor = al_map_rgb(39, 9, 37);
             break;
-        case model::Colors::PRETO:
+        case Colors::BRANCO:
             cor = al_map_rgb(255, 255, 255);
             break;
-        case model::Colors::VERMELHO:
+        case Colors::VERMELHO:
             cor = al_map_rgba_f(1, 0, 0, 1);
             break;
-        default: // BRANCO
+        case Colors::LARANJA_ACESO:
+            cor = al_map_rgb(230, 133, 35);
+            break;
+        default: // PRETO
             cor = al_map_rgb(0, 0, 0);
             break;
     }
+}
+
+bolhas::model::Color::Color(const bolhas::model::Color &c) noexcept {
+    setColor(c.c);
 }

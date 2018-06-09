@@ -10,6 +10,7 @@
 // main View
 
 #include "MainView.h"
+#include "Passagem.h"
 
 using namespace bolhas;
 
@@ -17,9 +18,10 @@ namespace bolhas { namespace gui {
     std::shared_ptr<MainView> MainView::instance;
 
     MainView::MainView(int largura, int altura) : Janela(largura, altura),
-            fonte(nullptr), filaEventos(NULL), musica(NULL), sample(NULL),
-            fundo(NULL), stop(false), musicaArq(
-            "../resources/sons/Space_Loop.wav"), titulo("Algebra Bolheana"),
+            BaseView(),
+            fonte(nullptr), filaEventos(NULL),
+            stop(false),
+            titulo("Algebra Bolheana"),
             imagemArq("../resources/images/under0.jpg"), controller(nullptr),
             menu(nullptr), estadoMudado(false) {
         MainView::MainView::instance = std::shared_ptr<MainView> (this);
@@ -41,11 +43,8 @@ namespace bolhas { namespace gui {
     }
 
     MainView::~MainView() {
-        delete fonte;
         delete menu;
         delete controller;
-        al_destroy_audio_stream(musica);
-        al_destroy_sample(sample);
 
         al_destroy_event_queue(filaEventos);
     }
@@ -54,7 +53,8 @@ namespace bolhas { namespace gui {
         filaEventos = al_create_event_queue();
         
         if(filaEventos == NULL) {
-            throw excecoes::JanelaException("Erro ao criaar eventos.");        
+            //throw excecoes::JanelaException("Erro ao criaar eventos.");
+            cerr << "Erro ao criar eventos" << endl;
         }
 
         al_register_event_source(filaEventos, al_get_display_event_source(
@@ -76,7 +76,11 @@ namespace bolhas { namespace gui {
             cerr << "Falha ao alocar canais de áudio." << endl;
         }
 
-        sample = al_load_sample(musicaArq.c_str());
+        setMusica("../resources/sons/Space_Loop.wav");
+        setEfeito("../resources/sons/load.wav");
+
+        //getSample() = al_load_sample(getMusica().c_str());
+
 
         //al_attach_audio_stream_to_mixer(musica, al_get_default_mixer());
         //al_set_audio_stream_playing(musica, true);
@@ -87,18 +91,9 @@ namespace bolhas { namespace gui {
         if (!al_install_keyboard()) {
             cerr << "Falha ao inicializar teclado." << endl;
         }
-        //al_register_event_source(filaEventos, al_get_keyboard_event_source());
     }
 
-    void MainView::setMusica(const std::string &musicaArq) {
-        this->musicaArq = musicaArq;
-        sample = al_load_sample(musicaArq.c_str());
-        /*musica = al_load_audio_stream(musicaArq.c_str(), 4, 1024);
-        if(musica == NULL) {
-            cerr << "Erro ao carregar musica " << musicaArq << "." 
-                << endl;
-        }*/
-    }
+
 
     void MainView::inicializaFont() {
         al_init_font_addon();
@@ -118,31 +113,11 @@ namespace bolhas { namespace gui {
         }
     }
 
-    void MainView::setImagem(const std::string &imagemArq) {
-        this->imagemArq = imagemArq;
-        fundo = al_load_bitmap(imagemArq.c_str());        
-    }
-
-    void MainView::playSom() const {
-        al_play_sample(sample, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL);
-    }
 
     ALLEGRO_EVENT_QUEUE *MainView::getEventos() const {
         return filaEventos;
     }
 
-    void MainView::fundoDeTela(const char *nome) {
-        fundo = al_load_bitmap(nome);
-        if(fundo != NULL) {
-            fundoDeTela();
-        }        
-    }
-
-    void MainView::fundoDeTela() const {
-        if(fundo != nullptr) {
-            al_draw_bitmap(fundo, 0, 0, 0);
-        }
-    }
 
     void MainView::escondeMenu() {
         delete menu;
@@ -154,6 +129,39 @@ namespace bolhas { namespace gui {
             case Estado::JOGO:
                 if(estadoMudado) {
                     estadoMudado = false;
+                    transition.reset(static_cast<animation::Transition *>(
+                        new animation::Passagem(new model::Color
+                        (model::Colors::PRETO), getLargura(), getAltura())));
+                    estado = Estado::TRANSICAO;
+                    stopSom();
+                    playEfeito();
+                } else {
+                    if(!jogo) {
+                        jogo = std::unique_ptr<JogoView> (new JogoView());
+                    } else {
+                        jogo->renderizar(x, y);
+                    }
+                }
+                break;
+            case Estado::TRANSICAO:
+                fundoDeTela();
+                mostraMenu(x, y);
+                if(!transition->animar()) {
+                    fundoDeTela("../resources/images/under0.jpg");
+                    model::Color cor(model::Colors::PRETO);
+                    al_clear_to_color(cor.getCor());
+                    estado = Estado::TRANSICAO_REV;
+                    transition.reset(static_cast<animation::Transition *>(
+                        new animation::Passagem(new model::Color
+                        (model::Colors::PRETO), getLargura(), getAltura(),
+                            true)));
+                }
+                break;
+            case Estado::TRANSICAO_REV:
+                fundoDeTela();
+                if(!transition->animar()) {
+                    fundoDeTela();
+                    estado = Estado::JOGO;
                 }
                 break;
             case Estado::MENU:
@@ -161,7 +169,7 @@ namespace bolhas { namespace gui {
                 mostraMenu(x, y);
                 break;
             case Estado::SAIR:
-                exit(0);
+                break;
             default:
                 break;
         }
@@ -188,8 +196,6 @@ namespace bolhas { namespace gui {
         al_register_event_source(filaEventos, al_get_mouse_event_source());
         //al_hide_mouse_cursor(getJanela());
     }
-
-
 
     bool MainView::click(int x, int y) {
         switch(estado) {

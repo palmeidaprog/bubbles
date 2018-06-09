@@ -17,13 +17,13 @@
 // construtor
 
 bolhas::gui::MenuView::MenuView(MainView &parent, int x, int y)
-        : parent(parent) {
+        : parent(parent), select(nullptr) {
     fonte = std::unique_ptr<model::Fonts>(new model::Fonts(parent.getFonte()));
     fonte->setTamanho(40);
     fonte->changeFont();
     marcada = new model::Fonts(fonte.get());
     title = std::unique_ptr<model::Fonts>(new
-            model::Fonts("../resources/fonts/bubbs.ttf", 72));
+            model::Fonts("../resources/fonts/bubbs.ttf", 56));
     zoom = std::unique_ptr<animation::ZoomFont>
             (new animation::ZoomFont(fonte.get()));
     selec = Selecionado::NENHUM;
@@ -47,8 +47,7 @@ void bolhas::gui::MenuView::renderiza(int x, int y) {
 }
 
 bolhas::gui::MenuView::~MenuView() {
-
-
+    al_destroy_sample(select);
 }
 
 void bolhas::gui::MenuView::opcaoMenu(const std::string &texto,
@@ -69,14 +68,18 @@ void bolhas::gui::MenuView::opcaoMenu(const std::string &texto,
 }
 
 void bolhas::gui::MenuView::criaMenu() {
-    int y = 100;
+    int y = 70; // 100
     float x = (float) parent.getLargura() / 2;
     using model::Colors;
 
-    itens.emplace_back(new MenuItem(*title, Colors::AZUL_ESCURO,
-                                    Colors::AZUL_ESCURO, x, y,
-                                    ALLEGRO_ALIGN_CENTER, "MENU"));
-    y += 180;
+    itens.emplace_back(new MenuItem(*title, Colors::LARANJA_ACESO,
+                                    Colors::LARANJA_ACESO, x, y,
+                                    ALLEGRO_ALIGN_CENTER, "Algebra"));
+    y += 70;
+    itens.emplace_back(new MenuItem(*title, Colors::LARANJA_ACESO,
+                        Colors::LARANJA_ACESO, x, y,
+                        ALLEGRO_ALIGN_CENTER, "Bolheana"));
+    y += 130; // 180
     criaMenuItem(x, y, "Jogar", static_cast<interfaces::Clickavel *> (new
         interfaces::MudaEstado(Estado::JOGO)));
 

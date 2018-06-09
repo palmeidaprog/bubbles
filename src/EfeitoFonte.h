@@ -15,7 +15,7 @@ namespace bolhas { namespace animation {
 
     public:
         virtual void parar() = 0;
-        virtual void animacao() = 0;
+        virtual bool animacao() = 0;
     };
 }}
 

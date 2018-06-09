@@ -20,6 +20,9 @@
 #include "Fonts.h"
 #include "Memento.h"
 #include "MenuItem.h"
+#include "Transition.h"
+#include "BaseView.h"
+#include "JogoView.h"
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_native_dialog.h>
 #include <allegro5/allegro_audio.h> 
@@ -35,20 +38,20 @@ using std::endl;
 namespace bolhas { namespace gui {
     class MainController;
     class MenuView;
-class MainView : public Janela, public interfaces::Memento<Estado> {
+    class JogoView;
+class MainView : public Janela, public interfaces::Memento<Estado>, public
+     BaseView {
         model::Fonts *fonte;
         ALLEGRO_EVENT_QUEUE *filaEventos;
-        ALLEGRO_AUDIO_STREAM *musica;
-        ALLEGRO_SAMPLE *sample;
-        ALLEGRO_BITMAP *fundo;
         bool stop;
-        int canaisAudio = 4;
-        std::string musicaArq;
         std::string titulo;
         std::string imagemArq;
         MainController *controller;
+        std::unique_ptr<JogoView> jogo;
         MenuView *menu;
+        std::unique_ptr<animation::Transition> transition;
         Estado estado;
+        int canaisAudio = 4;
         bool estadoMudado;
         static std::shared_ptr<MainView> instance;
 
@@ -69,16 +72,10 @@ class MainView : public Janela, public interfaces::Memento<Estado> {
         MainView(int largura, int altura);
         ~MainView() override;
 
-
-
         model::Fonts getFonte() const;
-        void setMusica(const std::string &musicaArq);
+
         void setTitulo(const std::string &titulo);
-        void setImagem(const std::string &imagemArq);
-        void playSom() const;
         ALLEGRO_EVENT_QUEUE *getEventos() const;
-        void fundoDeTela(const char *nome);
-        void fundoDeTela() const;
         void escondeMenu();
         void renderizaTela(int x, int y);
         void mostraMenu(int x, int y);

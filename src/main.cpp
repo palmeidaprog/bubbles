@@ -45,21 +45,17 @@ void iniciar(gui::MainView &mainView) {
     int x = 0, y = 0;
 
     // loop do programa
-    while(true) {
+    while(mainView.getEstado() != Estado::SAIR) {
         ALLEGRO_EVENT_QUEUE *filaEventos = mainView.getEventos();
         ALLEGRO_EVENT evento;
         ALLEGRO_TIMEOUT tempo;
-        //al_uninstall_mouse();
 
-        //al_rest((double) 1 / 60);
         // loop de leitura de eventos
         bool temEventos = true;
         while(temEventos) {
             al_init_timeout(&tempo, (double) 1 / 500);
             temEventos = al_wait_for_event_until(filaEventos, &evento,
                                                       &tempo);
-            //bool temEventos = al_get_next_event(filaEventos, &evento);
-
             if (temEventos) {
                 if(evento.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
                     exit(0);
@@ -69,11 +65,6 @@ void iniciar(gui::MainView &mainView) {
                     }
                 }
             }
-
-            /*else if ((evento.mouse.x < x + 5 && evento.mouse.x > x - 5) ||
-                       (evento.mouse.x < y + 5 && evento.mouse.y > y - 5)) {
-                continue;
-            }*/
         }
 
         x = evento.mouse.x;
@@ -87,7 +78,7 @@ void iniciar(gui::MainView &mainView) {
         //mainView.renderizaTela(x, y);
         time_point<system_clock, nanoseconds> p2 = system_clock::now();
         auto p = duration<double>(p2 - p1);
-        cout << p.count() << endl;
+       cout << p.count() << endl;
         al_flip_display();
     }
 }

@@ -12,7 +12,7 @@
 
 namespace bolhas { namespace model {
     enum class Colors {
-        BRANCO, PRETO, AZUL_ESCURO, VERMELHO
+        BRANCO, PRETO, AZUL_ESCURO, VERMELHO, LARANJA_ACESO
     };
 }}
 

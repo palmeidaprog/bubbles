@@ -38,10 +38,11 @@ namespace bolhas { namespace animation {
         void setMax(int max);
         int getCrescimentoFonte() const;
         void setCrescimentoFonte(int crescimentoFonte);
-        std::unique_ptr<model::Delay> &getIntervalo();
+        double getIntervalo() const;
+        void setIntervalo(double intervalo);
 
         void parar() override;
-        void animacao() override;
+        bool animacao() override;
     };
 }}
 

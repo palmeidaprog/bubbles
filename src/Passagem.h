@@ -17,7 +17,7 @@ namespace bolhas { namespace animation {
         int largura, altura, x, y;
 
     public:
-        Passagem(model::Color cor, int largura, int altura);
+        Passagem(model::Color *cor, int largura, int altura);
 
         virtual ~Passagem();
 

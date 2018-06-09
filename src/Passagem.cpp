@@ -19,8 +19,8 @@ bolhas::animation::Passagem::~Passagem() {
 
 }
 
-bolhas::animation::Passagem::Passagem(bolhas::model::Color cor, int largura,
+bolhas::animation::Passagem::Passagem(bolhas::model::Color *cor, int largura,
                                       int altura) : largura(largura),
                                                     altura(altura) {
-    cor = std::imoqie_ptr
+    Passagem::cor = std::unique_ptr<model::Color>(cor);
 }

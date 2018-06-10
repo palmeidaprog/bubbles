@@ -9,21 +9,18 @@
 #include <allegro5/bitmap.h>
 #include "Bolha.h"
 #include "BolhasController.h"
+#include "AcaoBolha.h"
 
 namespace bolhas { namespace model {
     class BolhaGui {
         std::unique_ptr<model::Bolha> data;
         std::shared_ptr<BolhasController> controller;
         int posX, posY, tamanho = 1, spriteNum = 1;
+        AcaoBolha acao;
 
-        enum class Acao {
-            EXPLODINDO, NORMAL, SECANDO
-        };
-
-        Acao acao;
-        void geraPosicao();
     public:
-        BolhaGui(const std::shared_ptr<BolhasController> &controller, int posX, int posY);
+        BolhaGui(const std::shared_ptr<BolhasController> &controller,
+                 int posX, int posY);
 
         void renderizar(int x, int y);
     };

@@ -40,5 +40,5 @@ add_executable(bubbles
         src/Janela.h
         src/Memento.h
         src/ZoomFont.cpp
-        src/ZoomFont.h src/MenuItem.cpp src/MenuItem.h src/Observado.cpp src/Observado.h src/Observador.cpp src/Observador.h src/EventoTipo.h src/EfeitoFonte.cpp src/EfeitoFonte.h src/Clickavel.h src/MudaEstado.cpp src/MudaEstado.h src/Transition.h src/Passagem.cpp src/Passagem.h src/JogoView.cpp src/JogoView.h src/JogoController.cpp src/JogoController.h src/BaseView.cpp src/BaseView.h src/ZoomIn.cpp src/ZoomIn.h src/PainelSuperiorView.cpp src/PainelSuperiorView.h src/Bolha.cpp src/Bolha.h src/BolhaTipo.h src/DificuldadeJogo.h src/BolhaGui.cpp src/BolhaGui.h src/BolhasController.cpp src/BolhasController.h)
+        src/ZoomFont.h src/MenuItem.cpp src/MenuItem.h src/Observado.cpp src/Observado.h src/Observador.cpp src/Observador.h src/EventoTipo.h src/EfeitoFonte.cpp src/EfeitoFonte.h src/Clickavel.h src/MudaEstado.cpp src/MudaEstado.h src/Transition.h src/Passagem.cpp src/Passagem.h src/JogoView.cpp src/JogoView.h src/JogoController.cpp src/JogoController.h src/BaseView.cpp src/BaseView.h src/ZoomIn.cpp src/ZoomIn.h src/PainelSuperiorView.cpp src/PainelSuperiorView.h src/Bolha.cpp src/Bolha.h src/BolhaTipo.h src/DificuldadeJogo.h src/BolhaGui.cpp src/BolhaGui.h src/BolhasController.cpp src/BolhasController.h src/AcaoBolha.cpp src/AcaoBolha.h)
 

@@ -10,7 +10,7 @@ bolhas::model::BolhasController::BolhasController(
 }
 
 void bolhas::model::BolhasController::adiciona() {
-    bolhas.emplace_back(this, x, y);
+    bolhas.emplace_back(this, geraX(), geraY());
 }
 
 int bolhas::model::BolhasController::geraX() {
@@ -21,5 +21,17 @@ int bolhas::model::BolhasController::geraX() {
 int bolhas::model::BolhasController::geraY() {
     int diff = y1 - y0;
     return y0 + 40 + (rand() % diff - 80);
+}
+
+ALLEGRO_BITMAP *bolhas::model::BolhasController::getBitmap(
+        bolhas::model::AcaoBolha acao, int sprite) const {
+    switch(acao) {
+        case AcaoBolha::EXPLODINDO:
+            return explodindo[sprite - 1];
+        case AcaoBolha::SECANDO:
+            return secando[sprite - 1];
+        default: // NORMAL
+            return normal[sprite - 1];
+    }
 }
 

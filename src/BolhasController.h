@@ -11,7 +11,7 @@
 namespace bolhas { namespace model {
     class BolhasController {
         std::vector<model::BolhaGui> bolhas;
-        std::vector<ALLEGRO_BITMAP *> secando, enchendo, normal;
+        std::vector<ALLEGRO_BITMAP *> explodindo, secando, normal;
         int x0, x1, y0, y1;
         DificuldadeJogo dificuldade;
 
@@ -20,6 +20,8 @@ namespace bolhas { namespace model {
 
     public:
         BolhasController(DificuldadeJogo dificuldade);
+
+        ALLEGRO_BITMAP *getBitmap(AcaoBolha acao, int sprite) const;
         void adiciona();
     };
 }}

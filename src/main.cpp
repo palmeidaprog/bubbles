@@ -13,6 +13,7 @@
 #include <allegro5/allegro_native_dialog.h>
 #include <allegro5/allegro_image.h>
 #include <iostream>
+#include <ctime>
 
 
 using std::cerr;
@@ -23,6 +24,8 @@ using namespace bolhas;
 void iniciar(gui::MainView &mainView);
 
 int main(int argc, char** argv) {
+    srand(time(nullptr));
+
     // inicializa Allegro 
     if(!al_init()) {
         cerr << "Falha na inicialização do Allegro" << endl;

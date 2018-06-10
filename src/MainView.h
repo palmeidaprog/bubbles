@@ -47,7 +47,7 @@ class MainView : public Janela, public interfaces::Memento<Estado>, public
         std::string titulo;
         std::string imagemArq;
         MainController *controller;
-        std::unique_ptr<JogoView> jogo;
+        std::shared_ptr<JogoView> jogo;
         MenuView *menu;
         std::unique_ptr<animation::Transition> transition;
         Estado estado;
@@ -73,7 +73,6 @@ class MainView : public Janela, public interfaces::Memento<Estado>, public
         ~MainView() override;
 
         model::Fonts getFonte() const;
-
         void setTitulo(const std::string &titulo);
         ALLEGRO_EVENT_QUEUE *getEventos() const;
         void escondeMenu();

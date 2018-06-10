@@ -11,10 +11,23 @@
 #ifndef BUBBLES_JOGOCONTROLLER_H
 #define BUBBLES_JOGOCONTROLLER_H
 
+#include "JogoView.h"
 
-class JogoController {
+namespace bolhas { namespace gui {
+    class JogoView;
+    class JogoController {
+        std::shared_ptr<JogoView> view;
+        int score = 0, nivel = 1;
 
-};
-
+    public:
+        JogoController(bolhas::gui::JogoView *view);
+        virtual ~JogoController();
+        void adicionaBolha();
+        int getScore() const;
+        void setScore(int score);
+        int getNivel() const;
+        void setNivel(int nivel);
+    };
+}}
 
 #endif //BUBBLES_JOGOCONTROLLER_H

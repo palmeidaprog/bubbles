@@ -7,11 +7,25 @@
  * E-mail: pauloalmeidaf@gmail.com
  */
 
-#include <allegro5/allegro_audio.h>
+
 #include "BaseView.h"
+#include <chrono>
+#include <iostream>
 
 void bolhas::gui::BaseView::fundoDeTela(const char *nome) {
+
+    using namespace std::chrono;
+    time_point<system_clock, nanoseconds> p1 =
+        std::chrono::system_clock::now();
+
     fundo = al_load_bitmap(nome);
+    std::cout << "reload" << std::endl;
+
+    time_point<system_clock, nanoseconds> p2 = system_clock::now();
+    auto p = duration<double>(p2 - p1);
+    std::cout << p.count() << std::endl;
+
+
     fundoDeTela();
 }
 

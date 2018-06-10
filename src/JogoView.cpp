@@ -31,7 +31,9 @@ bolhas::gui::JogoView::~JogoView() {
 void bolhas::gui::JogoView::renderizar(int x, int y) {
     model::Color cor(model::Colors::BRANCO);
 
+
     switch(ingame) {
+
         case InGame::DISPLAYING:
             BaseView::fundoDeTela();
             al_draw_text(fonte->getPointer(), cor.getCor(),
@@ -39,27 +41,31 @@ void bolhas::gui::JogoView::renderizar(int x, int y) {
                 / 2 - 170, ALLEGRO_ALIGN_CENTER, "COMECANDO EM:");
             if(!contagem()) {
                 ingame = InGame::JOGANDO;
+                fundoDeTela("../resources/images/undermov.jpg");
             }
             break;
         case InGame::JOGANDO:
-            fundoDeTela("../resources/images/undermov.jpg");
+            fundoDeTela();
+            break;
         default:
             break;
     }
-
 }
 
 
 void bolhas::gui::JogoView::fundoDeTela() {
-    xFundo += 3 * mult;
-    xSource += 3 * mult;
+    xFundo += 2 * mult;
+    xSource += 2 * mult;
     if(xFundo >= 5480 || xSource <= 400) {
         mult *= -1;
     }
 
     if(getFundo() != nullptr) {
+
         al_draw_bitmap_region(getFundo(), xSource, 0, xFundo,
             mainV->getAltura(), 0, 0, 0);
+        //al_hold_bitmap_drawing(false);
+
     }
 }
 

@@ -78,7 +78,7 @@ void iniciar(gui::MainView &mainView) {
         //mainView.renderizaTela(x, y);
         time_point<system_clock, nanoseconds> p2 = system_clock::now();
         auto p = duration<double>(p2 - p1);
-       cout << p.count() << endl;
+       //cout << p.count() << endl;
         al_flip_display();
     }
 }

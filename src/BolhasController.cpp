@@ -8,12 +8,12 @@
 bolhas::model::BolhasController::BolhasController(
     bolhas::model::DificuldadeJogo dificuldade) {
     this->dificuldade = dificuldade;
+    instance = std::shared_ptr<model::BolhasController> (this);
     carregaBitmaps();
 }
 
 void bolhas::model::BolhasController::adiciona() {
-    std::shared_ptr<model::BolhasController> contr(this);
-    bolhas.emplace_back(contr, geraX(), geraY());
+    bolhas.emplace_back(instance.get(), geraX(), geraY());
 }
 
 int bolhas::model::BolhasController::geraX() {

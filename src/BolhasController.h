@@ -12,6 +12,7 @@
 namespace bolhas { namespace model {
     class BolhaGui;
     class BolhasController {
+        std::shared_ptr<model::BolhasController> instance;
         std::vector<model::BolhaGui> bolhas;
         std::vector<ALLEGRO_BITMAP *> explodindo, secando, normal;
         int x0, x1, y0, y1;

@@ -20,8 +20,8 @@ namespace bolhas { namespace model {
         AcaoBolha acao;
 
     public:
-        BolhaGui(const std::shared_ptr<BolhasController> &controller,
-                 int posX, int posY);
+        BolhaGui(BolhasController *controller, int posX, int posY);
+        BolhaGui(const BolhaGui &bolha);
         virtual ~BolhaGui();
 
         void renderizar(int x, int y);

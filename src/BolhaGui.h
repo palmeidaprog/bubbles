@@ -22,6 +22,7 @@ namespace bolhas { namespace model {
     public:
         BolhaGui(const std::shared_ptr<BolhasController> &controller,
                  int posX, int posY);
+        virtual ~BolhaGui();
 
         void renderizar(int x, int y);
     };

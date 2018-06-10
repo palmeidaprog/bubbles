@@ -12,11 +12,13 @@
 #define BUBBLES_JOGOCONTROLLER_H
 
 #include "JogoView.h"
+#include "BolhasController.h"
 
 namespace bolhas { namespace gui {
     class JogoView;
     class JogoController {
         std::shared_ptr<JogoView> view;
+        std::unique_ptr<model::BolhasController> bolhas;
         int score = 0, nivel = 1;
 
     public:

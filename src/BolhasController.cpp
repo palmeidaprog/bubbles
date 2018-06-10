@@ -7,6 +7,7 @@
 bolhas::model::BolhasController::BolhasController(
     bolhas::model::DificuldadeJogo dificuldade) {
     this->dificuldade = dificuldade;
+    carregaBitmaps();
 }
 
 void bolhas::model::BolhasController::adiciona() {

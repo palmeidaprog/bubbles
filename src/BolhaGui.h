@@ -12,6 +12,7 @@
 #include "AcaoBolha.h"
 
 namespace bolhas { namespace model {
+    class BolhasController;
     class BolhaGui {
         std::unique_ptr<model::Bolha> data;
         std::shared_ptr<BolhasController> controller;

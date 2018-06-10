@@ -17,9 +17,11 @@ namespace bolhas { namespace model {
 
         int geraX();
         int geraY();
+        void carregaBitmaps();
 
     public:
-        BolhasController(DificuldadeJogo dificuldade);
+        BolhasController(DificuldadeJogo dificuldade =
+                DificuldadeJogo::NORMAL);
 
         ALLEGRO_BITMAP *getBitmap(AcaoBolha acao, int sprite) const;
         void adiciona();

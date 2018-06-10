@@ -16,6 +16,8 @@ bolhas::gui::JogoController::~JogoController() {
 bolhas::gui::JogoController::JogoController(bolhas::gui::JogoView
         *view) {
     this->view = std::shared_ptr<JogoView> (view);
+    bolhas = std::unique_ptr<model::BolhasController>(new
+            model::BolhasController());
 }
 
 int bolhas::gui::JogoController::getScore() const {

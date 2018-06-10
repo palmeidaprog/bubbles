@@ -93,6 +93,7 @@ bool bolhas::gui::JogoView::contagem() {
         } else {
             efeitoFonte->parar();
             texto = "3";
+            efeitoFonte.reset(nullptr);
             return false;
         }
     }

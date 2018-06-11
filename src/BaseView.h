@@ -22,7 +22,7 @@ namespace bolhas { namespace gui {
         std::string musicaArq, efeitoArq;
         int canaisAudio = 4;
         ALLEGRO_AUDIO_STREAM *musica;
-        ALLEGRO_SAMPLE *sample, *efeito;
+        ALLEGRO_SAMPLE *sample, *efeito, *pop;
 
     public:
         BaseView();
@@ -37,6 +37,7 @@ namespace bolhas { namespace gui {
         void playSom() const;
         void playEfeito() const;
         void stopSom() const;
+        void playPop() const;
         ALLEGRO_SAMPLE *getSample();
     };
 }}

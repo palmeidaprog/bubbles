@@ -20,25 +20,28 @@ void bolhas::model::Bolha::geraOperacao() {
         switch (dificuldade) {
             case DificuldadeJogo::FACIL:
                 numero1 = rand() % 4;
-                numero2 = rand() % 4;
+                numero2 = rand() % 3 + 1;
                 op += rand() % 2;
                 break;
             case DificuldadeJogo::NORMAL:
                 numero1 = rand() % 6;
-                numero2 = rand() % 6;
+                numero2 = rand() % 5 + 1;
                 op += rand() % 4;
                 break;
             default: // DIFICIL
                 numero1 = rand() % 10;
-                numero2 = rand() % 10;
+                numero2 = rand() % 9 + 1;
                 op += rand() % 4;
                 break;
         }
         operacao = (Operacao) op;
-    } while(operacao == DIVISAO && numero1 % numero2);
+    } while(numero2 > numero1 || (operacao == DIVISAO && numero1 % numero2));
+
 
     resultado = resposta();
 }
+
+
 
 int bolhas::model::Bolha::resposta() {
     switch(operacao) {
@@ -59,19 +62,19 @@ bool bolhas::model::Bolha::verificaResposta(int n) const {
 
 const std::string &bolhas::model::Bolha::expressao() {
     std::stringstream is;
-    is << numero1 << " ";
+    is << numero1 ;
     switch(operacao) {
         case SOMA:
-            is << "+ ";
+            is << "+";
             break;
         case SUBTRACAO:
-            is << "- ";
+            is << "-";
             break;
         case MULTIPLICACAO:
-            is << "x ";
+            is << "x";
             break;
         default:
-            is << "/ ";
+            is << ":";
             break;
     }
     is << numero2;
@@ -79,19 +82,20 @@ const std::string &bolhas::model::Bolha::expressao() {
     return impressao;
 }
 
-void bolhas::model::Bolha::tempoDeVida() {
+double bolhas::model::Bolha::tempoDeVida() {
     double tempo;
     switch(dificuldade) {
         case DificuldadeJogo::FACIL:
-            tempo = 7 * modificadorNivel();
+            tempo = 16 * modificadorNivel();
             break;
         case DificuldadeJogo::NORMAL:
-            tempo = 5 * modificadorNivel();
+            tempo = 8 * modificadorNivel();
             break;
         default:
-            tempo = 3 * modificadorNivel();
+            tempo = 5 * modificadorNivel();
     }
     delay = std::unique_ptr<model::Delay> (new model::Delay(tempo));
+    return tempo;
 }
 
 double bolhas::model::Bolha::modificadorNivel() {

@@ -10,7 +10,6 @@
 #ifndef BUBBLES_JOGOVIEW_H
 #define BUBBLES_JOGOVIEW_H
 
-
 #include <memory>
 #include <allegro5/allegro_font.h>
 #include <PainelSuperiorView.h>
@@ -18,10 +17,14 @@
 #include "BaseView.h"
 #include "MainView.h"
 #include "ZoomIn.h"
+#include "ScoreTime.h"
+#include "EntradaDados.h"
 
 namespace bolhas { namespace gui {
     class JogoController;
     class JogoView : public BaseView {
+        std::unique_ptr<EntradaDados> dados;
+        std::shared_ptr<model::ScoreTime> score;
         std::unique_ptr<JogoController> controller;
         std::shared_ptr<MainView> mainV;
         std::shared_ptr<model::Fonts> fonte, numbers;
@@ -46,6 +49,7 @@ namespace bolhas { namespace gui {
         void fundoDeTela() override;
         void renderizar(int x, int y);
         void cabecalho(int x, int y);
+        bool click(int x, int y);
     };
 }}
 

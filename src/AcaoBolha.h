@@ -7,7 +7,7 @@
 
 namespace bolhas { namespace model {
     enum class AcaoBolha {
-        EXPLODINDO, NORMAL, SECANDO
+        EXPLODINDO, NORMAL, SECANDO, DESTRUIDA
     };
 }}
 

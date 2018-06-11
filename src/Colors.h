@@ -12,7 +12,8 @@
 
 namespace bolhas { namespace model {
     enum class Colors {
-        BRANCO, PRETO, AZUL_ESCURO, VERMELHO, LARANJA_ACESO
+        BRANCO, PRETO, AZUL_ESCURO, VERMELHO, LARANJA_ACESO, AZUL_CLARO,
+        CIANO, AZUL_PO, AZUL_VIVO, BRANCO_FUMACA
     };
 }}
 

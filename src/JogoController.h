@@ -19,7 +19,10 @@ namespace bolhas { namespace gui {
     class JogoController {
         std::shared_ptr<JogoView> view;
         std::unique_ptr<model::BolhasController> bolhas;
+        std::unique_ptr<model::Delay> delay;
         int score = 0, nivel = 1;
+        model::DificuldadeJogo dificuldade;
+        std::unique_ptr<model::Delay> segundos;
 
     public:
         JogoController(bolhas::gui::JogoView *view);
@@ -29,6 +32,9 @@ namespace bolhas { namespace gui {
         void setScore(int score);
         int getNivel() const;
         void setNivel(int nivel);
+        void renderizaBolhas(int x, int y);
+        model::BolhasController *getBolhas();
+        bool click(int x, int y);
     };
 }}
 

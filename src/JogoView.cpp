@@ -12,12 +12,15 @@
 
 bolhas::gui::JogoView::JogoView() : BaseView(), mainV(MainView::getInstance()),
     xFundo(mainV->getLargura()), xSource(400){
+    score = std::shared_ptr<model::ScoreTime> (
+        model::ScoreTime::getInstance());
     controller = std::unique_ptr<JogoController> (new JogoController(this));
     fonte = std::unique_ptr<model::Fonts> (new model::Fonts(
         "../resources/fonts/smx.ttf", 85));
     numbers = std::unique_ptr<model::Fonts> (new model::Fonts(
         "../resources/fonts/agentred.ttf", 30));
     ingame = InGame::DISPLAYING;
+    dados = std::unique_ptr<EntradaDados> (new EntradaDados());
     //fundoDeTela("../resources/images/under0.jpg");
     BaseView::fundoDeTela("../resources/images/under0.jpg");
     setMusica("../resources/sons/stratosphere.wav");
@@ -31,7 +34,6 @@ bolhas::gui::JogoView::~JogoView() {
 void bolhas::gui::JogoView::renderizar(int x, int y) {
     model::Color cor(model::Colors::BRANCO);
 
-
     switch(ingame) {
 
         case InGame::DISPLAYING:
@@ -42,11 +44,15 @@ void bolhas::gui::JogoView::renderizar(int x, int y) {
             if(!contagem()) {
                 ingame = InGame::JOGANDO;
                 fundoDeTela("../resources/images/undermov.jpg");
+                controller->adicionaBolha();
+                //dados->mostraBalao(true);
             }
             break;
         case InGame::JOGANDO:
             fundoDeTela();
             cabecalho(x, y);
+            controller->renderizaBolhas(x, y);
+            dados->renderiza(x, y);
             break;
         default:
             break;
@@ -80,7 +86,7 @@ bool bolhas::gui::JogoView::contagem() {
         using model::Colors;
         efeitoFonte = std::unique_ptr<EfeitoFonte>
             (static_cast<EfeitoFonte *>((new ZoomIn(numbers.get(),
-                Colors::BRANCO, Colors::VERMELHO, 220,
+                Colors::BRANCO, Colors::VERMELHO, 210,
                 numbers->getTamanho()))));
     }
 
@@ -117,5 +123,9 @@ void bolhas::gui::JogoView::cabecalho(int x, int y) {
 
     }
     painel->renderizar(x, y);
+}
+
+bool bolhas::gui::JogoView::click(int x, int y) {
+    return controller->click(x, y);
 }
 

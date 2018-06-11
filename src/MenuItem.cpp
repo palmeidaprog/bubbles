@@ -36,9 +36,9 @@ bolhas::gui::MenuItem::MenuItem(const bolhas::gui::MenuItem &m) :
 
 
 void bolhas::gui::MenuItem::renderizar(int x, int y) {
-    const model::Fonts *f = new model::Fonts(fonte.get());
+    //const model::Fonts *f = new model::Fonts(fonte.get());
     bool s = ehSelecionado(x, y);
-    al_draw_text(f->getPointer(), ((s) ? corSelecionada->getCor() :
+    al_draw_text(fonte->getPointer(), ((s) ? corSelecionada->getCor() :
                  cor->getCor()), MenuItem::x, MenuItem::y, flag,
                  texto.c_str());
     if(effect) {
@@ -48,9 +48,9 @@ void bolhas::gui::MenuItem::renderizar(int x, int y) {
             effect->parar();
         }
     }
-    largura = al_get_text_width(f->getPointer(), texto.c_str());
-    altura = al_get_text_width(f->getPointer(), texto.c_str());
-    delete f;
+    largura = al_get_text_width(fonte->getPointer(), texto.c_str());
+    altura = al_get_text_width(fonte->getPointer(), texto.c_str());
+    //delete f;
 }
 
 // retorna se ponteiro esta sob

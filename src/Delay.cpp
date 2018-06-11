@@ -20,6 +20,9 @@ const bool bolhas::model::Delay::ready() {
     TimePoint agora = std::chrono::system_clock::now();
     std::chrono::duration<double> passados = agora - inicio;
     if(passados < delaySegundos) {
+        if(passados > delaySegundos * 0.75) {
+            close = true;
+        }
         return false;
     }
     inicio = std::chrono::system_clock::now();
@@ -33,4 +36,8 @@ double bolhas::model::Delay::getDelay() const {
 void
 bolhas::model::Delay::setDelay(double delay) {
     Delay::delaySegundos = duration<double>(delay);
+}
+
+bool bolhas::model::Delay::isClose() const {
+    return close;
 }

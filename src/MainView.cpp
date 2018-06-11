@@ -27,16 +27,18 @@ namespace bolhas { namespace gui {
         MainView::MainView::instance = std::shared_ptr<MainView> (this);
         estado = Estado::MENU;
         controller = new MainController(*this);
+        scoreTime = std::shared_ptr<model::ScoreTime> (new model::ScoreTime(
+            dificuldade));
         
         setTitulo(titulo);
         inicializaSom();
         playSom();
-        inicializaTeclado();
         inicializaEventos();
         inicializaFont();
         fonte = new model::Fonts("../resources/fonts/bubblegums.ttf", 72, true);
         inicializaImagem();
         inicializaMouse();
+        inicializaTeclado();
         fundoDeTela("../resources/images/unders.jpg");
         fundoDeTela();
         al_flip_display();
@@ -91,6 +93,7 @@ namespace bolhas { namespace gui {
         if (!al_install_keyboard()) {
             cerr << "Falha ao inicializar teclado." << endl;
         }
+        al_register_event_source(filaEventos, al_get_keyboard_event_source());
     }
 
 
@@ -201,9 +204,19 @@ namespace bolhas { namespace gui {
         switch(estado) {
             case Estado::MENU:
                 return menu->click(x, y);
+            case Estado::JOGO:
+                return jogo->click(x, y);
             default:
                 return false;
         }
+    }
+
+    model::DificuldadeJogo MainView::getDificuldade() const {
+        return dificuldade;
+    }
+
+    void MainView::setDificuldade(model::DificuldadeJogo dificuldade) {
+        MainView::dificuldade = dificuldade;
     }
 
 }}

@@ -15,7 +15,8 @@ namespace bolhas { namespace animation {
     class ZoomIn : public EfeitoFonte {
         model::Fonts *font;
         std::unique_ptr<model::Color> cor, corOriginal;
-        int min, max, crescimentoFonte, tamanho;
+        int min, max, tamanho, crescimentoFonte;
+        float percentual;
         std::unique_ptr<model::Delay> intervalo;
 
     public:

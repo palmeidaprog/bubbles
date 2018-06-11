@@ -66,6 +66,61 @@ void iniciar(gui::MainView &mainView) {
                     if(mainView.click(x, y)) {
                         break;
                     }
+                } else if(evento.type == ALLEGRO_EVENT_KEY_UP) {
+                    if(gui::EntradaDados::getInstance() != nullptr) {
+                        switch (evento.keyboard.keycode) {
+                            case ALLEGRO_KEY_9:
+                                gui::EntradaDados::getInstance()
+                                    ->addTexto('9');
+                                break;
+                            case ALLEGRO_KEY_8:
+                                gui::EntradaDados::getInstance()
+                                    ->addTexto('8');
+                                break;
+                            case ALLEGRO_KEY_7:
+                                gui::EntradaDados::getInstance()
+                                    ->addTexto('7');
+                                break;
+                            case ALLEGRO_KEY_6:
+                                gui::EntradaDados::getInstance()
+                                    ->addTexto('6');
+                                break;
+                            case ALLEGRO_KEY_5:
+                                gui::EntradaDados::getInstance()
+                                    ->addTexto('5');
+                                break;
+                            case ALLEGRO_KEY_4:
+                                gui::EntradaDados::getInstance()
+                                    ->addTexto('4');
+                                break;
+                            case ALLEGRO_KEY_3:
+                                gui::EntradaDados::getInstance()
+                                    ->addTexto('3');
+                                break;
+                            case ALLEGRO_KEY_2:
+                                gui::EntradaDados::getInstance()
+                                    ->addTexto('2');
+                                break;
+                            case ALLEGRO_KEY_1:
+                                gui::EntradaDados::getInstance()
+                                    ->addTexto('1');
+                                break;
+                            case ALLEGRO_KEY_0:
+                                gui::EntradaDados::getInstance()
+                                    ->addTexto('0');
+                                break;
+                            case ALLEGRO_KEY_BACKSPACE:
+                                gui::EntradaDados::getInstance()
+                                    ->removeTexto();
+                                break;
+                            case ALLEGRO_KEY_ENTER:
+                                gui::EntradaDados::getInstance()
+                                    ->enter();
+                                cout << "ENTER"
+                                        << endl;
+                                break;
+                        }
+                    }
                 }
             }
         }
@@ -81,7 +136,7 @@ void iniciar(gui::MainView &mainView) {
         //mainView.renderizaTela(x, y);
         time_point<system_clock, nanoseconds> p2 = system_clock::now();
         auto p = duration<double>(p2 - p1);
-       //cout << p.count() << endl;
+        //cout << p.count() << endl;
         al_flip_display();
     }
 }

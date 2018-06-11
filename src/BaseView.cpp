@@ -54,6 +54,8 @@ void bolhas::gui::BaseView::setMusica(const std::string &musicaArq) {
 void bolhas::gui::BaseView::setEfeito(const std::string &efeitoArq) {
     this->efeitoArq = efeitoArq;
     efeito = al_load_sample(efeitoArq.c_str());
+    std::string s = "../resources/sons/pop2.wav";
+    pop = al_load_sample(s.c_str());
 }
 
 void bolhas::gui::BaseView::playSom() const {
@@ -78,4 +80,8 @@ ALLEGRO_SAMPLE *bolhas::gui::BaseView::getSample() {
 
 ALLEGRO_BITMAP *bolhas::gui::BaseView::getFundo() {
     return fundo;
+}
+
+void bolhas::gui::BaseView::playPop() const {
+    al_play_sample(pop, 5, 0, 1, ALLEGRO_PLAYMODE_ONCE, nullptr);
 }

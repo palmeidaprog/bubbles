@@ -26,7 +26,6 @@ namespace bolhas { namespace model {
             DIVISAO = 3 // 3
         };
         Operacao operacao;
-        void tempoDeVida();
         int resposta();
 
     public:
@@ -39,6 +38,7 @@ namespace bolhas { namespace model {
         const std::string &expressao();
         double modificadorNivel();
         int getTamanho();
+        double tempoDeVida();
     };
 }}
 

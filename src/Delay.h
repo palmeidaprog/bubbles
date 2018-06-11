@@ -24,6 +24,7 @@ namespace bolhas { namespace model {
     class Delay {
         TimePoint inicio;
         duration<double> delaySegundos;
+        bool close = false;
 
     public:
         Delay(double delay);
@@ -32,6 +33,7 @@ namespace bolhas { namespace model {
         double getDelay() const;
         void setDelay(double delay);
         const bool ready();
+        bool isClose() const;
     };
 }}
 

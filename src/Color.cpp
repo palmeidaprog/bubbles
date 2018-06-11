@@ -38,6 +38,21 @@ void bolhas::model::Color::setColor(Colors c) {
         case Colors::LARANJA_ACESO:
             cor = al_map_rgb(230, 133, 35);
             break;
+        case Colors::BRANCO_FUMACA:
+            cor = al_map_rgb(245, 245, 245);
+            break;
+        case Colors::AZUL_CLARO:
+            cor = al_map_rgb(176, 196, 222);
+            break;
+        case Colors::AZUL_VIVO:
+            cor = al_map_rgb(30, 144, 255);
+            break;
+        case Colors::CIANO:
+            cor = al_map_rgb(0, 255, 255);
+            break;
+        case Colors::AZUL_PO:
+            cor = al_map_rgb(176, 224, 230);
+            break;
         default: // PRETO
             cor = al_map_rgb(0, 0, 0);
             break;

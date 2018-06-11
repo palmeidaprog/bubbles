@@ -6,13 +6,14 @@
 
 bolhas::animation::ZoomIn::ZoomIn(model::Fonts *font, model::Colors
         corOriginal, model::Colors cor, int max, int tamanho) :
-        font(font), min(tamanho), max(max), crescimentoFonte(2),
+        font(font), min(tamanho), max(max), crescimentoFonte(1),
         tamanho(tamanho) {
     this->cor = std::unique_ptr<model::Color> (new model::Color(cor));
     this->corOriginal = std::unique_ptr<model::Color> (new model::Color(
         corOriginal));
     intervalo = std::unique_ptr<model::Delay> (new model::Delay((double)
-        1 / 76));
+        1 / 100));
+    percentual = static_cast<float>(100) * crescimentoFonte / min;
 }
 
 bolhas::animation::ZoomIn::~ZoomIn() {
@@ -20,17 +21,25 @@ bolhas::animation::ZoomIn::~ZoomIn() {
 
 void bolhas::animation::ZoomIn::parar() {
     font->setTamanho(tamanho);
+    crescimentoFonte = 1;
     min = tamanho;
+    percentual = static_cast<float>(100) * crescimentoFonte / min;
 }
 
 bool bolhas::animation::ZoomIn::animacao() {
-    if(intervalo->ready())
+    if(intervalo->ready()) {
+        while (static_cast<float>(100) * (crescimentoFonte + 1) /
+               min <= percentual) {
+            ++crescimentoFonte;
+        }
+
         min += crescimentoFonte;
-        if(min >= max) {
+        if (min >= max) {
             return false;
         }
         font->setTamanho(min);
         font->changeFont();
+    }
     return true;
 }
 

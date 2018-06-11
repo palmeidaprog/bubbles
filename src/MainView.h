@@ -31,6 +31,7 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 #include <vector>
+#include "ScoreTime.h"
 
 using std::cerr;
 using std::endl;
@@ -39,7 +40,8 @@ namespace bolhas { namespace gui {
     class MainController;
     class MenuView;
     class JogoView;
-class MainView : public Janela, public interfaces::Memento<Estado>, public
+    class ScoreTime;
+    class MainView : public Janela, public interfaces::Memento<Estado>, public
      BaseView {
         model::Fonts *fonte;
         ALLEGRO_EVENT_QUEUE *filaEventos;
@@ -54,7 +56,9 @@ class MainView : public Janela, public interfaces::Memento<Estado>, public
         int canaisAudio = 4;
         bool estadoMudado;
         static std::shared_ptr<MainView> instance;
-
+        model::DificuldadeJogo dificuldade =
+            model::DificuldadeJogo::NORMAL;
+        std::shared_ptr<model::ScoreTime> scoreTime;
 
         void inicializaSom();
         void inicializaTeclado();
@@ -79,7 +83,8 @@ class MainView : public Janela, public interfaces::Memento<Estado>, public
         void renderizaTela(int x, int y);
         void mostraMenu(int x, int y);
         bool click(int x, int y);
-
+        model::DificuldadeJogo getDificuldade() const;
+        void setDificuldade(model::DificuldadeJogo dificuldade);
         Estado getEstado() const override {
             return estado;
         }

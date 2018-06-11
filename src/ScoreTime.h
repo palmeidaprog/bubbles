@@ -6,6 +6,7 @@
 #define BUBBLES_SCORETIME_H
 
 #include <memory>
+#include <string>
 #include "DificuldadeJogo.h"
 
 namespace bolhas { namespace model {

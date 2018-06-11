@@ -21,7 +21,7 @@ void bolhas::gui::PainelSuperiorView::renderizar(int x, int y) {
     char pontos[9];
     snprintf(pontos, 9, "%09d", ScoreTime::getInstance()->getScore());
     al_draw_text(fonte->getPointer(), cor->getCor(),
-        MainView::getInstance()->getLargura(), 5, ALLEGRO_ALIGN_RIGHT,
+        MainView::getInstance()->getLargura() + 10, 5, ALLEGRO_ALIGN_RIGHT,
         pontos);
     al_draw_text(fonte->getPointer(), cor->getCor(),
         5, 5, ALLEGRO_ALIGN_LEFT,

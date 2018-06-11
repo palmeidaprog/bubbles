@@ -49,6 +49,17 @@ void bolhas::gui::JogoView::renderizar(int x, int y) {
             }
             break;
         case InGame::JOGANDO:
+            if(model::ScoreTime::getInstance()->timeOver()) {
+                char msg[25];
+                snprintf(msg, 25, "Seus pontos: %d",
+                    model::ScoreTime::getInstance()->getScore());
+                al_show_native_message_box(
+                    MainView::getInstance()->getJanela(),"Score", "GAME OVER",
+                    msg, "Ok", ALLEGRO_MESSAGEBOX_WARN);
+                ingame = InGame::DISPLAYING;
+                MainView::getInstance()->setEstado(Estado::MENU);
+                return;
+            }
             fundoDeTela();
             cabecalho(x, y);
             controller->renderizaBolhas(x, y);

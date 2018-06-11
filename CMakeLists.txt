@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 project(bubbles)
 
 set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_FLAGS "-L /usr/local/lib -lallegro -lallegro_main -lallegro_image -lallegro_audio -lallegro_acodec -lallegro_font -lallegro_ttf ")        #Allegro
+set(CMAKE_CXX_FLAGS "-L /usr/local/lib -lallegro -lallegro_dialog -lallegro_main -lallegro_image -lallegro_audio -lallegro_acodec -lallegro_font -lallegro_ttf ")        #Allegro
 
 include_directories(src)
 

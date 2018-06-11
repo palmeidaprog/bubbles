@@ -12,6 +12,7 @@
 
 #include <memory>
 #include <allegro5/allegro_font.h>
+#include <allegro5/allegro_native_dialog.h>
 #include <PainelSuperiorView.h>
 #include "JogoController.h"
 #include "BaseView.h"

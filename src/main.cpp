@@ -113,6 +113,12 @@ void iniciar(gui::MainView &mainView) {
                                 gui::EntradaDados::getInstance()
                                     ->removeTexto();
                                 break;
+                            case ALLEGRO_KEY_PAD_ENTER:
+                                gui::EntradaDados::getInstance()
+                                    ->enter();
+                                cout << "ENTER"
+                                     << endl;
+                                break;
                             case ALLEGRO_KEY_ENTER:
                                 gui::EntradaDados::getInstance()
                                     ->enter();
@@ -132,11 +138,12 @@ void iniciar(gui::MainView &mainView) {
                 std::chrono::system_clock::now();
         using namespace std::chrono;
 
-        mainView.renderizaTela(evento.mouse.x, evento.mouse.y);
-        //mainView.renderizaTela(x, y);
+        //mainView.renderizaTela(evento.mouse.x, evento.mouse.y);
+        mainView.renderizaTela(x, y);
         time_point<system_clock, nanoseconds> p2 = system_clock::now();
         auto p = duration<double>(p2 - p1);
-        //cout << p.count() << endl;
+        al_rest(0.015 - p.count());
+        cout << p.count() << endl;
         al_flip_display();
     }
 }

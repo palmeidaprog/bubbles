@@ -20,7 +20,7 @@ namespace bolhas { namespace model {
         ALLEGRO_COLOR cor;
 
     public:
-        Color(const Color &c) noexcept;
+        Color(const Color &c);
         Color(Colors c);
 
         Colors getColor() const;

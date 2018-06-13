@@ -1,6 +1,11 @@
-//
-// Created by paulo on 6/11/18.
-//
+/*
+ * UNICAP - Universidade Catolica de Pernambuco
+ * Pratica de Programação
+ * Prof: Me. Ana Eliza Moura
+ * Projeto 02 - Algebra Bolheana
+ * Aluno: Paulo R. Almeida Filho
+ * E-mail: pauloalmeidaf@gmail.com
+ */
 
 
 #include "EntradaDados.h"
@@ -12,11 +17,13 @@ bolhas::gui::EntradaDados::~EntradaDados() {
     al_destroy_bitmap(balao);
 }
 
-bolhas::gui::EntradaDados::EntradaDados() {
-    boneco = al_load_bitmap("../resources/images/a01.png");
-    balao = al_load_bitmap("../resources/images/b0.png");
+bolhas::gui::EntradaDados::EntradaDados() : resp(""), posX(10), 
+	posY(1000), balaoY(860), targetPosY(500), balaoX(75), 
+	targetBalaoY(360), mostrando(false), enterPressionado(false) {
+    boneco = al_load_bitmap("resources/images/a01.png");
+    balao = al_load_bitmap("resources/images/b0.png");
     fonte = std::unique_ptr<model::Fonts>(new model::Fonts(
-        "../resources/fonts/Arial.ttf", 50));
+        "resources/fonts/Arial.ttf", 50));
     cor = std::unique_ptr<model::Color>(new model::Color(
         model::Colors::PRETO));
     instance = std::shared_ptr<bolhas::gui::EntradaDados>(this);

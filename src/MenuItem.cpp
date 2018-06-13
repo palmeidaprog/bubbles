@@ -66,7 +66,6 @@ bool bolhas::gui::MenuItem::ehSelecionado(int x, int y) {
         x0 = MenuItem::x - largura;
         x1 = MenuItem::x;
     }
-    bool ehSelecionado;
     return (x >= x0 && x <= x1 && y >= y0 && y <= y1);
 }
 

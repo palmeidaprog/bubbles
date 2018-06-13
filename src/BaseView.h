@@ -20,7 +20,7 @@ namespace bolhas { namespace gui {
     class BaseView {
         ALLEGRO_BITMAP *fundo;
         std::string musicaArq, efeitoArq;
-        int canaisAudio = 4;
+        int canaisAudio;
         ALLEGRO_AUDIO_STREAM *musica;
         ALLEGRO_SAMPLE *sample, *efeito, *pop;
 

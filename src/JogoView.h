@@ -11,15 +11,17 @@
 #define BUBBLES_JOGOVIEW_H
 
 #include <memory>
+#include <cstdio>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_native_dialog.h>
-#include <PainelSuperiorView.h>
+#include "PainelSuperiorView.h"
 #include "JogoController.h"
 #include "BaseView.h"
 #include "MainView.h"
 #include "ZoomIn.h"
 #include "ScoreTime.h"
 #include "EntradaDados.h"
+
 
 namespace bolhas { namespace gui {
     class JogoController;
@@ -31,9 +33,9 @@ namespace bolhas { namespace gui {
         std::shared_ptr<model::Fonts> fonte, numbers;
         std::unique_ptr<animation::EfeitoFonte> efeitoFonte;
         std::unique_ptr<PainelSuperiorView> painel;
-        int xFundo, xSource, mult = 1;
-        float cor = 0.1, cor2 = 1, trans = 0.2;
-        std::string texto = "3";
+        int xFundo, xSource, mult;
+        float cor, cor2, trans;
+        std::string texto;
 
         enum class InGame {
             DISPLAYING, JOGANDO

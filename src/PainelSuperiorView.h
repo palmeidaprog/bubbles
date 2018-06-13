@@ -1,17 +1,23 @@
-//
-// Created by paulo on 6/10/18.
-//
+/*
+ * UNICAP - Universidade Catolica de Pernambuco
+ * Pratica de Programação
+ * Prof: Me. Ana Eliza Moura
+ * Projeto 02 - Algebra Bolheana
+ * Aluno: Paulo R. Almeida Filho
+ * E-mail: pauloalmeidaf@gmail.com
+ */
 
 #ifndef BUBBLES_PAINELSUPERIORVIEW_H
 #define BUBBLES_PAINELSUPERIORVIEW_H
 
-#include <Fonts.h>
+#include "Fonts.h"
 #include <memory>
-#include <Color.h>
+#include <cstdio>
+#include "Color.h"
 
 namespace bolhas { namespace gui {
     class PainelSuperiorView {
-        int score = 0;
+        int score;
         std::unique_ptr<model::Fonts> fonte;
         std::unique_ptr<model::Color> cor;
 

@@ -11,8 +11,7 @@
 #include "MainView.h"
 
 void bolhas::interfaces::MudaEstado::click(int x, int y) const {
-    using mv = gui::MainView;
-    mv::getInstance()->setEstado(estado);
+    gui::MainView::getInstance()->setEstado(estado);
 
 }
 

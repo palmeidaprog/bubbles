@@ -9,7 +9,7 @@
 #include "Delay.h"
 
 bolhas::model::Delay::Delay(double delaySegundos) :
-        delaySegundos(delaySegundos) {
+        delaySegundos(delaySegundos), close(false) {
     inicio = std::chrono::system_clock::now();
 }
 
@@ -17,7 +17,7 @@ bolhas::model::Delay::~Delay() {
 }
 
 const bool bolhas::model::Delay::ready() {
-    TimePoint agora = std::chrono::system_clock::now();
+    time_point<system_clock, nanoseconds> agora = std::chrono::system_clock::now();
     std::chrono::duration<double> passados = agora - inicio;
     if(passados < delaySegundos) {
         if(passados > delaySegundos * 0.75) {

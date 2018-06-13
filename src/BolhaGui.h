@@ -1,6 +1,11 @@
-//
-// Created by paulo on 6/10/18.
-//
+/*
+ * UNICAP - Universidade Catolica de Pernambuco
+ * Pratica de Programação
+ * Prof: Me. Ana Eliza Moura
+ * Projeto 02 - Algebra Bolheana
+ * Aluno: Paulo R. Almeida Filho
+ * E-mail: pauloalmeidaf@gmail.com
+ */
 
 #ifndef BUBBLES_BOLHAGUI_H
 #define BUBBLES_BOLHAGUI_H
@@ -26,9 +31,9 @@ namespace bolhas { namespace model {
         std::unique_ptr<model::Fonts> fonte;
         std::unique_ptr<model::Color> cor;
         ALLEGRO_BITMAP *imagem;
-        int posX, posY, tamanho = 1, spriteNum = 1, moveX, moveY;
-        float scale = 0.4;
-        bool animate = false;
+        int posX, posY, tamanho, spriteNum, moveX, moveY;
+        float scale;
+        bool animate;
         AcaoBolha acao;
 
         void checarLimites();

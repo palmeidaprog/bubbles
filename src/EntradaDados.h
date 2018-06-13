@@ -17,10 +17,10 @@
 namespace bolhas { namespace gui {
     class EntradaDados {
         ALLEGRO_BITMAP *boneco, *balao;
-        bool mostrando = false, enterPressionado = false;
-        int posX = 10, posY = 1000, balaoY = 860, targetPosY = 500,
-            balaoX = 75, targetBalaoY = 360;
-        std::string texto, resp = "";
+        bool mostrando, enterPressionado;
+        int posX, posY, balaoY, targetPosY,
+            balaoX, targetBalaoY;
+        std::string texto, resp;
         static std::shared_ptr<EntradaDados> instance;
         std::unique_ptr<model::Fonts> fonte;
         std::unique_ptr<model::Color> cor;

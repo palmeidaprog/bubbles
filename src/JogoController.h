@@ -20,7 +20,7 @@ namespace bolhas { namespace gui {
         std::shared_ptr<JogoView> view;
         std::unique_ptr<model::BolhasController> bolhas;
         std::unique_ptr<model::Delay> delay;
-        int score = 0, nivel = 1;
+        int score, nivel;
         model::DificuldadeJogo dificuldade;
         std::unique_ptr<model::Delay> segundos;
 

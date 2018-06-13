@@ -18,8 +18,8 @@ namespace bolhas { namespace model {
         std::vector<std::unique_ptr<model::BolhaGui>> bolhas;
         std::vector<ALLEGRO_BITMAP *> explodindo, secando, normal;
         std::unique_ptr<model::Delay> delay;
-        model::BolhaGui *selected = nullptr;
-        int x0, x1, y0, y1, nivel = 1;
+        model::BolhaGui *selected;
+        int x0, x1, y0, y1, nivel;
         DificuldadeJogo dificuldade;
 
         int geraX();

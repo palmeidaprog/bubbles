@@ -1,6 +1,11 @@
-//
-// Created by paulo on 6/10/18.
-//
+/*
+ * UNICAP - Universidade Catolica de Pernambuco
+ * Pratica de Programação
+ * Prof: Me. Ana Eliza Moura
+ * Projeto 02 - Algebra Bolheana
+ * Aluno: Paulo R. Almeida Filho
+ * E-mail: pauloalmeidaf@gmail.com
+ */
 
 #ifndef BUBBLES_BOLHA_H
 #define BUBBLES_BOLHA_H
@@ -14,7 +19,7 @@
 
 namespace bolhas { namespace model {
     class Bolha {
-        int numero1, numero2, resultado, tamanho = 1;
+        int numero1, numero2, resultado, tamanho;
         DificuldadeJogo dificuldade;
         std::string impressao;
         std::unique_ptr<model::Delay> delay;

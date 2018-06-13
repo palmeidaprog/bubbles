@@ -1,12 +1,18 @@
-//
-// Created by paulo on 6/10/18.
-//
+/*
+ * UNICAP - Universidade Catolica de Pernambuco
+ * Pratica de Programação
+ * Prof: Me. Ana Eliza Moura
+ * Projeto 02 - Algebra Bolheana
+ * Aluno: Paulo R. Almeida Filho
+ * E-mail: pauloalmeidaf@gmail.com
+ */
 
 #include "BolhaGui.h"
 #include "MainView.h"
 
 bolhas::model::BolhaGui::BolhaGui(bolhas::model::BolhasController *controller,
-            int posX, int posY, AcaoBolha acao) : posX(posX), posY(posY) {
+            int posX, int posY, AcaoBolha acao) : posX(posX), posY(posY), 
+			tamanho(1), spriteNum(1), animate(false), scale(0.4) {
     this->acao = acao;
 
     // movemimento aleatorio
@@ -156,7 +162,7 @@ void bolhas::model::BolhaGui::animacaoExplodindo() {
     if(explode->ready()) {
         spriteNum += 1;
         if (spriteNum == 4) {
-            gui::MainView::getInstance()->playPop();
+			//gui::MainView::getInstance()->playPop();
         }
     }
     std::cout << "acertou" << std::endl;

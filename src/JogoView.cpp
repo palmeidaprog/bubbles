@@ -11,19 +11,20 @@
 
 
 bolhas::gui::JogoView::JogoView() : BaseView(), mainV(MainView::getInstance()),
-    xFundo(mainV->getLargura()), xSource(400){
+    xFundo(mainV->getLargura()), xSource(400), texto("3"), cor(0.1), cor2(1), 
+	trans(0.2), mult(1) {
     score = std::shared_ptr<model::ScoreTime> (
         model::ScoreTime::getInstance());
     controller = std::unique_ptr<JogoController> (new JogoController(this));
     fonte = std::unique_ptr<model::Fonts> (new model::Fonts(
-        "../resources/fonts/smx.ttf", 85));
+        "resources/fonts/smx.ttf", 85));
     numbers = std::unique_ptr<model::Fonts> (new model::Fonts(
-        "../resources/fonts/agentred.ttf", 30));
+        "resources/fonts/agentred.ttf", 30));
     ingame = InGame::DISPLAYING;
     dados = std::unique_ptr<EntradaDados> (new EntradaDados());
-    //fundoDeTela("../resources/images/under0.jpg");
-    BaseView::fundoDeTela("../resources/images/under0.jpg");
-    setMusica("../resources/sons/stratosphere.wav");
+    //fundoDeTela("resources/images/under0.jpg");
+    BaseView::fundoDeTela("resources/images/under0.jpg");
+    setMusica("resources/sons/stratosphere.wav");
     playSom();
 }
 
@@ -43,7 +44,7 @@ void bolhas::gui::JogoView::renderizar(int x, int y) {
                 / 2 - 250, ALLEGRO_ALIGN_CENTER, "COMECANDO EM:");
             if(!contagem()) {
                 ingame = InGame::JOGANDO;
-                fundoDeTela("../resources/images/undermov.jpg");
+                fundoDeTela("resources/images/undermov.jpg");
                 controller->adicionaBolha();
                 //dados->mostraBalao(true);
             }
@@ -51,8 +52,13 @@ void bolhas::gui::JogoView::renderizar(int x, int y) {
         case InGame::JOGANDO:
             if(model::ScoreTime::getInstance()->timeOver()) {
                 char msg[25];
-                snprintf(msg, 25, "Seus pontos: %d",
-                    model::ScoreTime::getInstance()->getScore());
+				#if defined(WIN32) || defined(_WIN32)
+                _snprintf_s(msg, 25, _TRUNCATE, "Seus pontos: %d",
+					model::ScoreTime::getInstance()->getScore());
+				#else
+				snprintf(msg, 25, "Seus pontos: %d",
+					model::ScoreTime::getInstance()->getScore());
+				#endif
                 al_show_native_message_box(
                     MainView::getInstance()->getJanela(),"Score", "GAME OVER",
                     msg, "Ok", ALLEGRO_MESSAGEBOX_WARN);

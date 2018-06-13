@@ -14,7 +14,7 @@ bolhas::gui::JogoController::~JogoController() {
 }
 
 bolhas::gui::JogoController::JogoController(bolhas::gui::JogoView
-        *view) {
+        *view) : score(0), nivel(1) {
     this->view = std::shared_ptr<JogoView> (view);
     bolhas = std::unique_ptr<model::BolhasController>(new
             model::BolhasController());

@@ -18,13 +18,12 @@ using std::chrono::milliseconds;
 using std::chrono::seconds;
 using std::chrono::duration;
 using std::chrono::system_clock;
-using TimePoint = time_point<system_clock, nanoseconds>;
 
 namespace bolhas { namespace model {
     class Delay {
-        TimePoint inicio;
+        time_point<system_clock, nanoseconds> inicio;
         duration<double> delaySegundos;
-        bool close = false;
+        bool close;
 
     public:
         Delay(double delay);

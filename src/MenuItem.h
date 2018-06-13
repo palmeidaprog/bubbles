@@ -14,14 +14,12 @@
 #include <memory>
 #include "Color.h"
 #include "Fonts.h"
-#include "Observador.h"
 #include "ZoomFont.h"
 #include "Clickavel.h"
-#include "Observado.h"
 #include "EventoTipo.h"
 
 namespace bolhas { namespace gui {
-    class MenuItem : public interfaces::Observado {
+    class MenuItem {
         float x, y, largura, altura;
         int flag;
         bool select;

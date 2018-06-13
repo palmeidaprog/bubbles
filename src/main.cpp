@@ -39,7 +39,9 @@ int main(int argc, char** argv) {
     } catch(const excecoes::JanelaException &e) {
         cerr << e.what() << endl;
         return -1;
-    }
+	} catch (const std::exception &e) {
+		// nothing
+	}
 
     return 0;
 }
@@ -143,8 +145,10 @@ void iniciar(gui::MainView &mainView) {
         time_point<system_clock, nanoseconds> p2 = system_clock::now();
         auto p = duration<double>(p2 - p1);
         al_rest(0.015 - p.count());
-        cout << p.count() << endl;
+        //cout << p.count() << endl;
         al_flip_display();
+		al_clear_to_color(al_map_rgb(0,0,0));
+
     }
 }
 

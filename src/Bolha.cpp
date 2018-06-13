@@ -6,14 +6,13 @@
 #include "Bolha.h"
 
 bolhas::model::Bolha::Bolha(DificuldadeJogo dificuldade,
-                            bolhas::model::BolhaTipo tipo) {
+    bolhas::model::BolhaTipo tipo) : tamanho(1) {
     this->dificuldade = dificuldade;
     tempoDeVida();
     geraOperacao();
 }
 
 void bolhas::model::Bolha::geraOperacao() {
-    int resto;
     int op = 0;
 
     do { // evita operacoes de divisao com resto

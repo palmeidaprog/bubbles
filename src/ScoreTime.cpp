@@ -1,13 +1,18 @@
-//
-// Created by paulo on 6/11/18.
-//
+/*
+ * UNICAP - Universidade Catolica de Pernambuco
+ * Pratica de Programação
+ * Prof: Me. Ana Eliza Moura
+ * Projeto 02 - Algebra Bolheana
+ * Aluno: Paulo R. Almeida Filho
+ * E-mail: pauloalmeidaf@gmail.com
+ */
 
 #include "ScoreTime.h"
 
 std::shared_ptr<bolhas::model::ScoreTime> bolhas::model::ScoreTime::instance;
 
 bolhas::model::ScoreTime::ScoreTime(bolhas::model::DificuldadeJogo
-        dificuldade) : dificuldade(dificuldade) {
+        dificuldade) : dificuldade(dificuldade), time(300), score(0) {
     instance =  std::shared_ptr<ScoreTime>(this);
 
 }
@@ -37,7 +42,11 @@ const std::string &bolhas::model::ScoreTime::mostraTime() {
     int m, seg;
     m = static_cast<int>(time) / 60;
     seg = static_cast<int>(time) % 60;
-    snprintf(str, 6, " %01d:%02d", m, seg);
+	#if defined(WIN32) || defined(_WIN32)
+    _snprintf_s(str, 6, _TRUNCATE, " %01d:%02d", m, seg);
+	#else 
+	snprintf(str, 6, " %01d:%02d", m, seg);
+	#endif
     tempo = std::string(str);
     return tempo;
 }

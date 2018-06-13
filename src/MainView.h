@@ -53,11 +53,10 @@ namespace bolhas { namespace gui {
         MenuView *menu;
         std::unique_ptr<animation::Transition> transition;
         Estado estado;
-        int canaisAudio = 4;
+        int canaisAudio;
         bool estadoMudado;
         static std::shared_ptr<MainView> instance;
-        model::DificuldadeJogo dificuldade =
-            model::DificuldadeJogo::NORMAL;
+        model::DificuldadeJogo dificuldade;
         std::shared_ptr<model::ScoreTime> scoreTime;
 
         void inicializaSom();

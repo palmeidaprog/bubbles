@@ -35,7 +35,8 @@ void bolhas::gui::BaseView::fundoDeTela() {
     }
 }
 
-bolhas::gui::BaseView::BaseView() : musica(nullptr), sample(nullptr) {
+bolhas::gui::BaseView::BaseView() : musica(nullptr), sample(nullptr),
+	canaisAudio(4) {
 
 }
 
@@ -54,7 +55,7 @@ void bolhas::gui::BaseView::setMusica(const std::string &musicaArq) {
 void bolhas::gui::BaseView::setEfeito(const std::string &efeitoArq) {
     this->efeitoArq = efeitoArq;
     efeito = al_load_sample(efeitoArq.c_str());
-    std::string s = "../resources/sons/pop2.wav";
+    std::string s = "resources/sons/pop2.wav";
     pop = al_load_sample(s.c_str());
 }
 
@@ -83,5 +84,8 @@ ALLEGRO_BITMAP *bolhas::gui::BaseView::getFundo() {
 }
 
 void bolhas::gui::BaseView::playPop() const {
-    al_play_sample(pop, 5, 0, 1, ALLEGRO_PLAYMODE_ONCE, nullptr);
+	ALLEGRO_SAMPLE_INSTANCE *instance = al_create_sample_instance(pop);
+	al_attach_sample_instance_to_mixer(instance, al_get_default_mixer());
+	al_set_sample_instance_playing(instance, true);
+    al_play_sample_instance(instance);
 }

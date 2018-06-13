@@ -1,20 +1,26 @@
-//
-// Created by paulo on 6/11/18.
-//
+/*
+ * UNICAP - Universidade Catolica de Pernambuco
+ * Pratica de Programação
+ * Prof: Me. Ana Eliza Moura
+ * Projeto 02 - Algebra Bolheana
+ * Aluno: Paulo R. Almeida Filho
+ * E-mail: pauloalmeidaf@gmail.com
+ */
 
 #ifndef BUBBLES_SCORETIME_H
 #define BUBBLES_SCORETIME_H
 
 #include <memory>
+#include <cstdio>
 #include <string>
 #include "DificuldadeJogo.h"
 
 namespace bolhas { namespace model {
     class ScoreTime {
         static std::shared_ptr<ScoreTime> instance;
-        int score = 0;
+        int score;
         DificuldadeJogo dificuldade;
-        double time = 300;
+        double time;
         std::string tempo;
 
     public:

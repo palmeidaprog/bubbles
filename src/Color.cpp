@@ -59,6 +59,6 @@ void bolhas::model::Color::setColor(Colors c) {
     }
 }
 
-bolhas::model::Color::Color(const bolhas::model::Color &c) noexcept {
+bolhas::model::Color::Color(const bolhas::model::Color &c) {
     setColor(c.c);
 }

@@ -7,16 +7,16 @@ set(CMAKE_CXX_FLAGS "-L /usr/local/lib -lallegro -lallegro_dialog -lallegro_main
 include_directories(src)
 
 add_executable(bubbles
-        resources/fonts/ARCADECLASSIC.TTF
-        resources/fonts/chalkduster.ttf
-        resources/images/bubl.jpg
-        resources/images/color.jpg
-        resources/images/unders.jpg
-        "resources/sons/Fantasy Game Loop.wav"
-        resources/sons/menu.mp3
-        resources/sons/pop.mp3
-        resources/sons/Space_Loop.wav
-        "resources/sons/Star Commander1.wav"
+        src/../resources/fonts/ARCADECLASSIC.TTF
+        src/../resources/fonts/chalkduster.ttf
+        src/../resources/images/bubl.jpg
+        src/../resources/images/color.jpg
+        src/../resources/images/unders.jpg
+        "src/../resources/sons/Fantasy Game Loop.wav"
+        src/../resources/sons/menu.mp3
+        src/../resources/sons/pop.mp3
+        src/../resources/sons/Space_Loop.wav
+        "src/../resources/sons/Star Commander1.wav"
         src/Estado.h
         src/JanelaException.cpp
         src/JanelaException.h

@@ -15,7 +15,7 @@ bolhas::model::BolhasController::BolhasController(
     delay = std::unique_ptr<model::Delay> (new model::Delay(2));
     instance = std::shared_ptr<model::BolhasController> (this);
     fonte = std::unique_ptr<model::Fonts> (new model::Fonts(
-        "resources/fonts/agentred.ttf", 25));
+        "../../resources/fonts/agentred.ttf", 25));
     carregaBitmaps();
 }
 
@@ -48,39 +48,39 @@ ALLEGRO_BITMAP *bolhas::model::BolhasController::getBitmap(
 
 void bolhas::model::BolhasController::carregaBitmaps() {
     normal.emplace_back(loadBitmap(
-        "resources/sprites/bubble_right/bubble_pop_frame_01.png"));
+        "../resources/sprites/bubble_right/bubble_pop_frame_01.png"));
 
     explodindo.emplace_back(loadBitmap(
-        "resources/sprites/bubble_right/bubble_pop_frame_01.png"));
+        "../resources/sprites/bubble_right/bubble_pop_frame_01.png"));
     explodindo.emplace_back(loadBitmap(
-        "resources/sprites/bubble_right/bubble_pop_frame_02.png"));
+        "../resources/sprites/bubble_right/bubble_pop_frame_02.png"));
     explodindo.emplace_back(loadBitmap(
-        "resources/sprites/bubble_right/bubble_pop_frame_03.png"));
+        "../resources/sprites/bubble_right/bubble_pop_frame_03.png"));
     explodindo.emplace_back(loadBitmap(
-        "resources/sprites/bubble_right/bubble_pop_frame_04.png"));
+        "../resources/sprites/bubble_right/bubble_pop_frame_04.png"));
     explodindo.emplace_back(loadBitmap(
-        "resources/sprites/bubble_right/bubble_pop_frame_05.png"));
+        "../resources/sprites/bubble_right/bubble_pop_frame_05.png"));
     explodindo.emplace_back(loadBitmap(
-        "resources/sprites/bubble_right/bubble_pop_frame_06.png"));
+        "../resources/sprites/bubble_right/bubble_pop_frame_06.png"));
     explodindo.emplace_back(loadBitmap(
-        "resources/sprites/bubble_right/bubble_pop_frame_07.png"));
+        "../resources/sprites/bubble_right/bubble_pop_frame_07.png"));
 
     secando.emplace_back(loadBitmap(
-        "resources/sprites/bubble_wrong/bubble_pop_under_water_01.png"));
+        "../resources/sprites/bubble_wrong/bubble_pop_under_water_01.png"));
     secando.emplace_back(loadBitmap(
-        "resources/sprites/bubble_wrong/bubble_pop_under_water_02.png"));
+        "../resources/sprites/bubble_wrong/bubble_pop_under_water_02.png"));
     secando.emplace_back(loadBitmap(
-        "resources/sprites/bubble_wrong/bubble_pop_under_water_03.png"));
+        "../resources/sprites/bubble_wrong/bubble_pop_under_water_03.png"));
     secando.emplace_back(loadBitmap(
-        "resources/sprites/bubble_wrong/bubble_pop_under_water_04.png"));
+        "../resources/sprites/bubble_wrong/bubble_pop_under_water_04.png"));
     secando.emplace_back(loadBitmap(
-        "resources/sprites/bubble_wrong/bubble_pop_under_water_05.png"));
+        "../resources/sprites/bubble_wrong/bubble_pop_under_water_05.png"));
     secando.emplace_back(loadBitmap(
-        "resources/sprites/bubble_wrong/bubble_pop_under_water_06.png"));
+        "../resources/sprites/bubble_wrong/bubble_pop_under_water_06.png"));
     secando.emplace_back(loadBitmap(
-        "resources/sprites/bubble_wrong/bubble_pop_under_water_07.png"));
+        "../resources/sprites/bubble_wrong/bubble_pop_under_water_07.png"));
     secando.emplace_back(loadBitmap(
-        "resources/sprites/bubble_wrong/bubble_pop_under_water_08.png"));
+        "../resources/sprites/bubble_wrong/bubble_pop_under_water_08.png"));
 }
 
 ALLEGRO_BITMAP *bolhas::model::BolhasController::loadBitmap(const

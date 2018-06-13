@@ -22,7 +22,7 @@ namespace bolhas { namespace gui {
             fonte(nullptr), filaEventos(NULL),
             stop(false),
             titulo("Algebra Bolheana"),
-            imagemArq("resources/images/under0.jpg"), controller(nullptr),
+            imagemArq("../resources/images/under0.jpg"), controller(nullptr),
             menu(nullptr), estadoMudado(false), dificuldade(
 			model::DificuldadeJogo::NORMAL), canaisAudio(16) {
         instance = std::shared_ptr<MainView> (this);
@@ -36,11 +36,11 @@ namespace bolhas { namespace gui {
         playSom();
         inicializaEventos();
         inicializaFont();
-        fonte = new model::Fonts("resources/fonts/bubblegums.ttf", 72, true);
+        fonte = new model::Fonts("../resources/fonts/bubblegums.ttf", 72, true);
         inicializaImagem();
         inicializaMouse();
         inicializaTeclado();
-        fundoDeTela("resources/images/unders.jpg");
+        fundoDeTela("../resources/images/unders.jpg");
         fundoDeTela();
         al_flip_display();
     }
@@ -79,8 +79,8 @@ namespace bolhas { namespace gui {
             cerr << "Falha ao alocar canais de áudio." << endl;
         }
 
-        setMusica("resources/sons/Space_Loop.wav");
-        setEfeito("resources/sons/load.wav");
+        setMusica("../resources/sons/Space_Loop.wav");
+        setEfeito("../resources/sons/load.wav");
 
 
         //getSample() = al_load_sample(getMusica().c_str());
@@ -152,7 +152,7 @@ namespace bolhas { namespace gui {
                 fundoDeTela();
                 mostraMenu(x, y);
                 if(!transition->animar()) {
-                    fundoDeTela("resources/images/under0.jpg");
+                    fundoDeTela("../resources/images/under0.jpg");
                     model::Color cor(model::Colors::PRETO);
                     al_clear_to_color(cor.getCor());
                     estado = Estado::TRANSICAO_REV;

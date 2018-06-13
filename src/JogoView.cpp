@@ -17,14 +17,14 @@ bolhas::gui::JogoView::JogoView() : BaseView(), mainV(MainView::getInstance()),
         model::ScoreTime::getInstance());
     controller = std::unique_ptr<JogoController> (new JogoController(this));
     fonte = std::unique_ptr<model::Fonts> (new model::Fonts(
-        "resources/fonts/smx.ttf", 85));
+        "../resources/fonts/smx.ttf", 85));
     numbers = std::unique_ptr<model::Fonts> (new model::Fonts(
-        "resources/fonts/agentred.ttf", 30));
+        "../resources/fonts/agentred.ttf", 30));
     ingame = InGame::DISPLAYING;
     dados = std::unique_ptr<EntradaDados> (new EntradaDados());
-    //fundoDeTela("resources/images/under0.jpg");
-    BaseView::fundoDeTela("resources/images/under0.jpg");
-    setMusica("resources/sons/stratosphere.wav");
+    //fundoDeTela("../resources/images/under0.jpg");
+    BaseView::fundoDeTela("../resources/images/under0.jpg");
+    setMusica("../resources/sons/stratosphere.wav");
     playSom();
 }
 
@@ -44,7 +44,7 @@ void bolhas::gui::JogoView::renderizar(int x, int y) {
                 / 2 - 250, ALLEGRO_ALIGN_CENTER, "COMECANDO EM:");
             if(!contagem()) {
                 ingame = InGame::JOGANDO;
-                fundoDeTela("resources/images/undermov.jpg");
+                fundoDeTela("../resources/images/undermov.jpg");
                 controller->adicionaBolha();
                 //dados->mostraBalao(true);
             }

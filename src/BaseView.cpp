@@ -55,7 +55,7 @@ void bolhas::gui::BaseView::setMusica(const std::string &musicaArq) {
 void bolhas::gui::BaseView::setEfeito(const std::string &efeitoArq) {
     this->efeitoArq = efeitoArq;
     efeito = al_load_sample(efeitoArq.c_str());
-    std::string s = "resources/sons/pop2.wav";
+    std::string s = "../resources/sons/pop2.wav";
     pop = al_load_sample(s.c_str());
 }
 

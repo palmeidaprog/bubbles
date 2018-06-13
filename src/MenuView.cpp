@@ -23,7 +23,7 @@ bolhas::gui::MenuView::MenuView(MainView &parent, int x, int y)
     fonte->changeFont();
     marcada = new model::Fonts(fonte.get());
     title = std::unique_ptr<model::Fonts>(new
-            model::Fonts("resources/fonts/bubbs.ttf", 56));
+            model::Fonts("../resources/fonts/bubbs.ttf", 56));
     zoom = std::unique_ptr<animation::ZoomFont>
             (new animation::ZoomFont(fonte.get()));
     selec = Selecionado::NENHUM;

@@ -30,7 +30,7 @@ namespace bolhas { namespace gui {
             }
             
             ALLEGRO_BITMAP *imagem = al_load_bitmap(
-                "resources/images/unders.jpg");
+                "../resources/images/unders.jpg");
             if(imagem != NULL) {
                 al_draw_bitmap(imagem, 0, 0, 0);
             }
